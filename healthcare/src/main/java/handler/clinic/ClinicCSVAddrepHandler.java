@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,7 +21,9 @@ public class ClinicCSVAddrepHandler implements Handler {
 		// TODO Auto-generated method stub
 		
 		System.out.println("addrephandler 도착");
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		
+		String id = (String)session.getAttribute("loginId");
 		
 		String content = request.getParameter("content");
 		String code = request.getParameter("code");
@@ -34,7 +37,7 @@ public class ClinicCSVAddrepHandler implements Handler {
 		JSONArray arr = new JSONArray();
 		for(C_repVo temp:reps) {
 		
-			SimpleDateFormat fmt=new SimpleDateFormat("yyyy-MM-dd"); 
+			SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd"); 
 			JSONObject obj = new JSONObject();
 			obj.put("id", temp.getId());
 			obj.put("content", temp.getContent());

@@ -164,7 +164,7 @@ public class ClinicCSVSearchAllHandler implements Handler {
 
 		
 		
-		return "/cliniclist.jsp";
+		return "/clinic/cliniclist.jsp";
 	}
 
 }

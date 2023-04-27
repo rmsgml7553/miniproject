@@ -9,7 +9,7 @@
 <body>
 <div class="login-wrapper">
 <h2>login</h2>
-<form method="post" action="${pageContext.request.contextPath }/member/login.do" method="post">
+<form method="post" action="${pageContext.request.contextPath }/member/login.do">
 	<fieldset>
 		<label>아이디:<input type="text" name="id" placeholder="id"></label><br/>
 		<label>비밀번호:<input type="password" name="pwd" placeholder="Password"></label>

@@ -23,8 +23,7 @@
 <div>${m.birth }</div><br/>
 <div>${m.address }</div><br/>
 
-<input type="button" value="수정" onclick="javascript:location.href='${pageContext.request.contextPath }/member/edit.do?id=${m.id}'">
 <input type="button" value="edit"  onclick="javascript:location.href='${pageContext.request.contextPath }/member/edit.do?id=${m.id }'">
-
+<a href = "${pageContext.request.contextPath }/index.jsp">home</a>
 </body>
 </html>

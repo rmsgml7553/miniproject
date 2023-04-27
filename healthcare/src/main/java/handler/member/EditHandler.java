@@ -35,7 +35,7 @@ public class EditHandler implements Handler {
 			MemberService service = new MemberService();
 			MemberVo m = service.getByMember(id);
 			request.setAttribute("m", m);
-			request.setAttribute("view", "/member/edit.jsp");
+			view = "/member/edit.jsp";
 		} else {
 			MemberService service = new MemberService();
 			

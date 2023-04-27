@@ -18,17 +18,18 @@ public class PharmarcyLikeHandler implements Handler{
 		// TODO Auto-generated method stub
 		PharmarcyLikeService service = new PharmarcyLikeService();
 		HttpSession session = request.getSession();
-		session.setAttribute("id", "jwon");
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("loginId");
 		String hpid = request.getParameter("hpid");
 		String tf;
-		System.out.println(hpid);
-		System.out.println("find "+service.find(id, hpid));
+		System.out.println(id);
 		if(request.getMethod().equals("POST")) { 
 			// 눌렀을 때(post) 즐겨찾기에 있다면 삭제, 없으면 삽입.
 			
 			System.out.println("pull");
-			if(service.find(id, hpid) != null) {
+			if(id == null) {
+				tf = "NotLogin";
+			}
+			else if(service.find(id, hpid) != null) {
 				service.delete(id, hpid);
 				tf = "N";
 			}else {
@@ -46,6 +47,7 @@ public class PharmarcyLikeHandler implements Handler{
 		JSONObject obj = new JSONObject();
 		obj.put("tf", tf);
 		String txt = obj.toJSONString();
+		System.out.println(txt);
 
 		return "responsebody/"+txt;
 	}

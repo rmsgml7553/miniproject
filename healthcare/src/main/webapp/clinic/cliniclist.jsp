@@ -21,10 +21,7 @@
 </script>
 </head>
 <body>
-<a href= "${pageContext.request.contextPath }/clinic/load.do">병원목록</a><br/>
-${sessionScope.loginId}<br/>
-<a href = "${pageContext.request.contextPath }/member/login">로그인</a>
-<a href = "${pageContext.request.contextPath }/member/logout">로그아웃</a>
+
 
 <form action = "${pageContext.request.contextPath }/clinic/search.do" method = "post" name="f">
 <select name = "option" id="option">
