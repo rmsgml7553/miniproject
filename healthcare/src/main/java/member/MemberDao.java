@@ -76,11 +76,15 @@ public class MemberDao {
 	public void deleteMember(String id) {
 		Connection conn = dbconn.conn();
 		String sql = "delete from member where id=?";
+		System.out.println("탈퇴 dao");
+		System.out.println(id);
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+			System.out.println("탈퇴 dao");
+			System.out.println(id);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
-			System.out.println("탈퇴!!!");
+			System.out.println(id+" 탈퇴!!!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,8 +132,7 @@ public class MemberDao {
 		MemberVo vo = new MemberVo();
 		String sql = "select * from member where id=?";
 		try {
-			PreparedStatement pstmt;
-			pstmt = conn.prepareStatement(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {

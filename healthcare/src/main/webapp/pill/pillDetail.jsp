@@ -15,14 +15,17 @@ function change(){
 	console.log("change");
 	xhttp.onload = function() {
 		let txt = xhttp.responseText;
+		console.log(txt);
 		let obj = JSON.parse(txt);
 		if(obj.tf == "Y"){
 			star.style.color = "#ffcc00";
 		}else if(obj.tf == "N"){
 			star.style.color = "gray";
+		}else if(obj.tf =="NotLogin"){
+			alert("login 후 이용해주세요");
 		}
 	}
-	xhttp.open("POST","${pageContext.request.contextPath}/pill/pillLike/load.do}");
+	xhttp.open("POST","${pageContext.request.contextPath}/pill/pillLike/load.do");
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8")
 	xhttp.send("itemSeq=${PillXMLVo.itemSeq}");
 }

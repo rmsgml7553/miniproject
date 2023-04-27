@@ -117,13 +117,14 @@ let star = document.getElementById('${vo.code}');
 	
 	let param = "?code=${vo.code}";  
 	param += "&id=${sessionScope.loginId}";
-	xhttp.open("GET","${pageContext.request.contextPath}/clinic/bookmarkstar.do"+param);
+	xhttp.open("GET","${pageContext.request.contextPath}/clinic/bookmark.do"+param);
 
 	xhttp.send();
 	
 	xhttp.onload = function(){
 	
 		let val = xhttp.responseText;
+		console.log(val);
 		if(val == 'Y'){
 			star.style.color = "#fde600";
 		}
@@ -135,20 +136,22 @@ $(document).ready(function(){
 	
 	$('.material-symbols-outlined').click(function(){
 		let code = $(this).attr("id");
-		let id = '${sessionScope.loginId}';
+		console.log(code);
 		let star = document.getElementById('${vo.code}');
 		
 
 		$.ajax({
 			url:'${pageContext.request.contextPath}/clinic/bookmark.do',
 			type : 'post',
-			data : {'code': code,'id':id},
+			data : {'code': code},
 			success:function(result){
 				if(result == 'Y'){
 					
 					star.style.color = "#fde600";
-				}else{
+				}else if(result == 'N'){
 					star.style.color = "#000000";
+				}else if(result == 'NotLogin'){
+					alert("Login 후 이용 가능합니다.");
 				}
 			},
 			error:function(req,status){

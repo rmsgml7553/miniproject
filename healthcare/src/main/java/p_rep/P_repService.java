@@ -10,7 +10,9 @@ public class P_repService {
 	}
 
 	public void insert(P_repVo vo) {
-		dao.insert(vo);
+		if(vo.getId() != null) {
+			dao.insert(vo);
+		}
 	}
 	public void delete(String id) {
 		dao.delete(id);

@@ -15,6 +15,7 @@ public class MemberService {
 	}
 	
 	public void delMember(String id) {
+		System.out.println("탈퇴 service");
 		dao.deleteMember(id);
 	}
 	

@@ -55,6 +55,8 @@ function change(){
 			star.style.color = "#ffcc00";
 		}else if(obj.tf == "N"){
 			star.style.color = "gray";
+		}else if(obj.tf == "NotLogin"){
+			alert("login 후 이용 가능합니다.");
 		}
 	}
 	xhttp.open("POST","${pageContext.request.contextPath}/pharmarcy/pharmarcyLike/load.do");
@@ -256,10 +258,10 @@ function addRrep(pnum){
 
 	<table border="1">
 		<tr>
-			<td><c:if test="${empty sessionScope.id }">
+			<td><c:if test="${empty sessionScope.loginId }">
 					<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly
 						style="width: 200px">
-				</c:if> <c:if test="${not empty sessionScope.id}">
+				</c:if> <c:if test="${not empty sessionScope.loginId}">
 					<form action="">
 						<input type="text" name="rep" id="newRep" placeholder="댓글 작성">
 						<input type="button" value="작성하기" onclick="addRep()">

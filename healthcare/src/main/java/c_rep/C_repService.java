@@ -10,7 +10,9 @@ public class C_repService {
 	}
 
 	public void insert(C_repVo vo) {
-		dao.insert(vo);
+		if(vo.getId() != null) {
+			dao.insert(vo);
+		}
 	}
 	public void delete(String id) {
 		dao.delete(id);

@@ -17,14 +17,17 @@ public class PillLikeHandler implements Handler{
 		// TODO Auto-generated method stub
 		PillLikeService service = new PillLikeService();
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("loginId");
 		String itemSeq = request.getParameter("itemSeq");
 		System.out.println("itemSeq : "+itemSeq);
 		String tf;
 		System.out.println("find "+service.find(id, itemSeq));
 		if(request.getMethod().equals("POST")) { 
 			// 눌렀을 때(post) 즐겨찾기에 있다면 삭제, 없으면 삽입.
-			if(service.find(id, itemSeq) != null) {
+			if(id == null) {
+				tf = "NotLogin";
+			}
+			else if(service.find(id, itemSeq) != null) {
 				service.delete(id, itemSeq);
 				tf = "N";
 			}else {
@@ -42,7 +45,7 @@ public class PillLikeHandler implements Handler{
 		JSONObject obj = new JSONObject();
 		obj.put("tf", tf);
 		String txt = obj.toJSONString();
-
+		System.out.println("txt : " + txt);
 		return "responsebody/"+txt;
 	}
 

@@ -23,25 +23,22 @@ public class LoginHandler implements Handler {
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		String view = "/member/myinfo.do";
-		boolean flag=false;
-		if(request.getMethod()=="GET") {
-			request.setAttribute("view", "/member/login.jsp");
-		} else {
-			String id = request.getParameter("id");
-			String pwd = request.getParameter("pwd");
-			MemberService service = new MemberService();
-			MemberVo vo = service.getByMember(id);
+		boolean flag = false;
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		MemberService service = new MemberService();
+		MemberVo vo = service.getByMember(id);
+		System.out.println(id);
+		System.out.println(vo);
+		if (vo != null && pwd.equals(vo.getPwd())) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginId", id);
+			System.out.println(session);
+			request.setAttribute("vo", vo);
 			System.out.println(id);
-			if(vo!=null && pwd.equals(vo.getPwd())) {
-				HttpSession session= request.getSession();
-				session.setAttribute("loginId", id);
-				System.out.println(session);
-				request.setAttribute("vo", vo);
-				System.out.println(id);
-				flag = true;
-			}
+			flag = true;
 		}
+		String view = "/index.jsp";
 		request.setAttribute("flag", flag);
 		return view;
 	}
