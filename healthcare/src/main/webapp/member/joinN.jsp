@@ -1,27 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 <script>
-function id_check(){
-	let win = open('idcheck.jsp', 'win', 'width=70,hegiht=100,top=300,lefth=300');
-	
-}
-
 
 
 function joinform_check(){
-	alert('È¸¿ø°¡ÀÔ ´©¸§');
+	alert('íšŒì›ê°€ì… í•˜ì‹¤');
 	
 	let f = document.f;
 
-	
-	
-
-	
 	let id = document.querySelector("input[name='id']").value;
 
 	let pwd = document.querySelector("input[name='pwd']").value;
@@ -31,18 +22,20 @@ function joinform_check(){
 	let sample3_address = document.querySelector("input[name='sample3_address']").value;
 	let sample3_detailAddress = document.querySelector("input[name='sample3_detailAddress']").value;
 	let mCode = document.querySelector("input[name='mCode']").value;
+	let code = document.querySelector("input[name='code']").value;
 	let gender = document.querySelector("select[name='gender']").value;
 	let year = document.querySelector("input[name='year']").value;
 	let month = document.querySelector("select[name='month']").value;
 	let day = document.querySelector("select[name='day']").value;
+	
 	
 	let str = year+month+day;
 	let birth = parse(str);
 	let address = sample3_address+" " + sample3_detailAddress;
 	
 	if(id == ""){
-		alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
-		id.focus();
+		alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+		
 		return false;
 	}
 	
@@ -50,44 +43,41 @@ function joinform_check(){
 		pwd.focus();
 		pwd.select();
 		pwd2 = "";
-		alert("ºñ¹Ğ¹øÈ£°¡ ¼­·Î ´Ù¸¨´Ï´Ù.");
+		alert("ë¹„ë°€ë²ˆí˜¸ê°€ ì„œë¡œ ë‹¤ë¦…ë‹ˆë‹¤.");
 		return false;
 	}
 
 	
 	if(name == ""){
-		alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.");
+		alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.");
 		name.focus();
 		return false;
 	}
 	
-	
-	
 	if(year == ""){
-		alert("³âµµ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		alert("ë…„ë„ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 		year.focus();
 		return false;
 	} 
 	
 	else if(!(year >= 1900 && year <= 2050)){
-		alert("³âµµ¸¦ Á¤È®ÇÏ°Ô ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		alert("ë…„ë„ë¥¼ ì •í™•í•˜ê²Œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		year.focus();
 		return false;
 	}
 	
 	if(month == ""){
-		alert("´ŞÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+		alert("ë‹¬ì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
 		month.focus();
 		return false;
 	}
 	
 	if(day == ""){
-		alert("ÀÏÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+		alert("ì¼ì„ ì„ íƒí•´ì£¼ì„¸ìš”.");
 		day.focus();
 		return false;
 	}
 	f.submit();
-	
 }
 
 function parse(str){
@@ -96,107 +86,217 @@ function parse(str){
 	let d = str.substr(6, 2);
 	return new Date(y, m-1, d);
 }
+
+
+
+function myFunction(){
+	let x = document.getElementById("id").value;
+	console.log(x);
+	let idMsg = document.getElementById("idMsg");
+	let idRegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+	let res = idRegExp.test(x);
+	
+	
+	idMsg.style.display = "";
+	let html = "";
+	
+	idMsg.innerHTML = " ";
+	
+	
+	if(x != null ){
+	
+			const xhttp = new XMLHttpRequest();
+			
+			xhttp.onload = function(){
+				let obj = xhttp.responseText;
+				let arr = JSON.parse(obj);
+				console.log(arr);
+				if(arr.flag =="true"){
+					html += "ì‚¬ìš©ê°€ëŠ¥í•œ ì•„ì´ë””";
+					id.focus();
+				} else {
+					html += "ì¤‘ë³µëœ ì•„ì´ë””";
+					
+				}
+		    idMsg.innerHTML = html;	
+			}
+			let param = "id="+x	;
+			xhttp.open("get", "${pageContext.request.contextPath}/member/ex.do?"+param);
+			xhttp.send();
+		}	
+}
+
+function pwdFunction(){
+	let pwd = document.getElementById("pwd").value;
+	let pwd2 = document.getElementById("pwd2").value;
+	console.log(pwd);
+	console.log(pwd2);
+	let pwdMsg = document.getElementById("pwdMsg");
+	let pwd2Msg = document.getElementById("pwd2Msg");
+	let RegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/;
+	let res = RegExp.test(pwd);
+	let res2 = RegExp.test(pwd2);
+	
+	
+	pwdMsg.style.display = "";
+	pwd2Msg.style.display = "";
+	let html = "";
+	
+	pwdMsg.innerHTML = " ";
+	pwd2Msg.innerHTML = " ";
+	
+	if(pwd == null){
+		html += "ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.";
+		pwd.focus();
+	} else {
+		html += "4~12ìì˜ ì˜ë¬¸ ëŒ€ì†Œë¬¸ìì™€ ìˆ«ìë¡œë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.";
+		pwd.focus();
+	}
+	pwdMsg.innerHTML = html;
+	html = "";
+	
+	if(pwd2 == null){
+		html += "ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.";
+		pwd2.focus();
+	} else {
+		if(!res2){
+			html += "4~12ìì˜ ì˜ë¬¸ ëŒ€ì†Œë¬¸ìì™€ ìˆ«ìë¡œë§Œ ì…ë ¥í•´ì£¼ì„¸ìš”.";
+			pwd2.focus();
+		} else if(res){
+			if(res.equals(res2)){
+				html += "ì‚¬ìš©ê°€ëŠ¥í•œ ë¹„ë°€ë²ˆí˜¸ ì…ë‹ˆë‹¤.";
+			} else {
+				html += "ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.";
+				pwd.focus();
+			}
+		}
+	}
+	pwdMsg2.innerHTML = html;
+}
+
+
+function myFunction(){
+	let name = document.getElementById("name").value;
+	console.log(name);
+	let nameMsg = document.getElementById("nameMsg");
+	let RegExp =  /^(?=.*[ê°€-í£a-z-A-Z])$/;
+	let res = RegExp.test(name);
+	
+	nameMsg.style.display = "";
+	let html = "";
+	
+	nameMsg.innerHTML = " ";
+	
+	if(!res){
+		html += "í•œê¸€ê³¼ ì˜ë¬¸ë§Œ ì…ë ¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.";
+	} else {
+		html += "ì‚¬ìš©ê°€ëŠ¥ í•©ë‹ˆë‹¤.";
+	} 
+	nameMsg.innerHTML = html;
+}
 </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/member/joinN.do" method="post" name="f">
-<fieldset>
-<label for="id">¾ÆÀÌµğ</label><br/>
-<input type="text" name="id" size="50" autofocus required placeholder="¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.">
-<input type="button" onclick="id_check()" value="Áßº¹È®ÀÎ">
-<br/>
-ÇÊ¼öÁ¤º¸ ÀÔ´Ï´Ù.<br/>
-<label for="pwd">ºñ¹Ğ¹øÈ£</label><br/>
-<input type="password" name="pwd" size="50" autofocus required placeholder="ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."><br/>
-ÇÊ¼öÁ¤º¸ ÀÔ´Ï´Ù.<br/>
-<label for="pwd2">ºñ¹Ğ¹øÈ£ ÀçÈ®ÀÎ</label><br/>
-<input type="password" name="pwd2" size="50" autofocus required placeholder="ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."><br/>
-ÇÊ¼öÁ¤º¸ ÀÔ´Ï´Ù.<br/>
-<label for="name">ÀÌ¸§</label><br/>
-<input type="text" name="name" size="50" autofocus required placeholder="ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä."><br/>
-ÇÊ¼öÁ¤º¸ ÀÔ´Ï´Ù.<br/>
-<label for="phone">ÀüÈ­¹øÈ£</label><br/>
-<input type="text" name="phone" size="50" autofocus><br/>
+	<form action="${pageContext.request.contextPath }/member/joinN.do"
+		method="post" name="f">
+		<fieldset>
+			<label for="id">ì•„ì´ë””</label><br /> 
+			<input type="text" name="id" id="id" size="50" autofocus required onblur="myFunction()">
+			<span class="error_next_box" id="idMsg" >í•„ìˆ˜ì •ë³´ì…ë‹ˆë‹¤.</span><br /> 
+				<label for="pwd">ë¹„ë°€ë²ˆí˜¸</label><br /> 
+				<input type="password" name="pwd" name="pwd" size="50" required placeholder="4~12ìì˜ ì˜ë¬¸ ëŒ€ì†Œë¬¸ìì™€ ìˆ«ìë¡œë§Œ ì…ë ¥" onblur="pwdFunction()"><br />
+			<span class="error_next_box" id="pwdMsg" >í•„ìˆ˜ì •ë³´ì…ë‹ˆë‹¤.</span><br /> 
+			<label for="pwd2">ë¹„ë°€ë²ˆí˜¸ ì¬í™•ì¸</label><br /> 
+			<input type="password" name="pwd2" name="pwd2" size="50" required placeholder="4~12ìì˜ ì˜ë¬¸ ëŒ€ì†Œë¬¸ìì™€ ìˆ«ìë¡œë§Œ ì…ë ¥" onblur="pwdFunction()"><br />
+			<span class="error_next_box" id="pwdMsg2" >í•„ìˆ˜ì •ë³´ì…ë‹ˆë‹¤.</span><br /> 
+			<label for="name">ì´ë¦„</label><br /> 
+			<input type="text" name="name" id="name" size="50" required placeholder="ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”."
+				onblur="nameFunction()"><br /> <span class="error_next_box" id="nameMsg">í•„ìˆ˜ì •ë³´ ì…ë‹ˆë‹¤.</span><br /> 
+				<label for="phone">ì „í™”ë²ˆí˜¸</label><br /> 
+			<input type="text" name="phone" size="50" autofocus><br /> 
+			<label for="address">ì£¼ì†Œ</label><br />
+			<input type="text" id="sample3_postcode" placeholder="ìš°í¸ë²ˆí˜¸" size="50">
+			<input type="button" onclick="sample3_execDaumPostcode()" value="ìš°í¸ë²ˆí˜¸ ì°¾ê¸°"><br> 
+			<input type="text" name="sample3_address" id="sample3_address" placeholder="ì£¼ì†Œ" size="50"><br> 
+			<input type="text"
+				name="sample3_detailAddress" id="sample3_detailAddress"
+				placeholder="ìƒì„¸ì£¼ì†Œ" size="22"> <input type="text"
+				id="sample3_extraAddress" placeholder="ì°¸ê³ í•­ëª©" size="22">
 
+			<div id="wrap"
+				style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
+				<img src="//t1.daumcdn.net/postcode/resource/images/close.png"
+					id="btnFoldWrap"
+					style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+					onclick="foldDaumPostcode()" alt="ì ‘ê¸° ë²„íŠ¼">
+			</div>
 
-
-
-<label for="address">ÁÖ¼Ò</label><br/>
-<input type="text" id="sample3_postcode" placeholder="¿ìÆí¹øÈ£" size="50">
-<input type="button" onclick="sample3_execDaumPostcode()" value="¿ìÆí¹øÈ£ Ã£±â"><br>
-<input type="text" name="sample3_address" id="sample3_address" placeholder="ÁÖ¼Ò" size="50"><br>
-<input type="text" name="sample3_detailAddress" id="sample3_detailAddress" placeholder="»ó¼¼ÁÖ¼Ò" size="22">
-<input type="text" id="sample3_extraAddress" placeholder="Âü°íÇ×¸ñ" size="22">
-
-<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="Á¢±â ¹öÆ°">
-</div>
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    // ¿ìÆí¹øÈ£ Ã£±â Ã£±â È­¸éÀ» ³ÖÀ» element
+			<script
+				src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+			<script>
+    // ìš°í¸ë²ˆí˜¸ ì°¾ê¸° ì°¾ê¸° í™”ë©´ì„ ë„£ì„ element
     var element_wrap = document.getElementById('wrap');
 
     function foldDaumPostcode() {
-        // iframeÀ» ³ÖÀº element¸¦ ¾Èº¸ÀÌ°Ô ÇÑ´Ù.
+        // iframeì„ ë„£ì€ elementë¥¼ ì•ˆë³´ì´ê²Œ í•œë‹¤.
         element_wrap.style.display = 'none';
     }
 
     function sample3_execDaumPostcode() {
-        // ÇöÀç scroll À§Ä¡¸¦ ÀúÀåÇØ³õ´Â´Ù.
+        // í˜„ì¬ scroll ìœ„ì¹˜ë¥¼ ì €ì¥í•´ë†“ëŠ”ë‹¤.
         var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
         new daum.Postcode({
             oncomplete: function(data) {
-                // °Ë»ö°á°ú Ç×¸ñÀ» Å¬¸¯ÇßÀ»¶§ ½ÇÇàÇÒ ÄÚµå¸¦ ÀÛ¼ºÇÏ´Â ºÎºĞ.
+                // ê²€ìƒ‰ê²°ê³¼ í•­ëª©ì„ í´ë¦­í–ˆì„ë•Œ ì‹¤í–‰í•  ì½”ë“œë¥¼ ì‘ì„±í•˜ëŠ” ë¶€ë¶„.
 
-                // °¢ ÁÖ¼ÒÀÇ ³ëÃâ ±ÔÄ¢¿¡ µû¶ó ÁÖ¼Ò¸¦ Á¶ÇÕÇÑ´Ù.
-                // ³»·Á¿À´Â º¯¼ö°¡ °ªÀÌ ¾ø´Â °æ¿ì¿£ °ø¹é('')°ªÀ» °¡Áö¹Ç·Î, ÀÌ¸¦ Âü°íÇÏ¿© ºĞ±â ÇÑ´Ù.
-                var addr = ''; // ÁÖ¼Ò º¯¼ö
-                var extraAddr = ''; // Âü°íÇ×¸ñ º¯¼ö
+                // ê° ì£¼ì†Œì˜ ë…¸ì¶œ ê·œì¹™ì— ë”°ë¼ ì£¼ì†Œë¥¼ ì¡°í•©í•œë‹¤.
+                // ë‚´ë ¤ì˜¤ëŠ” ë³€ìˆ˜ê°€ ê°’ì´ ì—†ëŠ” ê²½ìš°ì—” ê³µë°±('')ê°’ì„ ê°€ì§€ë¯€ë¡œ, ì´ë¥¼ ì°¸ê³ í•˜ì—¬ ë¶„ê¸° í•œë‹¤.
+                var addr = ''; // ì£¼ì†Œ ë³€ìˆ˜
+                var extraAddr = ''; // ì°¸ê³ í•­ëª© ë³€ìˆ˜
 
-                //»ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ÁÖ¼Ò Å¸ÀÔ¿¡ µû¶ó ÇØ´ç ÁÖ¼Ò °ªÀ» °¡Á®¿Â´Ù.
-                if (data.userSelectedType === 'R') { // »ç¿ëÀÚ°¡ µµ·Î¸í ÁÖ¼Ò¸¦ ¼±ÅÃÇßÀ» °æ¿ì
+                //ì‚¬ìš©ìê°€ ì„ íƒí•œ ì£¼ì†Œ íƒ€ì…ì— ë”°ë¼ í•´ë‹¹ ì£¼ì†Œ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤.
+                if (data.userSelectedType === 'R') { // ì‚¬ìš©ìê°€ ë„ë¡œëª… ì£¼ì†Œë¥¼ ì„ íƒí–ˆì„ ê²½ìš°
                     addr = data.roadAddress;
-                } else { // »ç¿ëÀÚ°¡ Áö¹ø ÁÖ¼Ò¸¦ ¼±ÅÃÇßÀ» °æ¿ì(J)
+                } else { // ì‚¬ìš©ìê°€ ì§€ë²ˆ ì£¼ì†Œë¥¼ ì„ íƒí–ˆì„ ê²½ìš°(J)
                     addr = data.jibunAddress;
                 }
 
-                // »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ ÁÖ¼Ò°¡ µµ·Î¸í Å¸ÀÔÀÏ¶§ Âü°íÇ×¸ñÀ» Á¶ÇÕÇÑ´Ù.
+                // ì‚¬ìš©ìê°€ ì„ íƒí•œ ì£¼ì†Œê°€ ë„ë¡œëª… íƒ€ì…ì¼ë•Œ ì°¸ê³ í•­ëª©ì„ ì¡°í•©í•œë‹¤.
                 if(data.userSelectedType === 'R'){
-                    // ¹ıÁ¤µ¿¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù. (¹ıÁ¤¸®´Â Á¦¿Ü)
-                    // ¹ıÁ¤µ¿ÀÇ °æ¿ì ¸¶Áö¸· ¹®ÀÚ°¡ "µ¿/·Î/°¡"·Î ³¡³­´Ù.
-                    if(data.bname !== '' && /[µ¿|·Î|°¡]$/g.test(data.bname)){
+                    // ë²•ì •ë™ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤. (ë²•ì •ë¦¬ëŠ” ì œì™¸)
+                    // ë²•ì •ë™ì˜ ê²½ìš° ë§ˆì§€ë§‰ ë¬¸ìê°€ "ë™/ë¡œ/ê°€"ë¡œ ëë‚œë‹¤.
+                    if(data.bname !== '' && /[ë™|ë¡œ|ê°€]$/g.test(data.bname)){
                         extraAddr += data.bname;
                     }
-                    // °Ç¹°¸íÀÌ ÀÖ°í, °øµ¿ÁÖÅÃÀÏ °æ¿ì Ãß°¡ÇÑ´Ù.
+                    // ê±´ë¬¼ëª…ì´ ìˆê³ , ê³µë™ì£¼íƒì¼ ê²½ìš° ì¶”ê°€í•œë‹¤.
                     if(data.buildingName !== '' && data.apartment === 'Y'){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
-                    // Ç¥½ÃÇÒ Âü°íÇ×¸ñÀÌ ÀÖÀ» °æ¿ì, °ıÈ£±îÁö Ãß°¡ÇÑ ÃÖÁ¾ ¹®ÀÚ¿­À» ¸¸µç´Ù.
+                    // í‘œì‹œí•  ì°¸ê³ í•­ëª©ì´ ìˆì„ ê²½ìš°, ê´„í˜¸ê¹Œì§€ ì¶”ê°€í•œ ìµœì¢… ë¬¸ìì—´ì„ ë§Œë“ ë‹¤.
                     if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
-                    // Á¶ÇÕµÈ Âü°íÇ×¸ñÀ» ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+                    // ì¡°í•©ëœ ì°¸ê³ í•­ëª©ì„ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
                     document.getElementById("sample3_extraAddress").value = extraAddr;
                 
                 } else {
                     document.getElementById("sample3_extraAddress").value = '';
                 }
 
-                // ¿ìÆí¹øÈ£¿Í ÁÖ¼Ò Á¤º¸¸¦ ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+                // ìš°í¸ë²ˆí˜¸ì™€ ì£¼ì†Œ ì •ë³´ë¥¼ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
                 document.getElementById('sample3_postcode').value = data.zonecode;
                 document.getElementById("sample3_address").value = addr;
-                // Ä¿¼­¸¦ »ó¼¼ÁÖ¼Ò ÇÊµå·Î ÀÌµ¿ÇÑ´Ù.
+                // ì»¤ì„œë¥¼ ìƒì„¸ì£¼ì†Œ í•„ë“œë¡œ ì´ë™í•œë‹¤.
                 document.getElementById("sample3_detailAddress").focus();
 
-                // iframeÀ» ³ÖÀº element¸¦ ¾Èº¸ÀÌ°Ô ÇÑ´Ù.
-                // (autoClose:false ±â´ÉÀ» ÀÌ¿ëÇÑ´Ù¸é, ¾Æ·¡ ÄÚµå¸¦ Á¦°ÅÇØ¾ß È­¸é¿¡¼­ »ç¶óÁöÁö ¾Ê´Â´Ù.)
+                // iframeì„ ë„£ì€ elementë¥¼ ì•ˆë³´ì´ê²Œ í•œë‹¤.
+                // (autoClose:false ê¸°ëŠ¥ì„ ì´ìš©í•œë‹¤ë©´, ì•„ë˜ ì½”ë“œë¥¼ ì œê±°í•´ì•¼ í™”ë©´ì—ì„œ ì‚¬ë¼ì§€ì§€ ì•ŠëŠ”ë‹¤.)
                 element_wrap.style.display = 'none';
 
-                // ¿ìÆí¹øÈ£ Ã£±â È­¸éÀÌ º¸ÀÌ±â ÀÌÀüÀ¸·Î scroll À§Ä¡¸¦ µÇµ¹¸°´Ù.
+                // ìš°í¸ë²ˆí˜¸ ì°¾ê¸° í™”ë©´ì´ ë³´ì´ê¸° ì´ì „ìœ¼ë¡œ scroll ìœ„ì¹˜ë¥¼ ë˜ëŒë¦°ë‹¤.
                 document.body.scrollTop = currentScroll;
             },
-            // ¿ìÆí¹øÈ£ Ã£±â È­¸é Å©±â°¡ Á¶Á¤µÇ¾úÀ»¶§ ½ÇÇàÇÒ ÄÚµå¸¦ ÀÛ¼ºÇÏ´Â ºÎºĞ. iframeÀ» ³ÖÀº elementÀÇ ³ôÀÌ°ªÀ» Á¶Á¤ÇÑ´Ù.
+            // ìš°í¸ë²ˆí˜¸ ì°¾ê¸° í™”ë©´ í¬ê¸°ê°€ ì¡°ì •ë˜ì—ˆì„ë•Œ ì‹¤í–‰í•  ì½”ë“œë¥¼ ì‘ì„±í•˜ëŠ” ë¶€ë¶„. iframeì„ ë„£ì€ elementì˜ ë†’ì´ê°’ì„ ì¡°ì •í•œë‹¤.
             onresize : function(size) {
                 element_wrap.style.height = size.height+'px';
             },
@@ -204,72 +304,67 @@ function parse(str){
             height : '100%'
         }).embed(element_wrap);
 
-        // iframeÀ» ³ÖÀº element¸¦ º¸ÀÌ°Ô ÇÑ´Ù.
+        // iframeì„ ë„£ì€ elementë¥¼ ë³´ì´ê²Œ í•œë‹¤.
         element_wrap.style.display = 'block';
     }
 </script>
 
-<br/>
-
-
-<label for="gender">¼ºº°</label><br/>
-					<select name="gender" id="gender" style="width:366px;height:40px;">
-						<option value="m">³²ÀÚ</option>
-						<option value="f">¿©ÀÚ</option>
-					</select><br/>
-<label for="birth">»ı³â¿ùÀÏ</label><br/>
-<input type="text" name="year" size="18" maxlength="4" placeholder="³â(4ÀÚ)">
-  					<select name="month" id="month" style="width:100px;height:40px">
-                        <option value = "">¿ù</option>
-                        <option value = "1">1</option>
-                        <option value = "2">2</option>
-                        <option value = "3">3</option>
-                        <option value = "4">4</option>
-                        <option value = "5">5</option>
-                        <option value = "6">6</option>
-                        <option value = "7">7</option>
-                        <option value = "8">8</option>
-                        <option value = "9">9</option>
-                        <option value = "10">10</option>
-                        <option value = "11">11</option>
-                        <option value = "12">12</option>
-                    </select>
-                    <select name="day" id="day" style="width:100px;height:40px">
-                        <option value = "">ÀÏ</option>
-                        <option value = "1">1</option>
-                        <option value = "2">2</option>
-                        <option value = "3">3</option>
-                        <option value = "4">4</option>
-                        <option value = "5">5</option>
-                        <option value = "6">6</option>
-                        <option value = "7">7</option>
-                        <option value = "8">8</option>
-                        <option value = "9">9</option>
-                        <option value = "10">10</option>
-                        <option value = "11">11</option>
-                        <option value = "12">12</option>
-                        <option value = "13">13</option>
-                        <option value = "14">14</option>
-                        <option value = "15">15</option>
-                        <option value = "16">16</option>
-                        <option value = "17">17</option>
-                        <option value = "18">18</option>
-                        <option value = "19">19</option>
-                        <option value = "20">20</option>
-                        <option value = "21">21</option>
-                        <option value = "22">22</option>
-                        <option value = "23">23</option>
-                        <option value = "24">24</option>
-                        <option value = "25">25</option>
-                        <option value = "26">26</option>
-                        <option value = "27">27</option>
-                        <option value = "28">28</option>
-                        <option value = "29">29</option>
-                        <option value = "30">30</option>
-                        <option value = "31">31</option>
-                    </select><br/>
-<input type="button" value="È¸¿ø°¡ÀÔ" size="50" onclick="joinform_check()">
-</fieldset>
-</form>
+			<br /> <label for="gender">ì„±ë³„</label><br /> <select name="gender"
+				id="gender" style="width: 366px; height: 40px;">
+				<option value="m">ë‚¨ì</option>
+				<option value="f">ì—¬ì</option>
+			</select><br /> <label for="birth">ìƒë…„ì›”ì¼</label><br /> <input type="text"
+				name="year" size="18" maxlength="4" placeholder="ë…„(4ì)"> <select
+				name="month" id="month" style="width: 100px; height: 40px">
+				<option value="">ì›”</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select> <select name="day" id="day" style="width: 100px; height: 40px">
+				<option value="">ì¼</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select><br /> <input type="button" value="íšŒì›ê°€ì…" size="50"
+				onclick="joinform_check()">
+		</fieldset>
+	</form>
 </body>
 </html>

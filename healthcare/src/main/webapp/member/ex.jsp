@@ -13,8 +13,7 @@ function myFunction(){
 	console.log(x);
 	let idMsg = document.getElementById("idMsg");
 	let idRegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-	let res = idRegExp.test(x);
-	
+				let res = idRegExp.test(x);
 	
 	
 	idMsg.style.display = "";
@@ -22,9 +21,9 @@ function myFunction(){
 	
 	idMsg.innerHTML = " ";
 	
+	
 	if(x != null ){
 	
-			
 			const xhttp = new XMLHttpRequest();
 			
 			xhttp.onload = function(){
@@ -33,6 +32,7 @@ function myFunction(){
 				console.log(arr);
 				if(arr.flag =="true"){
 					html += "사용가능한 아이디";
+
 				} else {
 					html += "중복된 아이디";
 				}
@@ -42,7 +42,6 @@ function myFunction(){
 			xhttp.open("get", "${pageContext.request.contextPath}/member/ex.do?"+param);
 			xhttp.send();
 		}	
-		
 		
 	
 }

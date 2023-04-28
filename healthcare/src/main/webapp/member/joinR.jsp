@@ -13,10 +13,6 @@
 }
 </style>
 <script>
-function id_check(){
-	let win = open('idcheck.jsp', 'win', 'width=70,hegiht=100,top=300,lefth=300');
-	
-}
 
 
 
@@ -53,7 +49,7 @@ function joinform_check(){
 	
 	if(id == ""){
 		alert("아이디를 입력하세요.");
-		id.focus();
+		
 		return false;
 	}
 	
@@ -103,67 +99,139 @@ function parse(str){
 	let d = str.substr(6, 2);
 	return new Date(y, m-1, d);
 }
-function id_overlap_check(){
-let id = document.getElementByTagName("id").value;
-let id_check_sucess = document.getElementById("#id_check_sucess");
-let id_overlap_button = document.getElementById("#id_overlap_button");
 
-id.addEventListener('change', function(){
-	id_check_sucess.style.display = 'none';
-	id_overlap_button.style.display = 'block';
-	id.setAttribute('check_result', 'fail');
-});
 
-if(id.value ===''){
-	alert('아이디를 입력해주세요.');
-	return;
+
+function myFunction(){
+	let x = document.getElementById("id").value;
+	console.log(x);
+	let idMsg = document.getElementById("idMsg");
+	
+	
+	
+	idMsg.style.display = "";
+	let html = "";
+	
+	idMsg.innerHTML = " ";
+	
+	
+	if(x != null ){
+	
+			const xhttp = new XMLHttpRequest();
+			
+			xhttp.onload = function(){
+				let obj = xhttp.responseText;
+				let arr = JSON.parse(obj);
+				console.log(arr);
+				if(arr.flag =="true"){
+					html += "사용가능한 아이디";
+					
+				} else {
+					html += "중복된 아이디";
+					
+				}
+		    idMsg.innerHTML = html;	
+			}
+			let param = "id="+x	;
+			xhttp.open("get", "${pageContext.request.contextPath}/member/ex.do?"+param);
+			xhttp.send();
+		}	
 }
 
-let idcheck = document.querySelector('input[name="id"]');
-const xhttp = new XMLHttpRequest();
-xhttp.open("GET", "${pageContext.request.contextPath}/member/join.do?id=?"+idcheck.value);
-xhttp.responseType = 'json';
-xhttp.onload = function(){
-	if(xhttp.status === 200){
-		let overlap = xhttp.response.overlap;
-		console.log(overlap);
-		if(overlap === 'fail'){
-			alert('이미 존재하는 아이디입니다.');
-			idcheck.focus();
-			return;
-		} else {
-			alert("사용가능한 아이디 입니다.");
-			idcheck.setAttribute('check_result', 'success');
-			id_check_sucess.style.display = 'block';
-			id_overlap_button.style.display = 'none';
-			return;
+function pwdFunction(){
+	let pwd = document.getElementById("pwd").value;
+	let pwd2 = document.getElementById("pwd2").value;
+	console.log(pwd);
+	console.log(pwd2);
+	let pwdMsg = document.getElementById("pwdMsg");
+	let pwd2Msg = document.getElementById("pwd2Msg");
+	let RegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/;
+	let res = RegExp.test(pwd);
+	let res2 = RegExp.test(pwd2);
+	
+	
+	pwdMsg.style.display = "";
+	pwd2Msg.style.display = "";
+	let html = "";
+	
+	pwdMsg.innerHTML = " ";
+	pwd2Msg.innerHTML = " ";
+	
+	if(pwd == null){
+		html += "비밀번호를 입력해주세요.";
+		pwd.focus();
+	} else {
+		html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
+		pwd.focus();
+	}
+	pwdMsg.innerHTML = html;
+	html = "";
+	
+	if(pwd2 == null){
+		html += "비밀번호를 입력해주세요.";
+		pwd2.focus();
+	} else {
+		if(!res2){
+			html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
+			pwd2.focus();
+		} else if(res){
+			if(res.equals(res2)){
+				html += "사용가능한 비밀번호 입니다.";
+			} else {
+				html += "비밀번호가 다릅니다. 다시 입력해주세요.";
+				pwd.focus();
+			}
 		}
 	}
-};
-	xhttp.send();
-
+	pwdMsg2.innerHTML = html;
 }
 
+
+function nameFunction(){
+	let name = document.getElementById("name").value;
+	console.log(name);
+	let nameMsg = document.getElementById("nameMsg");
+	let RegExp =  /^(?=.*[가-힣a-z-A-Z])$/;
+	let res = RegExp.test(name);
+	
+	
+	
+	nameMsg.style.display = "";
+	let html = "";
+	
+	nameMsg.innerHTML = " ";
+	
+	if(!res){
+		html += "한글과 영문만 입력이 가능합니다.";
+	} else {
+		html += "사용가능 합니다.";
+	} 
+	
+	nameMsg.innerHTML = html;
+		
+	
+}
 </script>
 </head>
 <body>
 	<form action="${pageContext.request.contextPath }/member/joinR.do"
 		method="post" name="f">
 		<fieldset>
-			<label for="id">아이디</label><br /> <input type="text" name="id"
-				size="50" autofocus required placeholder="4~12자의 영문 대소문자와 숫자로만 입력">
-			<button class="id_overlap_button" onclick="id_overlap_check()">중복검사</button>
-			<span class="material-symbols-outlined" id="id_check_sucess"
-				style="display: none"> </span> <br /> 필수정보 입니다.<br /> <label
-				for="pwd">비밀번호</label><br /> <input type="password" name="pwd"
-				size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"><br />
-			필수정보 입니다.<br /> <label for="pwd2">비밀번호 재확인</label><br /> <input
-				type="password" name="pwd2" size="50" required
-				placeholder="4~12자의 영문 대소문자와 숫자로만 입력"><br /> 필수정보 입니다.<br />
-			<label for="name">이름</label><br /> <input type="text" name="name"
-				size="50" required placeholder="이름을 입력해주세요."><br /> 필수정보
-			입니다.<br /> <label for="phone">전화번호</label><br /> <input type="text"
-				name="phone" size="50"><br /> <label for="address">주소</label><br />
+			<label for="id">아이디</label><br /> 
+			<input type="text" name="id" id="id" size="50" autofocus required onblur="myFunction()"><br/>
+			<span class="error_next_box" id="idMsg" >필수정보 입니다.</span><br /> 
+			<label for="pwd">비밀번호</label><br /> 
+			<input type="password" name="pwd" id="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
+			<span class="error_next_box" id="pwdMsg">필수정보 입니다.</span><br /> 
+			<label for="pwd2">비밀번호 재확인</label><br /> 
+			<input type="password" name="pwd2" id="pwd2" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br /> 
+			<span class="error_next_box" id="pwdMsg2">필수정보 입니다.</span><br /> 
+			<label for="name">이름</label><br />
+			<input type="text" name="name" id="name" size="50" required placeholder="이름을 입력해주세요." onblur="nameFunction()"><br /> 
+			<span class="error_next_box" id="nameMsg">필수정보 입니다.</span><br /> 
+			<label for="phone">전화번호</label><br /> 
+			<input type="text" name="phone" size="50"><br /> 
+			<label for="address">주소</label><br />
 			<input type="text" id="sample3_postcode" placeholder="우편번호" size="50">
 			<input type="button" onclick="sample3_execDaumPostcode()"
 				value="우편번호 찾기"><br> <input type="text"
