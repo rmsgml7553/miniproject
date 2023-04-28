@@ -12,94 +12,20 @@
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 </style>
-<script type= "text/javascript">
+<script type="text/javascript">
 
 
+let tf = false;
 
 function joinform_check(){
-	alert('회원가입 누름');
-	
-	
-	
-	let f = document.f;
+	let f = document.getElementById("btn");
 
-	
-	
-
-	
-	let id = document.querySelector("input[name='id']").value;
-
-	let pwd = document.querySelector("input[name='pwd']").value;
-	let pwd2 = document.querySelector("input[name='pwd2']").value;
-	let name = document.querySelector("input[name='name']").value;
-	let phone = document.querySelector("input[name='phone']").value;
-	let sample3_address = document.querySelector("input[name='sample3_address']").value;
-	let sample3_detailAddress = document.querySelector("input[name='sample3_detailAddress']").value;
-	let mCode = document.querySelector("input[name='mCode']").value;
-	let code = document.querySelector("input[name='code']").value;
-	let gender = document.querySelector("select[name='gender']").value;
-	let year = document.querySelector("input[name='year']").value;
-	let month = document.querySelector("select[name='month']").value;
-	let day = document.querySelector("select[name='day']").value;
-	
-	
-	let str = year+month+day;
-	let birth = parse(str);
-	let address = sample3_address+" " + sample3_detailAddress;
-	
-	if(id == ""){
-		alert("아이디를 입력하세요.");
-		
-		return false;
+	if(tf){
+		f.type = "submit";
+	}else{
+		alert("필수사항 기입을 확인하세요.")
 	}
-	
-	if(pwd != pwd2){
-		pwd.focus();
-		pwd.select();
-		pwd2 = "";
-		alert("비밀번호가 서로 다릅니다.");
-		return false;
-	}
-
-	
-	if(name == ""){
-		alert("이름을 입력하세요.");
-		name.focus();
-		return false;
-	}
-	
-	if(year == ""){
-		alert("년도를 입력하세요.");
-		year.focus();
-		return false;
-	} 
-	
-	else if(!(year >= 1900 && year <= 2050)){
-		alert("년도를 정확하게 입력해주세요.");
-		year.focus();
-		return false;
-	}
-	
-	if(month == ""){
-		alert("달을 선택해주세요.");
-		month.focus();
-		return false;
-	}
-	
-	if(day == ""){
-		alert("일을 선택해주세요.");
-		day.focus();
-		return false;
-	}
-	f.submit();
 }
-function parse(str){
-	let y = str.substr(0, 4);
-	let m = str.substr(4, 2);
-	let d = str.substr(6, 2);
-	return new Date(y, m-1, d);
-}
-
 
 
 function myFunction(){
@@ -125,6 +51,7 @@ function myFunction(){
 							html += "사용가능한 아이디입니다.";
 					} else {
 						html += "중복된 아이디입니다.";
+						x = "";
 					} 
 		    idMsg.innerHTML = html;	
 		}
@@ -140,36 +67,40 @@ function pwdFunction(){
 	console.log(pwd2);
 	let pwdMsg = document.getElementById("pwdMsg");
 	let pwdMsg2 = document.getElementById("pwdMsg2");
-	let RegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/;
+// 	let RegExp = /([^가-힣\w\s]){4,12}/;
+	let RegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_])[a-zA-Z\d\W_]{4,12}$/;
 	let res = RegExp.test(pwd);
 	let res2 = RegExp.test(pwd2);
 	
-	
 	let html = "";
-	
 	pwdMsg.innerHTML = " ";
 	pwdMsg2.innerHTML = " ";
 	
 	if(pwd == null){
+		tf = false;
 		html += "비밀번호를 입력해주세요.";
-	} else {
+	} else if(!res){
+		tf = false;
 		html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
+		pwd = "";
+	}else if(res){
+		html+="사용가능한 비밀번호입니다."
+		tf = true;
 	}
 	pwdMsg.innerHTML = html;
 	html = "";
 	
 	if(pwd2 == null){
-		html += "비밀번호를 입력해주세요.";
+		html += "비밀번호 확인은 필수 입니다.";
+		tf = false;
+	} 
+	else if(pwd2 == pwd){
+		html += "사용가능한 비밀번호 입니다.";	
+		tf = true;
 	} else {
-		if(!res2){
-			html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
-		} else if(res){
-			if(res.equals(res2)){
-				html += "사용가능한 비밀번호 입니다.";
-			} else {
-				html += "비밀번호가 다릅니다. 다시 입력해주세요.";
-			}
-		}
+		html += "비밀번호가 다릅니다. 다시 입력해주세요.";
+		pwd2 = "";
+		tf = false;
 	}
 	pwdMsg2.innerHTML = html;
 }
@@ -189,6 +120,7 @@ function nameFunction(){
 	
 	if(!res){
 		html += "한글과 영문만 입력이 가능합니다.";
+		name = "";
 	} else {
 		html += "사용가능 합니다.";
 	} 
@@ -199,14 +131,18 @@ function nameFunction(){
 
 function codeFunction(){
 	let code = document.getElementById("code").value;
-	console.log(code);
+	console.log("code"+code);
 	let codeMsg = document.getElementById("codeMsg");
 	
 	let html = "";
 	
 	codeMsg.innerHTML = " ";
 	
-	if()
+	if(code==""){
+		html += "코드를 입력하세요.";
+	}
+	
+	codeMsg.innerHTML = html;
 	
 }
 
@@ -216,25 +152,27 @@ function codeFunction(){
 	<form action="${pageContext.request.contextPath }/member/joinR.do"
 		method="post" name="f">
 		<fieldset>
-			<label for="id">아이디</label><br /> 
-			<input type="text" name="id" id="id" size="50" autofocus required onblur="myFunction()"><br/>
-			<span class="error_next_box" id="idMsg" >필수정보 입니다.</span><br /> 
-			<label for="pwd">비밀번호</label><br /> 
-			<input type="password" name="pwd" id="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
-			<span class="error_next_box" id="pwdMsg">필수정보 입니다.</span><br /> 
-			<label for="pwd2">비밀번호 재확인</label><br /> 
-			<input type="password" name="pwd2" id="pwd2" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br /> 
-			<span class="error_next_box" id="pwdMsg2">필수정보 입니다.</span><br /> 
-			<label for="name">이름</label><br />
-			<input type="text" name="name" id="name" size="50" required placeholder="이름을 입력해주세요." onblur="nameFunction()"><br /> 
-			<span class="error_next_box" id="nameMsg">필수정보 입니다.</span><br /> 
-			<label for="phone">전화번호</label><br /> 
-			<input type="text" name="phone" size="50"><br /> 
-			<label for="address">주소</label><br />
-			<input type="text" id="sample3_postcode" placeholder="우편번호" size="50">
-			<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br> 
-			<input type="text" name="sample3_address" id="sample3_address" placeholder="주소" size="50"><br> 
-			<input type="text"
+			<label for="id">아이디</label><br /> <input type="text" name="id"
+				id="id" size="50" autofocus required onblur="myFunction()"><br />
+			<span class="error_next_box" id="idMsg">필수정보 입니다.</span><br /> <label
+				for="pwd">비밀번호</label><br /> <input type="password" name="pwd"
+				id="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"
+				onblur="pwdFunction()"><br /> <span class="error_next_box"
+				id="pwdMsg">필수정보 입니다.</span><br /> <label for="pwd2">비밀번호
+				재확인</label><br /> <input type="password" name="pwd2" id="pwd2" size="50"
+				required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"
+				onblur="pwdFunction()"><br /> <span class="error_next_box"
+				id="pwdMsg2">필수정보 입니다.</span><br /> <label for="name">이름</label><br />
+			<input type="text" name="name" id="name" size="50" required
+				placeholder="이름을 입력해주세요." onblur="nameFunction()"><br /> <span
+				class="error_next_box" id="nameMsg">필수정보 입니다.</span><br /> <label
+				for="phone">전화번호</label><br /> <input type="text" name="phone"
+				size="50"><br /> <label for="address">주소</label><br /> <input
+				type="text" id="sample3_postcode" placeholder="우편번호" size="50">
+			<input type="button" onclick="sample3_execDaumPostcode()"
+				value="우편번호 찾기"><br> <input type="text"
+				name="sample3_address" id="sample3_address" placeholder="주소"
+				size="50"><br> <input type="text"
 				name="sample3_detailAddress" id="sample3_detailAddress"
 				placeholder="상세주소" size="22"> <input type="text"
 				id="sample3_extraAddress" placeholder="참고항목" size="22">
@@ -324,23 +262,16 @@ function codeFunction(){
         element_wrap.style.display = 'block';
     }
 			</script>
-			<br/> 
-			
-			
-			<label for="code">코드번호</label><br/> 
-			<input type="text" name="code" id="code" size="50" onblur="codeFunction()"><br />
-			<span class="error_next_box" id="codeMsg">필수정보 입니다.</span><br /> 
-			
-			<label for="gender">성별</label><br /> 
-			<select name="gender" id="gender" style="width: 366px; height: 40px;">
+			<br /> <label for="code">코드번호</label><br /> <input type="text"
+				name="code" id="code" size="50" required onblur="codeFunction()"><br />
+			<span class="error_next_box" id="codeMsg">필수정보 입니다.</span><br /> <label
+				for="gender">성별</label><br /> <select name="gender" id="gender"
+				style="width: 366px; height: 40px;">
 				<option value="m">남자</option>
 				<option value="f">여자</option>
-			</select><br/> 
-			
-			<label for="birth">생년월일</label><br /> 
-			<input type="text"
-				name="year" size="18" maxlength="4" placeholder="년(4자)"> 
-			<select name="month" id="month" style="width: 100px; height: 40px">
+			</select><br /> <label for="birth">생년월일</label><br /> <input type="text"
+				name="year" size="18" maxlength="4" required placeholder="년(4자)"> <select
+				name="month" id="month" required style="width: 100px; height: 40px">
 				<option value="">월</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -354,8 +285,7 @@ function codeFunction(){
 				<option value="10">10</option>
 				<option value="11">11</option>
 				<option value="12">12</option>
-			</select> 
-			<select name="day" id="day" style="width: 100px; height: 40px">
+			</select> <select name="day" id="day" required style="width: 100px; height: 40px">
 				<option value="">일</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -388,8 +318,8 @@ function codeFunction(){
 				<option value="29">29</option>
 				<option value="30">30</option>
 				<option value="31">31</option>
-			</select><br /> 
-			<input type="submit" value="회원가입" size="50" onclick="joinform_check()">
+			</select><br /> <input type="button" value="회원가입" size="50" id="btn"
+				onclick="joinform_check()">
 		</fieldset>
 	</form>
 </body>

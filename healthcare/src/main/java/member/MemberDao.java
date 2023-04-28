@@ -45,7 +45,7 @@ public class MemberDao {
 	// 관계자 가입
 	public void reInsert(MemberVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into  member values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into  member values (?, ?, ?, ?, ?, ?, ?, 2, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
