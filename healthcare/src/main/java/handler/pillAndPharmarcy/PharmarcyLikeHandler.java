@@ -33,6 +33,7 @@ public class PharmarcyLikeHandler implements Handler{
 				service.delete(id, hpid);
 				tf = "N";
 			}else {
+				System.out.println("input here");
 				service.input(id, hpid);
 				tf = "Y";
 			}

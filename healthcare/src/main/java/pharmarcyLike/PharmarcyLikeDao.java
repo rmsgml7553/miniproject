@@ -16,6 +16,7 @@ public class PharmarcyLikeDao {
 	}
 
 	public void input(String id, String code) {
+		System.out.println("id : " + id + "code : " + code);
 		Connection conn = dbconn.conn();
 		String sql = "insert into pharmacy values(?,?)";
 		try {

@@ -29,8 +29,7 @@ public class PharmarcyRrepHandler implements Handler {
 			System.out.println("pNum : "+pNum+" content : "+ content);
 			P_rrepService service = new P_rrepService();
 			HttpSession session = request.getSession();
-			String id = (String)session.getAttribute("id");
-			System.out.println(id);
+			String id = (String)session.getAttribute("loginId");
 			if(request.getMethod().equals("POST")) {
 				System.out.println("in post");
 				service.insert(new P_rrepVo(0, pNum, id, content, null));
