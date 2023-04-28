@@ -12,7 +12,7 @@
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 </style>
-<script>
+<script type= "text/javascript">
 
 
 
@@ -107,15 +107,10 @@ function myFunction(){
 	console.log(x);
 	let idMsg = document.getElementById("idMsg");
 	
-	
-	
 	idMsg.style.display = "";
 	let html = "";
 	
 	idMsg.innerHTML = " ";
-	
-	
-	if(x != null ){
 	
 			const xhttp = new XMLHttpRequest();
 			
@@ -123,19 +118,19 @@ function myFunction(){
 				let obj = xhttp.responseText;
 				let arr = JSON.parse(obj);
 				console.log(arr);
-				if(arr.flag =="true"){
-					html += "사용가능한 아이디";
-					
-				} else {
-					html += "중복된 아이디";
-					
-				}
+					if(arr.flag == ""){
+						html += "아이디를 입력해주세요.";
+					}
+					if(arr.flag =="true"){
+							html += "사용가능한 아이디입니다.";
+					} else {
+						html += "중복된 아이디입니다.";
+					} 
 		    idMsg.innerHTML = html;	
-			}
+		}
 			let param = "id="+x	;
 			xhttp.open("get", "${pageContext.request.contextPath}/member/ex.do?"+param);
 			xhttp.send();
-		}	
 }
 
 function pwdFunction(){
@@ -144,42 +139,35 @@ function pwdFunction(){
 	console.log(pwd);
 	console.log(pwd2);
 	let pwdMsg = document.getElementById("pwdMsg");
-	let pwd2Msg = document.getElementById("pwd2Msg");
+	let pwdMsg2 = document.getElementById("pwdMsg2");
 	let RegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/;
 	let res = RegExp.test(pwd);
 	let res2 = RegExp.test(pwd2);
 	
 	
-	pwdMsg.style.display = "";
-	pwd2Msg.style.display = "";
 	let html = "";
 	
 	pwdMsg.innerHTML = " ";
-	pwd2Msg.innerHTML = " ";
+	pwdMsg2.innerHTML = " ";
 	
 	if(pwd == null){
 		html += "비밀번호를 입력해주세요.";
-		pwd.focus();
 	} else {
 		html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
-		pwd.focus();
 	}
 	pwdMsg.innerHTML = html;
 	html = "";
 	
 	if(pwd2 == null){
 		html += "비밀번호를 입력해주세요.";
-		pwd2.focus();
 	} else {
 		if(!res2){
 			html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
-			pwd2.focus();
 		} else if(res){
 			if(res.equals(res2)){
 				html += "사용가능한 비밀번호 입니다.";
 			} else {
 				html += "비밀번호가 다릅니다. 다시 입력해주세요.";
-				pwd.focus();
 			}
 		}
 	}
@@ -193,9 +181,7 @@ function nameFunction(){
 	let nameMsg = document.getElementById("nameMsg");
 	let RegExp =  /^(?=.*[가-힣a-z-A-Z])$/;
 	let res = RegExp.test(name);
-	
-	
-	
+
 	nameMsg.style.display = "";
 	let html = "";
 	
@@ -208,9 +194,22 @@ function nameFunction(){
 	} 
 	
 	nameMsg.innerHTML = html;
-		
 	
 }
+
+function codeFunction(){
+	let code = document.getElementById("code").value;
+	console.log(code);
+	let codeMsg = document.getElementById("codeMsg");
+	
+	let html = "";
+	
+	codeMsg.innerHTML = " ";
+	
+	if()
+	
+}
+
 </script>
 </head>
 <body>
@@ -233,10 +232,9 @@ function nameFunction(){
 			<input type="text" name="phone" size="50"><br /> 
 			<label for="address">주소</label><br />
 			<input type="text" id="sample3_postcode" placeholder="우편번호" size="50">
-			<input type="button" onclick="sample3_execDaumPostcode()"
-				value="우편번호 찾기"><br> <input type="text"
-				name="sample3_address" id="sample3_address" placeholder="주소"
-				size="50"><br> <input type="text"
+			<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br> 
+			<input type="text" name="sample3_address" id="sample3_address" placeholder="주소" size="50"><br> 
+			<input type="text"
 				name="sample3_detailAddress" id="sample3_detailAddress"
 				placeholder="상세주소" size="22"> <input type="text"
 				id="sample3_extraAddress" placeholder="참고항목" size="22">
@@ -330,12 +328,8 @@ function nameFunction(){
 			
 			
 			<label for="code">코드번호</label><br/> 
-			<select name="code" id="code" style="width: 100px;">
-				<option value="1">약국</option>
-				<option value="2">병원</option>
-			</select> 
-			<input type="button" value="찾기" onclick="search(value)"><br/>
-			<input type="text" name="codeinput" size="50"><br />
+			<input type="text" name="code" id="code" size="50" onblur="codeFunction()"><br />
+			<span class="error_next_box" id="codeMsg">필수정보 입니다.</span><br /> 
 			
 			<label for="gender">성별</label><br /> 
 			<select name="gender" id="gender" style="width: 366px; height: 40px;">

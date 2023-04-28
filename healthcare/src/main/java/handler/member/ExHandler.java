@@ -27,7 +27,11 @@ public class ExHandler implements Handler {
 		System.out.println(id);
 		MemberService service = new MemberService();
 		MemberVo vo = service.getByMember(id);
-		String flag = (vo==null)? "true": "false";
+		String flag =(vo==null)? "true": "false";
+		if(id.length() == 0) {
+			System.out.println("1");
+			flag = "no";
+		}
 		System.out.println("handler-"+flag);
 	
 		JSONObject obj = new JSONObject();

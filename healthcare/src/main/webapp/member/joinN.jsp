@@ -5,14 +5,21 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<script>
+<script type= "text/javascript">
+
 
 
 function joinform_check(){
-	alert('회원가입 하실');
+	alert('회원가입 누름');
+	
+	
 	
 	let f = document.f;
 
+	
+	
+
+	
 	let id = document.querySelector("input[name='id']").value;
 
 	let pwd = document.querySelector("input[name='pwd']").value;
@@ -79,7 +86,6 @@ function joinform_check(){
 	}
 	f.submit();
 }
-
 function parse(str){
 	let y = str.substr(0, 4);
 	let m = str.substr(4, 2);
@@ -88,22 +94,15 @@ function parse(str){
 }
 
 
-
 function myFunction(){
 	let x = document.getElementById("id").value;
 	console.log(x);
 	let idMsg = document.getElementById("idMsg");
-	let idRegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-	let res = idRegExp.test(x);
-	
 	
 	idMsg.style.display = "";
 	let html = "";
 	
 	idMsg.innerHTML = " ";
-	
-	
-	if(x != null ){
 	
 			const xhttp = new XMLHttpRequest();
 			
@@ -111,19 +110,19 @@ function myFunction(){
 				let obj = xhttp.responseText;
 				let arr = JSON.parse(obj);
 				console.log(arr);
-				if(arr.flag =="true"){
-					html += "사용가능한 아이디";
-					id.focus();
-				} else {
-					html += "중복된 아이디";
-					
-				}
+					if(arr.flag == "no"){
+						html += "아이디를 입력해주세요.";
+					}
+					else if(arr.flag =="true"){
+							html += "사용가능한 아이디입니다.";
+					} else {
+						html += "중복된 아이디입니다.";
+					} 
 		    idMsg.innerHTML = html;	
-			}
+		}
 			let param = "id="+x	;
 			xhttp.open("get", "${pageContext.request.contextPath}/member/ex.do?"+param);
 			xhttp.send();
-		}	
 }
 
 function pwdFunction(){
@@ -132,42 +131,35 @@ function pwdFunction(){
 	console.log(pwd);
 	console.log(pwd2);
 	let pwdMsg = document.getElementById("pwdMsg");
-	let pwd2Msg = document.getElementById("pwd2Msg");
+	let pwdMsg2 = document.getElementById("pwdMsg2");
 	let RegExp =  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{4,12}$/;
 	let res = RegExp.test(pwd);
 	let res2 = RegExp.test(pwd2);
 	
 	
-	pwdMsg.style.display = "";
-	pwd2Msg.style.display = "";
 	let html = "";
 	
 	pwdMsg.innerHTML = " ";
-	pwd2Msg.innerHTML = " ";
+	pwdMsg2.innerHTML = " ";
 	
 	if(pwd == null){
 		html += "비밀번호를 입력해주세요.";
-		pwd.focus();
 	} else {
 		html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
-		pwd.focus();
 	}
 	pwdMsg.innerHTML = html;
 	html = "";
 	
 	if(pwd2 == null){
 		html += "비밀번호를 입력해주세요.";
-		pwd2.focus();
 	} else {
 		if(!res2){
 			html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
-			pwd2.focus();
 		} else if(res){
 			if(res.equals(res2)){
 				html += "사용가능한 비밀번호 입니다.";
 			} else {
 				html += "비밀번호가 다릅니다. 다시 입력해주세요.";
-				pwd.focus();
 			}
 		}
 	}
@@ -175,12 +167,14 @@ function pwdFunction(){
 }
 
 
-function myFunction(){
+function nameFunction(){
 	let name = document.getElementById("name").value;
 	console.log(name);
 	let nameMsg = document.getElementById("nameMsg");
 	let RegExp =  /^(?=.*[가-힣a-z-A-Z])$/;
 	let res = RegExp.test(name);
+	
+	
 	
 	nameMsg.style.display = "";
 	let html = "";
@@ -192,7 +186,10 @@ function myFunction(){
 	} else {
 		html += "사용가능 합니다.";
 	} 
+	
 	nameMsg.innerHTML = html;
+		
+	
 }
 </script>
 </head>
@@ -201,13 +198,13 @@ function myFunction(){
 		method="post" name="f">
 		<fieldset>
 			<label for="id">아이디</label><br /> 
-			<input type="text" name="id" id="id" size="50" autofocus required onblur="myFunction()">
+			<input type="text" name="id" id="id" size="50" autofocus required onblur="myFunction()"><br/>
 			<span class="error_next_box" id="idMsg" >필수정보입니다.</span><br /> 
 				<label for="pwd">비밀번호</label><br /> 
-				<input type="password" name="pwd" name="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
+				<input type="password" id="pwd" name="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
 			<span class="error_next_box" id="pwdMsg" >필수정보입니다.</span><br /> 
 			<label for="pwd2">비밀번호 재확인</label><br /> 
-			<input type="password" name="pwd2" name="pwd2" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
+			<input type="password" id="pwd2" name="pwd2" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
 			<span class="error_next_box" id="pwdMsg2" >필수정보입니다.</span><br /> 
 			<label for="name">이름</label><br /> 
 			<input type="text" name="name" id="name" size="50" required placeholder="이름을 입력해주세요."
