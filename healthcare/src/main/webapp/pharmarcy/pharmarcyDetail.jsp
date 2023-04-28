@@ -78,15 +78,22 @@ function addRep(){
 		let temp = document.createElement('div');
 		let html ='';
 		for(let obj of arr){
-			html += '<ul class="repMain" id = "prep'+obj.num+'">';
-			html += '<li>'+obj.date+'</li>';
-			html += '<li>'+obj.id+'</li>';
-			html += '<li>'+obj.content+'</li>';
-			html += '</ul>';
+			html += '<ul class="repMain">'
+				+ '<li>'+obj.date+'</li>'
+				+ '<li>'+obj.id+'</li>'
+				+ '<li>'+obj.content+'</li>'
+				+ '</ul>'
+				+ '<ul  id = "prep'+obj.num+'">'
+				+ '</ul>'
+				+ '<ul class="reppWrite">'
+				+ '<li><input type = "text" placeholder="답글 작성하기" id = "rrep"></li>'
+				+ '<li><input type = "button" value="답글 작성" onclick = "addRrep('+obj.num+')"></li>'
+				+ '<li><input type = "button" value="답글 보기" onclick = "rreps('+obj.num+')"></li>'
+				+ '</ul>';
 		}
 		temp.innerHTML = html;
 		let repList = document.getElementsByClassName("rreps")[0];
-		console.log(temp);
+		repList.innerHTML = '';
 		repList.append(temp);
 	}
 	
@@ -106,20 +113,22 @@ function reps(){
 		let temp = document.createElement('div');
 		let html ='';
 		for(let obj of arr){
-			html += '<ul class="repMain" id = "prep'+obj.num+'">'
+			html += '<ul class="repMain">'
 			+ '<li>'+obj.date+'</li>'
 			+ '<li>'+obj.id+'</li>'
 			+ '<li>'+obj.content+'</li>'
 			+ '</ul>'
+			+ '<ul  id = "prep'+obj.num+'">'
+			+ '</ul>'
 			+ '<ul class="reppWrite">'
-			+ '<li><input type = "text" placeholder="답글 작성하기" id = "rrep"></li>'
+			+ '<li><input type = "text" placeholder="답글 작성하기" id = "rrep'+obj.num+'"></li>'
 			+ '<li><input type = "button" value="답글 작성" onclick = "addRrep('+obj.num+')"></li>'
 			+ '<li><input type = "button" value="답글 보기" onclick = "rreps('+obj.num+')"></li>'
 			+ '</ul>';
 		}
 		temp.innerHTML = html;
 		let repList = document.getElementsByClassName("rreps")[0];
-		console.log(temp);
+		repList.innerHTML = '';
 		repList.append(temp);
 	}
 	
@@ -148,19 +157,17 @@ function rreps(pnum){
 			+ '</ul>';
 		}
 			temp.innerHTML = html;
-			console.log(html);
 			rrepList.append(temp);
-			console.log(rrepList);
 	}
 	
 	xhttp.open("GET","${pageContext.request.contextPath}/pharmarcy/pharmarcyRrep/load.do?pnum="+pnum);
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8");
 	xhttp.send();
-	}
+}
 	
 function addRrep(pnum){
 	const xhttp = new XMLHttpRequest();
-	let newRrep = document.getElementById("rrep").value;
+	let newRrep = document.getElementById("rrep"+pnum).value;
 	let rrepList = document.getElementById("prep"+pnum);
 	rrepList.innerHTML = '';
 	// 새로 받은 댓글 넣기
@@ -179,9 +186,7 @@ function addRrep(pnum){
 			+ '</ul>';
 		}
 			temp.innerHTML = html;
-			console.log(html);
 			rrepList.append(temp);
-			console.log(rrepList);
 	}
 	
 	xhttp.open("POST","${pageContext.request.contextPath}/pharmarcy/pharmarcyRrep/load.do");
