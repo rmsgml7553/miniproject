@@ -199,14 +199,18 @@ function nameFunction(){
 
 function codeFunction(){
 	let code = document.getElementById("code").value;
-	console.log(code);
+	console.log("code"+code);
 	let codeMsg = document.getElementById("codeMsg");
 	
 	let html = "";
 	
 	codeMsg.innerHTML = " ";
 	
-	if()
+	if(code==""){
+		html += "코드를 입력하세요.";
+	}
+	
+	codeMsg.innerHTML = html;
 	
 }
 
