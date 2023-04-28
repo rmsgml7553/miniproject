@@ -72,8 +72,8 @@ public class BoardDao {
 					e.printStackTrace();
 				}
 			}
-			
 		}
+		
 		
 	// 3. delete	
 		public void delete(int num) {
@@ -96,6 +96,7 @@ public class BoardDao {
 				}
 			}	
 		}
+		
 		
 		//4 조회수
 		public void updateCnt(int num) {

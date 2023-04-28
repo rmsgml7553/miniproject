@@ -5,14 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 
 <h3>글작성 페이지</h3>
-<form action="${pageContext.request.contextPath }/board/add" method="post">
+<a href="${pageContext.request.contextPath }/board/list.do">글목록으로 이동</a><br/>
+<form action="${pageContext.request.contextPath }/board/add.do" method="post">
 <table border="1">
 
 
