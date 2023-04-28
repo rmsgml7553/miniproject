@@ -24,7 +24,7 @@ public class PharmarcyRepHandler implements Handler{
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			HttpSession session = request.getSession();
-			String id = (String)session.getAttribute("id");
+			String id = (String)session.getAttribute("loginId");
 			String hpid = request.getParameter("hpid");
 			ArrayList<P_repVo> list = new ArrayList<>();
 			P_repService service = new P_repService();
