@@ -129,7 +129,7 @@ public class MemberDao {
 	// 내회원정보확인
 	public MemberVo selectMember(String id) {
 		Connection conn = dbconn.conn();
-		MemberVo vo = new MemberVo();
+		MemberVo vo = null;
 		String sql = "select * from member where id=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
