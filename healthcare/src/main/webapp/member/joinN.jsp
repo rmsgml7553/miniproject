@@ -211,15 +211,11 @@ function parse(str){
 
 <br/>
 
-<label for="mCode">코드</label><br/>
-<input type="number" name="mCode" value="1" style="width:362px;" readonly><br/>
-
-
 
 <label for="gender">성별</label><br/>
 					<select name="gender" id="gender" style="width:366px;height:40px;">
-						<option value="male">남자</option>
-						<option value="female">여자</option>
+						<option value="m">남자</option>
+						<option value="f">여자</option>
 					</select><br/>
 <label for="birth">생년월일</label><br/>
 <input type="text" name="year" size="18" maxlength="4" placeholder="년(4자)">

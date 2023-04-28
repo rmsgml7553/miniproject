@@ -11,7 +11,7 @@
 // 	xhttp.onload = function(){
 // 		let val = xhttp.responstText;
 // 		let arr = JSON.parse(val);
-		
+		x
 // 	}
 // 	let param = "pwdcheck="+ f.pwdcheck.value;
 // 	xhttp.open("GET", "${pageContext.request.contextPath}/member/getpwd.do?"+param);

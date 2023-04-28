@@ -1,7 +1,11 @@
 package handler.member;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import handler.Handler;
 import member.MemberService;
@@ -12,21 +16,25 @@ public class ExHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		String id = request.getParameter("id");
 		System.out.println(id);
 		MemberService service = new MemberService();
-		MemberVo vo = new MemberVo();
-		String view = "";
-		String msg = "";
-		vo = service.getByMember(id);
-		
-		if(vo.getmCode() > 0) {
-			msg = ("이미 존재하는 아이디입니다.");
-		} else {
-			msg = ("사용가능한 아이디 입니다.");
-		}
-		
-		return null;
+		MemberVo vo = service.getByMember(id);
+		String flag = (vo==null)? "true": "false";
+		System.out.println("handler-"+flag);
+	
+		JSONObject obj = new JSONObject();
+		obj.put("flag", flag);
+		String txt = obj.toJSONString();
+		System.out.println(txt);
+		return "responsebody/"+txt;
 	}
 
 }
