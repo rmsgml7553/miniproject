@@ -41,10 +41,10 @@ public class JoinNHandler implements Handler {
 			String y = request.getParameter("year");
 			String m = request.getParameter("month");
 			String d = request.getParameter("day");
-			String str = y+"-"+m+"-"+d;
+			String str = y+"/"+m+"/"+d;
 			
 			try {
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 				java.util.Date util;
 				util = format.parse(str);
 				java.sql.Date birth;

@@ -30,14 +30,17 @@ public class LoginHandler implements Handler {
 		MemberVo vo = service.getByMember(id);
 		System.out.println(id);
 		System.out.println(vo);
-		if (vo != null && pwd.equals(vo.getPwd())) {
+		if (vo != null) {
+			if(pwd.equals(vo.getPwd())) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginId", id);
 			System.out.println(session);
 			request.setAttribute("vo", vo);
 			System.out.println(id);
 			flag = true;
-		}
+		} 
+	}
+		
 		String view = "/index.jsp";
 		request.setAttribute("flag", flag);
 		return view;

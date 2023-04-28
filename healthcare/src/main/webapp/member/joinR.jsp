@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 </style>
 <script>
@@ -27,10 +24,6 @@ function joinform_check(){
 	alert('회원가입 누름');
 	
 	
-	
-	let RegExp = /^[a-zA-Z0-9]{4,12}$/;
-
-	let n_RegExp = /^[가-힣]
 	
 	let f = document.f;
 
@@ -154,43 +147,43 @@ xhttp.onload = function(){
 </script>
 </head>
 <body>
-<form action="${pageContext.request.contextPath }/member/joinR.do" method="post" name="f">
-<fieldset>
-<label for="id">아이디</label><br/>
-<input type="text" name="id" size="50" autofocus required placeholder="4~12자의 영문 대소문자와 숫자로만 입력">
-<button class="id_overlap_button" onclick="id_overlap_check()">중복검사</button>
-<span class="material-symbols-outlined" id="id_check_sucess" style="display:none">
-</span>
-<br/>
-필수정보 입니다.<br/>
-<label for="pwd">비밀번호</label><br/>
-<input type="password" name="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"><br/>
-필수정보 입니다.<br/>
-<label for="pwd2">비밀번호 재확인</label><br/>
-<input type="password" name="pwd2" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"><br/>
-필수정보 입니다.<br/>
-<label for="name">이름</label><br/>
-<input type="text" name="name" size="50" required placeholder="이름을 입력해주세요."><br/>
-필수정보 입니다.<br/>
-<label for="phone">전화번호</label><br/>
-<input type="text" name="phone" size="50"><br/>
+	<form action="${pageContext.request.contextPath }/member/joinR.do"
+		method="post" name="f">
+		<fieldset>
+			<label for="id">아이디</label><br /> <input type="text" name="id"
+				size="50" autofocus required placeholder="4~12자의 영문 대소문자와 숫자로만 입력">
+			<button class="id_overlap_button" onclick="id_overlap_check()">중복검사</button>
+			<span class="material-symbols-outlined" id="id_check_sucess"
+				style="display: none"> </span> <br /> 필수정보 입니다.<br /> <label
+				for="pwd">비밀번호</label><br /> <input type="password" name="pwd"
+				size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"><br />
+			필수정보 입니다.<br /> <label for="pwd2">비밀번호 재확인</label><br /> <input
+				type="password" name="pwd2" size="50" required
+				placeholder="4~12자의 영문 대소문자와 숫자로만 입력"><br /> 필수정보 입니다.<br />
+			<label for="name">이름</label><br /> <input type="text" name="name"
+				size="50" required placeholder="이름을 입력해주세요."><br /> 필수정보
+			입니다.<br /> <label for="phone">전화번호</label><br /> <input type="text"
+				name="phone" size="50"><br /> <label for="address">주소</label><br />
+			<input type="text" id="sample3_postcode" placeholder="우편번호" size="50">
+			<input type="button" onclick="sample3_execDaumPostcode()"
+				value="우편번호 찾기"><br> <input type="text"
+				name="sample3_address" id="sample3_address" placeholder="주소"
+				size="50"><br> <input type="text"
+				name="sample3_detailAddress" id="sample3_detailAddress"
+				placeholder="상세주소" size="22"> <input type="text"
+				id="sample3_extraAddress" placeholder="참고항목" size="22">
 
+			<div id="wrap"
+				style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
+				<img src="//t1.daumcdn.net/postcode/resource/images/close.png"
+					id="btnFoldWrap"
+					style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+					onclick="foldDaumPostcode()" alt="접기 버튼">
+			</div>
 
-
-
-<label for="address">주소</label><br/>
-<input type="text" id="sample3_postcode" placeholder="우편번호" size="50">
-<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
-<input type="text" name="sample3_address" id="sample3_address" placeholder="주소" size="50"><br>
-<input type="text" name="sample3_detailAddress" id="sample3_detailAddress" placeholder="상세주소" size="22">
-<input type="text" id="sample3_extraAddress" placeholder="참고항목" size="22">
-
-<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-</div>
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+			<script
+				src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+			<script>
     // 우편번호 찾기 찾기 화면을 넣을 element
     var element_wrap = document.getElementById('wrap');
 
@@ -264,74 +257,78 @@ xhttp.onload = function(){
         // iframe을 넣은 element를 보이게 한다.
         element_wrap.style.display = 'block';
     }
-</script>
-
-<br/>
-
-<label for="mCode">코드</label><br/>
-<input type="number" name="mCode" value="2" style="width:362px;" readonly><br/>
-
-<label for="code">코드번호</label><br/>
-<input type="text" name="code" size="50"><br/>
-
-<label for="gender">성별</label><br/>
-					<select name="gender" id="gender" style="width:366px;height:40px;">
-						<option value="male">남자</option>
-						<option value="female">여자</option>
-					</select><br/>
-<label for="birth">생년월일</label><br/>
-<input type="text" name="year" size="18" maxlength="4" placeholder="년(4자)">
-  					<select name="month" id="month" style="width:100px;height:40px">
-                        <option value = "">월</option>
-                        <option value = "1">1</option>
-                        <option value = "2">2</option>
-                        <option value = "3">3</option>
-                        <option value = "4">4</option>
-                        <option value = "5">5</option>
-                        <option value = "6">6</option>
-                        <option value = "7">7</option>
-                        <option value = "8">8</option>
-                        <option value = "9">9</option>
-                        <option value = "10">10</option>
-                        <option value = "11">11</option>
-                        <option value = "12">12</option>
-                    </select>
-                    <select name="day" id="day" style="width:100px;height:40px">
-                        <option value = "">일</option>
-                        <option value = "1">1</option>
-                        <option value = "2">2</option>
-                        <option value = "3">3</option>
-                        <option value = "4">4</option>
-                        <option value = "5">5</option>
-                        <option value = "6">6</option>
-                        <option value = "7">7</option>
-                        <option value = "8">8</option>
-                        <option value = "9">9</option>
-                        <option value = "10">10</option>
-                        <option value = "11">11</option>
-                        <option value = "12">12</option>
-                        <option value = "13">13</option>
-                        <option value = "14">14</option>
-                        <option value = "15">15</option>
-                        <option value = "16">16</option>
-                        <option value = "17">17</option>
-                        <option value = "18">18</option>
-                        <option value = "19">19</option>
-                        <option value = "20">20</option>
-                        <option value = "21">21</option>
-                        <option value = "22">22</option>
-                        <option value = "23">23</option>
-                        <option value = "24">24</option>
-                        <option value = "25">25</option>
-                        <option value = "26">26</option>
-                        <option value = "27">27</option>
-                        <option value = "28">28</option>
-                        <option value = "29">29</option>
-                        <option value = "30">30</option>
-                        <option value = "31">31</option>
-                    </select><br/>
-<input type="submit" value="회원가입" size="50" onclick="joinform_check()">
-</fieldset>
-</form>
+			</script>
+			<br/> 
+			
+			
+			<label for="code">코드번호</label><br/> 
+			<select name="code" id="code" style="width: 100px;">
+				<option value="1">약국</option>
+				<option value="2">병원</option>
+			</select> 
+			<input type="button" value="찾기" onclick="search(value)"><br/>
+			<input type="text" name="codeinput" size="50"><br />
+			
+			<label for="gender">성별</label><br /> 
+			<select name="gender" id="gender" style="width: 366px; height: 40px;">
+				<option value="m">남자</option>
+				<option value="f">여자</option>
+			</select><br/> 
+			
+			<label for="birth">생년월일</label><br /> 
+			<input type="text"
+				name="year" size="18" maxlength="4" placeholder="년(4자)"> 
+			<select name="month" id="month" style="width: 100px; height: 40px">
+				<option value="">월</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select> 
+			<select name="day" id="day" style="width: 100px; height: 40px">
+				<option value="">일</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</select><br /> 
+			<input type="submit" value="회원가입" size="50" onclick="joinform_check()">
+		</fieldset>
+	</form>
 </body>
 </html>
