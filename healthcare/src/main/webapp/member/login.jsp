@@ -10,17 +10,21 @@
 		
 		const xhttp = new XMLHttpRequest();
 		xhttp.onload = function(){
-			alert(xhttp.responseText)
+			let tags = document.getElementsByTagName("input");
+			let res = document.getElementById("res");
 			let obj = xhttp.responseText;
 			let arr = JSON.parse(obj);
-			alert(arr.flag);
+			if(arr.flag == "로그인 완료"){
+			window.location.href="${pageContext.request.contextPath}/index.jsp";
+			} else {
+			res.innerHTML = arr.flag;
+			}
+			
 		}
 		let param = "?id=" + f.id.value+"&pwd="+f.pwd.value;
 		xhttp.open("get", "${pageContext.request.contextPath}/member/login.do"+param);
 		xhttp.send();
 		
-		let button = document.getElementById("button");
-		button.type = 
 	}
 </script>
 </head>
@@ -34,6 +38,7 @@
 		<input type="button" id="button" onclick="a()" value="로그인"> 
 	</fieldset>
 </form>
+<div id="res"></div>
 </div>
 </body>
 </html>
