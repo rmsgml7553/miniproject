@@ -29,11 +29,10 @@
 	}
 
 	nav{
-	background-color : white;
 	margin : 15px;
 	border-radius: 40px 40px 40px 40px ;
 	height : 10%;
-	border: 1px, solid, black;
+	border: 10px, solid, black;
 	}
 	
 	#searchbtn{
@@ -59,15 +58,28 @@
 	#btn5{
 	border-radius: 0px 30px 30px 0px;
 	}
-	#btn1,#btn2,#btn3,#btn4,#btn5{
+	#btn1,#btn2,#btn3,#btn4,#btn5, #searchbtn{
 	height: 50px;
+	border : none;
+	background-color: RGB(58, 162, 201);
+	font-weight: bold;
 	}
-	#login{
-	margin-top : 16px;
+	.loginbox{
+	margin-top : 8.5px;
 	margin-left : 12px;
+	}
+	.loginbox a{
+	color:RGB(58, 162, 201);
+	font-weight: bold;
 	}
 	#menu{
 	margin-top : 3px;
+	}
+	
+	.myModal{
+	width : 80%;
+	height: 1000px;
+	background-color: red;
 	}
 	
 	
@@ -100,6 +112,7 @@ background-color: white;
 	
 </style>
 <script>
+
 var mHtml = $("html");
 var page = 1;
 mHtml.animate({scrollTop : 0},10);
@@ -127,7 +140,7 @@ $(window).on("wheel", function(e) {
       <ul class="navbar-nav me-auto">
         <li id="menu">
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary" id="btn1">건강정보</button>
+				<button type="button" class="btn btn-primary" id="btn1"  data-bs-toggle="modal"  data-bs-target="#myModal">건강정보</button>
 				<div class="btn-group">
 					<button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"  id="btn2">자가건강 테스트</button>
 					<div class="dropdown-menu">
@@ -144,10 +157,25 @@ $(window).on("wheel", function(e) {
 					<button type="button" class="btn btn-primary"  id="btn5">자유게시판</button>
 				</div>
         </li>
-        <li>
-         	<p id="login"><b>정근희</b>님 반갑습니다.</p>
+        <li class="loginbox">
+         	<ul class="nav">
+  				<li class="nav-item">
+    				<a class="nav-link" href="#">로그인</a>
+ 				 </li>
+  				<li class="nav-item">
+    				<a class="nav-link" href="#">회원가입</a>
+ 				 </li>
+ 				 </li>
+  				<li class="nav-item">
+    				<a class="nav-link" href="#">회원정보</a>
+ 				 </li>
+ 				 </li>
+  				<li class="nav-item">
+    				<a class="nav-link" href="#">마이페이지</a>
+ 				 </li>
+			</ul>
         </li>
-      </ul>
+     </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="text" placeholder="검색"  id="search">
         <select class="form-select" id="option" >
@@ -160,6 +188,24 @@ $(window).on("wheel", function(e) {
     </div>
   </div>
 </nav>
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+    </div>
+  </div>
+</div>
 
 <video muted autoplay loop>
 	<source src="img/video.mp4" type="video/mp4">
