@@ -37,12 +37,12 @@ public class P_repDao {
 		}
 	}
 	
-	public void delete(String id) {
+	public void delete(int num) {
 		Connection conn = dbconn.conn();
-		String sql = "delete p_rep where id = ?";
+		String sql = "delete p_rep where num = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -59,14 +59,14 @@ public class P_repDao {
 
 	public ArrayList<P_repVo> select(String code) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from p_rep where code = ?";
+		String sql = "select * from p_rep where code = ? order by num desc";
 		ArrayList<P_repVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, code);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new P_repVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(5), rs.getString(4)));
+				list.add(new P_repVo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(5), rs.getString(4),null));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

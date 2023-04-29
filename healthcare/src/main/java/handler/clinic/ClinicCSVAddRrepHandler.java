@@ -1,20 +1,16 @@
-package handler.pillAndPharmarcy;
+package handler.clinic;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
+import c_rrep.C_rrepService;
+import c_rrep.C_rrepVo;
 import handler.Handler;
-import p_rrep.P_rrepService;
-import p_rrep.P_rrepVo;
 
-public class PharmarcyRrepHandler implements Handler {
+public class ClinicCSVAddRrepHandler implements Handler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
@@ -27,16 +23,16 @@ public class PharmarcyRrepHandler implements Handler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String tempHpid = request.getParameter("hpid");
-		System.out.println(request.getParameter("pnum"));
-		int pNum = Integer.parseInt(request.getParameter("pnum"));
-		String content = request.getParameter("newRrep");
-		System.out.println(content);
-		P_rrepService service = new P_rrepService();
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("loginId");
-		service.insert(new P_rrepVo(0, pNum, id, content, null));
-		return "redirect:/pharmarcy/pharmarcyDetail/load.do?hpid="+tempHpid;
+		String tempHpid = request.getParameter("hpid");
+		int pNum = Integer.parseInt(request.getParameter("cnum"));
+		String content = request.getParameter("newRrep");
+		System.out.println(request.getParameter("cnum"));
+		System.out.println(content);
+		C_rrepService service = new C_rrepService();
+		service.insert(new C_rrepVo(0, pNum, id, content, null));
+		return "redirect:/clinic/detail.do?code="+tempHpid;
 	}
 
 }

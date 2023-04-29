@@ -1,4 +1,4 @@
-package p_rrep;
+package c_rrep;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,16 +8,16 @@ import java.util.ArrayList;
 
 import conn.DBConnect;
 
-public class P_rrepDao {
+public class C_rrepDao {
 	DBConnect dbconn;
 
-	public P_rrepDao() {
+	public C_rrepDao() {
 		this.dbconn = DBConnect.getInstance();
 	}
 	
-	public void insert(P_rrepVo vo) {
+	public void insert(C_rrepVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into p_rrep values(seq_p_rrep.nextVal,?,?,?,sysdate)";
+		String sql = "insert into c_rrep values(seq_c_rrep.nextVal,?,?,?,sysdate)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getpNum());
@@ -39,7 +39,7 @@ public class P_rrepDao {
 	
 	public void delete(int num) {
 		Connection conn = dbconn.conn();
-		String sql = "delete p_rrep where num = ?";
+		String sql = "delete c_rrep where num = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -57,16 +57,16 @@ public class P_rrepDao {
 		}
 	}
 
-	public ArrayList<P_rrepVo> select(int pNum) {
+	public ArrayList<C_rrepVo> select(int cNum) {
 		Connection conn = dbconn.conn();
-		String sql = "select * from p_rrep where p_num = ?";
-		ArrayList<P_rrepVo> list = new ArrayList<>();
+		String sql = "select * from c_rrep where c_num = ?";
+		ArrayList<C_rrepVo> list = new ArrayList<>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, pNum);
+			pstmt.setInt(1, cNum);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new P_rrepVo(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
+				list.add(new C_rrepVo(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDate(5)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

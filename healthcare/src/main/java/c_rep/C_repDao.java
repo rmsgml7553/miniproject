@@ -24,6 +24,9 @@ public class C_repDao {
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getContent());
 			pstmt.setString(3, vo.getCode());
+			System.out.println("id : " + vo.getId());
+			System.out.println("content : " + vo.getContent());
+			System.out.println("code : " + vo.getCode());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -38,12 +41,12 @@ public class C_repDao {
 		}
 	}
 	
-	public void delete(String id) {
+	public void delete(int num) {
 		Connection conn = dbconn.conn();
-		String sql = "delete c_rep where id = ?";
+		String sql = "delete c_rep where num = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setInt(1, num);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -67,7 +70,7 @@ public class C_repDao {
 			pstmt.setString(1, code);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				list.add(new C_repVo(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getDate(5)));
+				list.add(new C_repVo(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getDate(5),null));
 			}
 			
 			

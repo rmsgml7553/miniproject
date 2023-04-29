@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,6 +20,7 @@ import c_rep.C_repService;
 import c_rep.C_repVo;
 import clinic.Vo;
 import handler.Handler;
+import member.MemberService;
 
 public class ClinicCSVDetailHandler implements Handler {
 
@@ -66,11 +68,16 @@ public class ClinicCSVDetailHandler implements Handler {
 			}
 			C_repService service = new C_repService();
 			ArrayList<C_repVo> rep = service.select(code);
-			
-			System.out.println("rep : " + rep);
-			if(rep!= null) {
-			request.setAttribute("rep", rep);
+			System.out.println(rep);
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("loginId");
+			if(id != null) {
+				MemberService memberSerivce = new MemberService();
+				String memberCode = memberSerivce.getByMember(id).getCode();
+				request.setAttribute("code", memberCode);
 			}
+			System.out.println("rep : " + rep);
+			request.setAttribute("repList", rep);
 			request.setAttribute("vo", vo); //request에 담아 뷰페이지에 보내줌. 
 			br.close();
 			fr.close(); //스트림 닫기

@@ -12,18 +12,17 @@
 	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
 <style>
 ul {
-	display: flex;
 	padding: 10px;
 }
 
 li {
+	display: flex;
 	padding: 10px;
 }
 </style>
 
 <script>
 
-let tfRrep = true;
 
 window.onload = function(){
 	let star = document.getElementsByClassName("material-symbols-outlined")[0];
@@ -40,7 +39,6 @@ window.onload = function(){
 	}
 	xhttp.open("GET","${pageContext.request.contextPath}/pharmarcy/pharmarcyLike/load.do?hpid=${PharmarcyVo.hpid}");
 	xhttp.send();
-	reps();
 }
 
 function change(){
@@ -63,136 +61,6 @@ function change(){
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8")
 	xhttp.send("hpid=${PharmarcyVo.hpid}");
 }
-
-
-function addRep(){
-	const xhttp = new XMLHttpRequest();
-	let newRep = document.getElementById("newRep").value;
-	
-	// 새로 받은 댓글 넣기
-	xhttp.onload = function(){
-		let txt = xhttp.responseText;
-		console.log(txt);
-		let arr = JSON.parse(txt);
-	
-		let temp = document.createElement('div');
-		let html ='';
-		for(let obj of arr){
-			html += '<ul class="repMain">'
-				+ '<li>'+obj.date+'</li>'
-				+ '<li>'+obj.id+'</li>'
-				+ '<li>'+obj.content+'</li>'
-				+ '</ul>'
-				+ '<ul  id = "prep'+obj.num+'">'
-				+ '</ul>'
-				+ '<ul class="reppWrite">'
-				+ '<li><input type = "text" placeholder="답글 작성하기" id = "rrep"></li>'
-				+ '<li><input type = "button" value="답글 작성" onclick = "addRrep('+obj.num+')"></li>'
-				+ '<li><input type = "button" value="답글 보기" onclick = "rreps('+obj.num+')"></li>'
-				+ '</ul>';
-		}
-		temp.innerHTML = html;
-		let repList = document.getElementsByClassName("rreps")[0];
-		repList.innerHTML = '';
-		repList.append(temp);
-	}
-	
-	xhttp.open("POST","${pageContext.request.contextPath}/pharmarcy/pharmarcyRep/load.do");
-	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8");
-	xhttp.send("hpid=${PharmarcyVo.hpid}&newRep="+newRep);
-	
-}
-
-function reps(){
-	const xhttp = new XMLHttpRequest();
-	
-	// 새로 받은 댓글 넣기
-	xhttp.onload = function(){
-		let txt = xhttp.responseText;
-		let arr = JSON.parse(txt);
-		let temp = document.createElement('div');
-		let html ='';
-		for(let obj of arr){
-			html += '<ul class="repMain">'
-			+ '<li>'+obj.date+'</li>'
-			+ '<li>'+obj.id+'</li>'
-			+ '<li>'+obj.content+'</li>'
-			+ '</ul>'
-			+ '<ul  id = "prep'+obj.num+'">'
-			+ '</ul>'
-			+ '<ul class="reppWrite">'
-			+ '<li><input type = "text" placeholder="답글 작성하기" id = "rrep'+obj.num+'"></li>'
-			+ '<li><input type = "button" value="답글 작성" onclick = "addRrep('+obj.num+')"></li>'
-			+ '<li><input type = "button" value="답글 보기" onclick = "rreps('+obj.num+')"></li>'
-			+ '</ul>';
-		}
-		temp.innerHTML = html;
-		let repList = document.getElementsByClassName("rreps")[0];
-		repList.innerHTML = '';
-		repList.append(temp);
-	}
-	
-	xhttp.open("GET","${pageContext.request.contextPath}/pharmarcy/pharmarcyRep/load.do?hpid=${PharmarcyVo.hpid}");
-	xhttp.send();
-}
-
-function rreps(pnum){
-	const xhttp = new XMLHttpRequest();
-	let rrepList = document.getElementById("prep"+pnum);
-	rrepList.innerHTML = '';
-	
-	// 새로 받은 댓글 넣기
-	xhttp.onload = function(){
-		let txt = xhttp.responseText;
-		console.log(txt);
-		let arr = JSON.parse(txt);
-	
-		let temp = document.createElement('div');
-		let html ='';
-		for(let obj of arr){
-			html += '<ul class="reppMain">'
-			+ '<li>'+obj.date+'</li>'
-			+ '<li>'+obj.id+'</li>'
-			+ '<li>'+obj.content+'</li>'
-			+ '</ul>';
-		}
-			temp.innerHTML = html;
-			rrepList.append(temp);
-	}
-	
-	xhttp.open("GET","${pageContext.request.contextPath}/pharmarcy/pharmarcyRrep/load.do?pnum="+pnum);
-	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8");
-	xhttp.send();
-}
-	
-function addRrep(pnum){
-	const xhttp = new XMLHttpRequest();
-	let newRrep = document.getElementById("rrep"+pnum).value;
-	let rrepList = document.getElementById("prep"+pnum);
-	rrepList.innerHTML = '';
-	// 새로 받은 댓글 넣기
-	xhttp.onload = function(){
-		let txt = xhttp.responseText;
-		console.log(txt);
-		let arr = JSON.parse(txt);
-	
-		let temp = document.createElement('div');
-		let html ='';
-		for(let obj of arr){
-			html += '<ul class="reppMain">'
-			+ '<li>'+obj.date+'</li>'
-			+ '<li>'+obj.id+'</li>'
-			+ '<li>'+obj.content+'</li>'
-			+ '</ul>';
-		}
-			temp.innerHTML = html;
-			rrepList.append(temp);
-	}
-	
-	xhttp.open("POST","${pageContext.request.contextPath}/pharmarcy/pharmarcyRrep/load.do");
-	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8");
-	xhttp.send("pnum="+pnum+"&newRrep="+newRrep);
-	}
 </script>
 </head>
 <body>
@@ -267,21 +135,53 @@ function addRrep(pnum){
 					<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly
 						style="width: 200px">
 				</c:if> <c:if test="${not empty sessionScope.loginId}">
-					<form action="">
-						<input type="text" name="rep" id="newRep" placeholder="댓글 작성">
-						<input type="button" value="작성하기" onclick="addRep()">
-					</form>
+				<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRep/load.do?hpid=${PharmarcyVo.hpid}" method = "post">
+					<input type="text" name="newRep" placeholder="댓글 작성">
+					<input type="submit" value="작성하기">
+				</form>
 				</c:if></td>
 		</tr>
 	</table>
 	<div id="repList">
-		<ul class="repTitle">
-			<li>작성일</li>
-			<li>작성자</li>
-			<li>내용</li>
+		<ul class = "repWrite">
 		</ul>
-		<ul class = "rreps">
-		</ul>
+			<c:forEach var = "repVo" items="${repList }">
+				<ul class = "repMain${repVo.num }">
+					<li>작성자 : ${repVo.id }</li>
+					<li>내용 : ${repVo.content }</li>
+					<li>작성 날짜 : ${repVo.date }</li>
+					<li>${repVo.num }</li>
+					<c:if test="${not empty sessionScope.loginId && sessionScope.loginId eq repVo.id }">
+					<li>
+						<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRepDel/load.do?num=${repVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
+						<input type="submit" value="삭제하기" >
+						</form>
+					</li>
+					</c:if>
+					<c:if test="${code eq PharmarcyVo.hpid}">
+					<li>
+						<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRrep/load.do?pnum=${repVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
+							<input type="text" placeholder="답글을 작성해주세요." name="newRrep">
+							<input type="submit" value = "답글 작성하기">
+						</form>
+					</li>
+					</c:if>
+				<c:forEach var ="rrepVo" items="${repVo.list }">
+					<ul class = "rrepMain">
+						<li>답글 작성자 : ${rrepVo.id }</li>
+						<li>답글 내용 : ${rrepVo.content }</li>
+						<li>답글 작성 날짜 : ${rrepVo.date }</li>
+						<c:if test="${not empty code && code eq PharmarcyVo.hpid }">
+						<li>
+							<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRrepDel/load.do?num=${rrepVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
+								<input type="submit" value="삭제하기">
+							</form>
+						</li>
+						</c:if>
+					</ul>
+				</c:forEach>
+				</ul>
+			</c:forEach>
 	</div>
 </body>
 </html>
