@@ -23,21 +23,36 @@ public class GetPwdHandler implements Handler {
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		String view = "";
-		if(request.getMethod()=="GET") {
-			request.setAttribute("view", "/member/getpwd.jsp");
+
+		if(request.getMethod().equals("GET")) {
+			String chk = request.getParameter("chk");
+			request.setAttribute("chk", chk);
+			view = "/member/getpwd.jsp?chk=chk";
 		} else {
+		
+		
+			System.out.println("getpwd 포스트방식 ");
 			String pwdcheck = request.getParameter("pwdcheck");
+			System.out.println(pwdcheck);
+			String chk = request.getParameter("chk");
+			System.out.println(chk);
 			HttpSession session = request.getSession(false);
 			String id = (String) session.getAttribute("loginId");
-			System.out.println(id);
 			MemberService service = new MemberService();
 			MemberVo vo = service.getByMember(id);
-			request.setAttribute("vo", vo);
-			view = "/member/editform.jsp";
-		} 
-	
+		
+			if(pwdcheck.equals(vo.getPwd())) {				
+				if(chk.equals("수정")) {
+					view = "redirect:/member/editform.do";
+				} else if(chk.equals("탈퇴")) {
+					view = "redirect:/member/out.do";
+				}
+			} else {
+				view = "";
+			}
+		}
 	return view;
 }
 }

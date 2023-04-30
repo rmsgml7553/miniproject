@@ -1,7 +1,6 @@
 package handler.member;
 
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,10 +23,15 @@ public class EditFormHandler implements Handler {
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		String view = "";
-		if(request.getMethod()=="GET") {
-			request.setAttribute("view", "/member/editform.jsp");
+		if(request.getMethod().equals("GET")) {
+			HttpSession session = request.getSession(false);
+			String id = (String) session.getAttribute("loginId");
+			MemberService service = new MemberService();
+			MemberVo vo = service.getByMember(id);
+			request.setAttribute("vo", vo);
+			view = "/member/editform.jsp";
 		} else {
 			String id = request.getParameter("id");
 			String pwd = request.getParameter("pwd");
@@ -38,13 +42,13 @@ public class EditFormHandler implements Handler {
 			System.out.println(address);
 			MemberService service = new MemberService();
 			MemberVo vo = new MemberVo();
-			
+
 			vo = new MemberVo(id, pwd, name, phone, address, 0, null, null, null);
 			service.editMember(vo);
 			request.setAttribute("vo", vo);
 			view = "/member/myinfo.do";
-		} 
-	
+		}
+
 	return view;
 }
 	}

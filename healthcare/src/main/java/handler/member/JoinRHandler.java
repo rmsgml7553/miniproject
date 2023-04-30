@@ -1,7 +1,6 @@
 package handler.member;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -29,20 +28,20 @@ public class JoinRHandler implements Handler {
 		if(request.getMethod().equals("GET")) {
 			request.setAttribute("view", "/member/joinR.jsp");
 			view = "/member/join.jsp";
-			
+
 		} else {
 			String id = request.getParameter("id");
 			String pwd = request.getParameter("pwd");
 			String name = request.getParameter("name");
 			String phone = request.getParameter("phone");
-			String address = request.getParameter("sample3_address")+" " +request.getParameter("sample3_detailAddress");
+			String address = request.getParameter("sample3_address")+" ";
 			String code = request.getParameter("code");
 			String gender = request.getParameter("gender");
 			String y = request.getParameter("year");
 			String m = request.getParameter("month");
 			String d = request.getParameter("day");
 			String str = y+"/"+m+"/"+d;
-			
+
 			try {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 				java.util.Date util;

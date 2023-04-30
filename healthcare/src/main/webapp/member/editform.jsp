@@ -6,96 +6,59 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script>
-function id_check(){
-	let win = open('idcheck.jsp', 'win', 'width=70,hegiht=100,top=300,lefth=300');
+
+	let pwd = document.getElementById("pwd").value;
+	console.log(pwd);
+	let pwdMsg = document.getElementById("pwdMsg");
+// 	let RegExp = /([^가-힣\w\s]){4,12}/;
+	let RegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_])[a-zA-Z\d\W_]{4,12}$/;
+	let res = RegExp.test(pwd);
+	
+	let html = "";
+	pwdMsg.innerHTML = " ";
+	
+	if(pwd == null){
+		tf = false;
+		html += "비밀번호를 입력해주세요.";
+	} else if(!res){
+		tf = false;
+		html += "4~12자의 영문 대소문자와 숫자로만 입력해주세요.";
+		pwd = "";
+	}else if(res){
+		html+="사용가능한 비밀번호입니다."
+		tf = true;
+	}
+	pwdMsg.innerHTML = html;
+	html = "";
 	
 }
 
 
+function nameFunction(){
+	let name = document.getElementById("name").value;
+	console.log(name);
+	let nameMsg = document.getElementById("nameMsg");
+	let RegExp =  /^(?=.*[가-힣a-z-A-Z])$/;
+	let res = RegExp.test(name);
 
-function joinform_check(){
-	alert('회원가입 누름');
+	nameMsg.style.display = "";
+	let html = "";
 	
-	let f = document.f;
-
+	nameMsg.innerHTML = " ";
 	
-	
-
-	
-	let id = document.querySelector("input[name='id']").value;
-
-	let pwd = document.querySelector("input[name='pwd']").value;
-	let pwd2 = document.querySelector("input[name='pwd2']").value;
-	let name = document.querySelector("input[name='name']").value;
-	let phone = document.querySelector("input[name='phone']").value;
-	let sample3_address = document.querySelector("input[name='sample3_address']").value;
-	let sample3_detailAddress = document.querySelector("input[name='sample3_detailAddress']").value;
-	let mCode = document.querySelector("input[name='mCode']").value;
-	let gender = document.querySelector("select[name='gender']").value;
-	let year = document.querySelector("input[name='year']").value;
-	let month = document.querySelector("select[name='month']").value;
-	let day = document.querySelector("select[name='day']").value;
-	
-	let str = year+month+day;
-	let birth = parse(str);
-	let address = sample3_address+" " + sample3_detailAddress;
-	
-	if(id == ""){
-		alert("아이디를 입력하세요.");
-		id.focus();
-		return false;
-	}
-	
-	if(pwd != pwd2){
-		pwd.focus();
-		pwd.select();
-		pwd2 = "";
-		alert("비밀번호가 서로 다릅니다.");
-		return false;
-	}
-
-	
-	if(name == ""){
-		alert("이름을 입력하세요.");
-		name.focus();
-		return false;
-	}
-	
-	
-	
-	if(year == ""){
-		alert("년도를 입력하세요.");
-		year.focus();
-		return false;
+	if(!res){
+		html += "한글과 영문만 입력이 가능합니다.";
+		name = "";
+	} else {
+		html += "사용가능 합니다.";
 	} 
 	
-	else if(!(year >= 1900 && year <= 2050)){
-		alert("년도를 정확하게 입력해주세요.");
-		year.focus();
-		return false;
-	}
-	
-	if(month == ""){
-		alert("달을 선택해주세요.");
-		month.focus();
-		return false;
-	}
-	
-	if(day == ""){
-		alert("일을 선택해주세요.");
-		day.focus();
-		return false;
-	}
-	f.submit();
+	nameMsg.innerHTML = html;
 	
 }
 
-function parse(str){
-	let y = str.substr(0, 4);
-	let m = str.substr(4, 2);
-	let d = str.substr(6, 2);
-	return new Date(y, m-1, d);
-}
+
+
 </script>
 </head>
 <body>
@@ -105,13 +68,14 @@ function parse(str){
 <input type="text" name="id" size="50" value="${vo.id }" readonly>
 <br/>
 <label for="pwd">비밀번호</label><br/>
-<input type="password" name="pwd" size="50" autofocus value="${vo.pwd }"><br/>
-
+<input type="password" name="pwd" size="50" autofocus value="${vo.pwd }" onblur="pwdFunction()"><br/>
+<span class="error_next_box" id="pwdMsg" >필수정보입니다.</span><br /> 
 <label for="name">이름</label><br/>
-<input type="text" name="name" size="50" value="${vo.name }"><br/>
-필수정보 입니다.<br/>
+<input type="text" name="name" size="50" value="${vo.name }" onblur="nameFunction()"><br/>
+<span class="error_next_box" id="nameMsg" >필수정보입니다.</span><br /> 
 <label for="phone">전화번호</label><br/>
-<input type="text" name="phone" size="50" value="${vo.phone }" ><br/>
+<input type="text" name="phone" size="50" value="${vo.phone }"><br/>
+
 
 
 
@@ -219,7 +183,7 @@ function parse(str){
 <label for="birth">생년월일</label><br/>
 <input type="text" name="birth" size="50" value="${vo.birth }" readonly><br/>
   					
-<input type="submit" value="완료" size="50">
+<input type="submit" value="수정" size="50">
 </fieldset>
 </form>
 </body>

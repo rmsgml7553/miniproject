@@ -20,6 +20,7 @@
 			let tags = document.getElementsByTagName("input");
 			let res = document.getElementById("res");
 			let obj = xhttp.responseText;
+			console.log(obj);
 			let arr = JSON.parse(obj);
 			if(arr.flag == "로그인 완료"){
 			window.location.href="${pageContext.request.contextPath}/index.jsp";
@@ -38,21 +39,21 @@
 <body>
 <div class="login-wrapper">
 <div class="container mt-3">
-  <form action="${pageContext.request.contextPath }/member/login.do" name="f" class="was-validated">
+  <form action="${pageContext.request.contextPath }/member/login.do" name="f" method="post" class="was-validated">
     <div class="mb-3 mt-3">
-      <label for="uname" class="form-label"><b>아이디</b></label>
-      <input type="text" class="form-control" id="uname" placeholder="ID" name="uname" required>
+      <label for="id" class="form-label"><b>아이디</b></label>
+      <input type="text" class="form-control" id="id" placeholder="ID" name="id" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
     <div class="mb-3">
       <label for="pwd" class="form-label"><b>비밀번호</b></label>
-      <input type="password" class="form-control" id="pwd" placeholder="Password" name="pswd" required>
+      <input type="password" class="form-control" id="pwd" placeholder="Password" name="pwd" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
     <div style="text-align: center;">
-  		<button type="submit" class="btn btn-primary"  onclick="a()" style="background-color: RGB(58, 162, 201); border:0px; ">로그인</button>
+  		<input type="button" class="btn btn-primary" id="button"  onclick="a()" style="background-color: RGB(58, 162, 201); border:0px; " value="로그인">
   	</div>
   </form>
   
