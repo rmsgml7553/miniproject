@@ -1,28 +1,21 @@
-package p_rep;
+package c_rrep;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
-import p_rrep.P_rrepVo;
-
-public class P_repVo {
+public class C_rrepVo {
 	private int num;
+	private int pNum;
 	private String id;
 	private String content;
 	private Date date;
-	private String code;
-	private ArrayList<P_rrepVo> list;
 
-	
-
-	public P_repVo(int num, String id, String content, Date date, String code, ArrayList<P_rrepVo> list) {
+	public C_rrepVo(int num, int pNum, String id, String content, Date date) {
 		super();
 		this.num = num;
+		this.pNum = pNum;
 		this.id = id;
 		this.content = content;
 		this.date = date;
-		this.code = code;
-		this.list = list;
 	}
 
 	public String getId() {
@@ -49,12 +42,12 @@ public class P_repVo {
 		this.date = date;
 	}
 
-	public String getCode() {
-		return code;
+	public int getpNum() {
+		return pNum;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setpNum(int pNum) {
+		this.pNum = pNum;
 	}
 
 	public int getNum() {
@@ -65,18 +58,9 @@ public class P_repVo {
 		this.num = num;
 	}
 
-	
-	public ArrayList<P_rrepVo> getList() {
-		return list;
-	}
-
-	public void setList(ArrayList<P_rrepVo> list) {
-		this.list = list;
-	}
-
 	@Override
 	public String toString() {
-		return "P_repVo [num=" + num + ", id=" + id + ", content=" + content + ", date=" + date + ", code=" + code
-				+ ", list=" + list + "]";
+		return "P_rrepVo [num=" + num + ", pNum=" + pNum + ", id=" + id + ", content=" + content + ", date=" + date
+				+ "]";
 	}
 }

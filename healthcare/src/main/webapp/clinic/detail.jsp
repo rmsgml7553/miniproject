@@ -13,93 +13,91 @@ response.setContentType("text/html; charset=UTF-8");
 <title>Insert title here</title>
 <style>
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
 
 <script type="text/javascript"> 
 
 window.onload = function(){
-	comments();
 	star();
+// 	comments();
 }
-function comments(){
-const xhttp = new XMLHttpRequest();
+// function comments(){
+// const xhttp = new XMLHttpRequest();
 	
 	
-	let param = "?code=${vo.code}";  
-	xhttp.open("GET","${pageContext.request.contextPath}/clinic/comment.do"+param);
+// 	let param = "?code=${vo.code}";  
+// 	xhttp.open("GET","${pageContext.request.contextPath}/clinic/comment.do"+param);
 
-	xhttp.send();
+// 	xhttp.send();
 	
-	xhttp.onload = function(){
+// 	xhttp.onload = function(){
 	
-		var button = document.createElement("input");
-		button.type= "button";
+// 		var button = document.createElement("input");
+// 		button.type= "button";
 		
 		
-		let val = xhttp.responseText;
-		console.log(val);
-		let arr = JSON.parse(val);
-		let html = "<table border ='1'>";
-		for(let obj of arr ){
-		html += '<tr><td> 작성자 : ' + obj.id + '<br/>';
-		html += '내용 : ' + obj.content + '<br/>';
-		html += '작성일 : ' + obj.date + '<br/>';
-		html += '</td></tr>';
+// 		let val = xhttp.responseText;
+// 		console.log(val);
+// 		let arr = JSON.parse(val);
+// 		let html = "<table border ='1'>";
+// 		for(let obj of arr ){
+// 		html += '<tr><td> 작성자 : ' + obj.id + '<br/>';
+// 		html += '내용 : ' + obj.content + '<br/>';
+// 		html += '작성일 : ' + obj.date + '<br/>';
+// 		html += '</td></tr>';
 		
- 		};
-		html += '</table>';
-		let div = document.getElementById("r");
-		 div.innerHTML = html;
-	}
+//  		};
+// 		html += '</table>';
+// 		let div = document.getElementById("r");
+// 		 div.innerHTML = html;
+// 	}
 	 
 	
-}
+// }
 
 
-function addcomments(){
-	const xhttp = new XMLHttpRequest();
+// function addcomments(){
+// 	const xhttp = new XMLHttpRequest();
 	
-	let param = 'id=${sessionScope.loginId}';
-	param += '&code=${vo.code}';  
-	param += "&content=" + document.getElementById('content').value;
+// 	let param = 'id=${sessionScope.loginId}';
+// 	param += '&code=${vo.code}';  
+// 	param += "&content=" + document.getElementById('content').value;
 
 	
-	xhttp.open("POST","${pageContext.request.contextPath}/clinic/addrep.do");
-	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=euc-kr");
-	xhttp.send(param);
+// 	xhttp.open("POST","${pageContext.request.contextPath}/clinic/addrep.do");
+// 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=euc-kr");
+// 	xhttp.send(param);
 	
 	
-	xhttp.onload = function(){
+// 	xhttp.onload = function(){
 	
-		let val = xhttp.responseText;
-		console.log(val);
-		let arr = JSON.parse(val);
-		console.log(arr);
-		let html = "<table border ='1'>";
-		for(let obj of arr ){
-		html += '<tr><td> 작성자 : ' + obj.id + '<br/>';
-		html += '내용 : ' + obj.content + '<br/>';
-		html += '작성일 : ' + obj.date + '<br/>';
-		html += '</td></tr>';
+// 		let val = xhttp.responseText;
+// 		console.log(val);
+// 		let arr = JSON.parse(val);
+// 		console.log(arr);
+// 		let html = "<table border ='1'>";
+// 		for(let obj of arr ){
+// 		html += '<tr><td> 작성자 : ' + obj.id + '<br/>';
+// 		html += '내용 : ' + obj.content + '<br/>';
+// 		html += '작성일 : ' + obj.date + '<br/>';
+// 		html += '</td></tr>';
 		
- 		};
-		html += '</table>';
-		let div = document.getElementById("r");
-		 div.innerHTML = html;
-	}
+//  		};
+// 		html += '</table>';
+// 		let div = document.getElementById("r");
+// 		 div.innerHTML = html;
+// 	}
 	 
-	document.getElementById('content').value = "";
-}
+// 	document.getElementById('content').value = "";
+// }
 
 
 function a(num){
@@ -123,10 +121,15 @@ let star = document.getElementById('${vo.code}');
 	
 	xhttp.onload = function(){
 	
-		let val = xhttp.responseText;
-		console.log(val);
-		if(val == 'Y'){
+		let txt = xhttp.responseText;
+		let obj = JSON.parse(txt);
+		console.log(obj);
+		if(obj.txt == 'Y'){
 			star.style.color = "#fde600";
+		}else if(obj.txt == 'N'){
+			star.style.color = "gray";
+		}else if(obj.txt == "NotLogin"){
+			alert("로그인 후 이용 가능합니다.");
 		}
 		
 	}
@@ -145,12 +148,13 @@ $(document).ready(function(){
 			type : 'post',
 			data : {'code': code},
 			success:function(result){
-				if(result == 'Y'){
-					
+				console.log(result);
+				let obj = JSON.parse(result);
+				if(obj.txt == 'Y'){
 					star.style.color = "#fde600";
-				}else if(result == 'N'){
+				}else if(obj.txt == 'N'){
 					star.style.color = "#000000";
-				}else if(result == 'NotLogin'){
+				}else if(obj.txt == 'NotLogin'){
 					alert("Login 후 이용 가능합니다.");
 				}
 			},
@@ -171,10 +175,8 @@ $(document).ready(function(){
 	<table border="1">
 		<tr>
 			<th>병원이름</th>
-			<td>${vo.name }
-			<span class="material-symbols-outlined" id ="${vo.code}" >
-			stars
-			</span>
+			<td>${vo.name }<span class="material-symbols-outlined"
+				id="${vo.code}"> stars </span>
 			</td>
 		</tr>
 		<tr>
@@ -193,7 +195,7 @@ $(document).ready(function(){
 			<th>주소</th>
 			<td>${vo.address }</td>
 		</tr>
-	
+
 		<tr>
 			<th>업태 구분명</th>
 			<td>${vo.clinic }</td>
@@ -209,8 +211,7 @@ $(document).ready(function(){
 		<tr>
 			<th>진료 과목</th>
 			<td><c:forEach var="item" items="${vo.subject }">
-${item }
-</c:forEach></td>
+				</c:forEach></td>
 		</tr>
 	</table>
 
@@ -257,31 +258,59 @@ marker.setMap(map);
 
 
 </script>
-	<br /> 댓글 :
-
-	<input type="text" id="content" name="content">
-	<input type="button" value="댓글 작성" onclick="addcomments()">
-		
-	<br />
-
-	<div id="r">
-
-<!-- 		<table border="1" id="rep_table"> -->
-<%-- 			<c:forEach var="rep" items="${rep }"> --%>
-<!-- 				<tr> -->
-<%-- 					<td>작성자 : ${rep.id } <br />  --%>
-<%-- 					댓글내용 : ${rep.content } <br />  --%>
-<%-- 					작성일: ${rep.date } <br />  --%>
-<%-- 					<input type="button" value="대댓글" name="rrep" id="rrep" onclick="a(${rep.num})"><br /> --%>
-<%-- 						<form action="" method="post" id="rrep_${rep.num }" --%>
-<!-- 							style="display: none"> -->
-<!-- 							<input type="text" id="rrep_write"><input type="submit" -->
-<!-- 								value="작성" id="rrep_submit"> -->
-<!-- 						</form> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</table> -->
+	<table border="1">
+		<tr>
+			<td><c:if test="${empty sessionScope.loginId }">
+					<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly
+						style="width: 200px">
+				</c:if> <c:if test="${not empty sessionScope.loginId}">
+				<form action="${pageContext.request.contextPath }/clinic/addrep.do?hpid=${vo.code}" method = "post">
+					<input type="text" name="newRep" placeholder="댓글 작성">
+					<input type="submit" value="작성하기">
+				</form>
+				</c:if></td>
+		</tr>
+	</table>
+	<div id="repList">
+		<ul class = "repWrite">
+		</ul>
+			<c:forEach var = "repVo" items="${repList }">
+				<ul class = "repMain${repVo.num }">
+					<li>작성자 : ${repVo.id }</li>
+					<li>내용 : ${repVo.content }</li>
+					<li>작성 날짜 : ${repVo.date }</li>
+					<li>${repVo.num }</li>
+					<c:if test="${not empty sessionScope.loginId && sessionScope.loginId eq repVo.id }">
+					<li>
+						<form action="${pageContext.request.contextPath }/clinic/delRep.do?num=${repVo.num}&hpid=${vo.code}" method="post">
+						<input type="submit" value="삭제하기" >
+						</form>
+					</li>
+					</c:if>
+					<c:if test="${code eq vo.code}">
+					<li>
+						<form action="${pageContext.request.contextPath }/clinic/addRrep.do?cnum=${repVo.num}&hpid=${vo.code}" method="post">
+							<input type="text" placeholder="답글을 작성해주세요." name="newRrep">
+							<input type="submit" value = "답글 작성하기">
+						</form>
+					</li>
+					</c:if>
+				<c:forEach var ="rrepVo" items="${repVo.list }">
+					<ul class = "rrepMain">
+						<li>답글 작성자 : ${rrepVo.id }</li>
+						<li>답글 내용 : ${rrepVo.content }</li>
+						<li>답글 작성 날짜 : ${rrepVo.date }</li>
+						<c:if test="${not empty code && code eq vo.code }">
+						<li>
+							<form action="${pageContext.request.contextPath }/clinic/delRrep.do?num=${rrepVo.num}&hpid=${vo.code}" method="post">
+								<input type="submit" value="삭제하기">
+							</form>
+						</li>
+						</c:if>
+					</ul>
+				</c:forEach>
+				</ul>
+			</c:forEach>
 	</div>
 </body>
 </html>

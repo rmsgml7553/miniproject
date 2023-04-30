@@ -31,9 +31,16 @@ public class PillXMLHandler implements Handler {
 			response.setContentType("text/html; charset=UTF-8");
 			String urlstr = "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList?numOfRows=100&serviceKey=";
 			String key = "bqTgmGj7ItAbq2DiNASFtZc1bLpVOnmxgQP2mIiFcd0LjXFFPBUKTpUTfxkXmItZ0FFLutJ2Jzqu5Cr0gzM5PQ%3D%3D";
-			String inputEntpName = request.getParameter("entpName");
-			String inputItemName = request.getParameter("itemName");
-			System.out.println(inputEntpName);
+			String inputEntpName = "";
+			String inputItemName = "";
+			if(request.getParameter("from").equals("searchHandler")) {
+				inputEntpName = (String)request.getAttribute("entpName");
+				inputItemName = (String)request.getAttribute("itemName");
+			}else {
+				inputEntpName = request.getParameter("entpName");
+				inputItemName = request.getParameter("itemName");
+			}
+			
 			if (inputEntpName == null)
 				inputEntpName = "";
 			if (inputItemName == null)

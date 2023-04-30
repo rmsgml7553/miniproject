@@ -5,7 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
 import clinicbookmark.C_BookmarkService;
+import clinicbookmark.C_BookmarkVo;
 import handler.Handler;
 
 public class ClinicCSVBookmarkHandler implements Handler {
@@ -17,7 +20,7 @@ public class ClinicCSVBookmarkHandler implements Handler {
 		HttpSession session = request.getSession();
 		String code = request.getParameter("code");
 		String id = (String)session.getAttribute("loginId");
-		String txt = null;
+		String tf = null;
 		
 		System.out.println("id:" + id);
 
@@ -27,24 +30,28 @@ public class ClinicCSVBookmarkHandler implements Handler {
 		if(request.getMethod().equals("POST")) {
 			
 			if(id == null ) {
-				txt ="NotLogin";
+				tf ="NotLogin";
 			}
 			 else if (find == false) {
-				txt = "Y";
+				service.insert(new C_BookmarkVo(id, code));
+				tf = "Y";
 			} else {
 				service.delete(id, code);
-				txt = "N";
+				tf = "N";
 			}
 		}else {
 			find = service.find(id, code);
 
 			if (find == true) {
-				txt = "Y";
+				tf = "Y";
 			} else {
-				txt = "N";
+				tf = "N";
 			}
 		}
-
+		JSONObject obj = new JSONObject();
+		obj.put("txt", tf);
+		String txt = obj.toJSONString(obj);
+		
 		return "responsebody/" + txt;
 	}
 

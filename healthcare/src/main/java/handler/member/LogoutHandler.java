@@ -13,7 +13,7 @@ public class LogoutHandler implements Handler {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
 		session.invalidate();
-		return "/index.jsp";
+		return "redirect:/index.jsp";
 	}
 
 }

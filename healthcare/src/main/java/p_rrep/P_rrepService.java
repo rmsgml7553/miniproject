@@ -12,8 +12,8 @@ public class P_rrepService {
 	public void insert(P_rrepVo vo) {
 		dao.insert(vo);
 	}
-	public void delete(String id) {
-		dao.delete(id);
+	public void delete(int num) {
+		dao.delete(num);
 	}
 	public ArrayList<P_rrepVo> select(int pNum) {
 		return dao.select(pNum);
