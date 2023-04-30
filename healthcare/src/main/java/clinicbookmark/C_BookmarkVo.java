@@ -1,6 +1,5 @@
 package clinicbookmark;
 
-import java.util.ArrayList;
 
 public class C_BookmarkVo {
 	private String id;
@@ -15,9 +14,10 @@ public class C_BookmarkVo {
 	
 	public C_BookmarkVo() {}
 
-	public C_BookmarkVo(String id, String code) {
+	public C_BookmarkVo(String id, String code, String name) {
 		this.id = id;
 		this.code = code;
+		this.c_name = name;
 	}
 	
 	public C_BookmarkVo(String id, String code, String c_name, String phone, String address, String subject,

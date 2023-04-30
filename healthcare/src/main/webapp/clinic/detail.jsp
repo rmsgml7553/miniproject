@@ -146,7 +146,7 @@ $(document).ready(function(){
 		$.ajax({
 			url:'${pageContext.request.contextPath}/clinic/bookmark.do',
 			type : 'post',
-			data : {'code': code},
+			data : {'code': code,'name': '${vo.name}'},
 			success:function(result){
 				console.log(result);
 				let obj = JSON.parse(result);

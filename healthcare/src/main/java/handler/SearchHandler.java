@@ -22,7 +22,8 @@ public class SearchHandler implements Handler {
 		String path = "";
 		if (sel.equals("clinic") || sel.equals("pharmarcy")) {
 			if (sel.equals("clinic")) {
-				path = "/clinic/searQch.do";
+				path = "/clinic/search.do";
+				System.out.println("clinic");
 			} else {
 				path = "/pharmarcy/pharmarcyList/load.do";
 			}

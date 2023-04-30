@@ -19,6 +19,7 @@ public class ClinicCSVBookmarkHandler implements Handler {
 		System.out.println("bookmark핸들러 도착");
 		HttpSession session = request.getSession();
 		String code = request.getParameter("code");
+		String name = request.getParameter("name");
 		String id = (String)session.getAttribute("loginId");
 		String tf = null;
 		
@@ -33,7 +34,7 @@ public class ClinicCSVBookmarkHandler implements Handler {
 				tf ="NotLogin";
 			}
 			 else if (find == false) {
-				service.insert(new C_BookmarkVo(id, code));
+				service.insert(new C_BookmarkVo(id, code, name));
 				tf = "Y";
 			} else {
 				service.delete(id, code);
@@ -49,6 +50,7 @@ public class ClinicCSVBookmarkHandler implements Handler {
 			}
 		}
 		JSONObject obj = new JSONObject();
+		System.out.println(obj);
 		obj.put("txt", tf);
 		String txt = obj.toJSONString(obj);
 		

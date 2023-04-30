@@ -9,13 +9,13 @@ public class PharmarcyLikeService {
 		dao = new PharmarcyLikeDao();
 	}
 	
-	public void input(String id, String code) {
-		dao.input(id, code);
+	public void input(String id, String code, String name) {
+		dao.input(id, code,name);
 	}
 	public void delete(String id, String code) {
 		dao.delete(id, code);
 	}
-	public ArrayList<String> input(String id) {
+	public ArrayList<PharmarcyLikeVo> listById(String id) {
 		return dao.listById(id);
 	}
 	public String find(String id, String code) {
