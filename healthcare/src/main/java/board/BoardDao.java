@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import conn.DBConnect;
+import like_board.Like_BoardVo;
 
 //private int num;
 //private String id;
@@ -173,6 +174,31 @@ public class BoardDao {
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1,num);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		// update
+		public void update(BoardVo vo) {
+			Connection conn = dbconn.conn();
+			String sql = "update board set title=?, content=? where num=? "; // 유일한 식별자인 num으로 구분한다.
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, vo.getTitle());
+				pstmt.setString(2, vo.getContent());
+				pstmt.setInt(3, vo.getNum());
+				
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

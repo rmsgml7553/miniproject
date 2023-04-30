@@ -20,18 +20,12 @@ public class Like_BoardService {
 	}
 	
 	
-	// 
-	public void click(int num) {
-		dao.click(num);
-	}
-	
-	
 	// 좋아요 총수를 표시하는 service
 	public int selectByNum(int num) {
 		return dao.selectByNum(num);
 	}
 
-	//
+	// 
 	public void insert(Like_BoardVo vo) {
 		dao.insert(vo);
 	}
@@ -40,8 +34,8 @@ public class Like_BoardService {
 		return dao.selectByLike(vo);
 	}
 	
-	public void delete(int num) {
-		dao.delete(num);
+	public void deleteLike(Like_BoardVo vo) {
+		dao.deleteLike(vo);
 	}
 	
 }

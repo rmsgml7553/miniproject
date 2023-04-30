@@ -20,9 +20,9 @@ public class ListHandler implements Handler {
 		
 		String view="";
 		
-		if(request.getMethod().equals("GET")) {
+		
 			view="/board/list.jsp";
-		}
+		
 		
 		return view;
 	}	

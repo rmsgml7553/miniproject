@@ -15,27 +15,6 @@ public class Like_BoardDao {
   }
 	
   
-	//클릭시 num=1 또는 -1으로 만듬. 
-	public void click(int num) {
-		Connection conn = dbconn.conn();
-		String sql = "update like_board set num = ?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	
 	
 	// 좋아요 총 수를 표시하는 sql
 	// select count(*) from like_board where num = 1;
@@ -73,7 +52,7 @@ public class Like_BoardDao {
 			pstmt.setString(2, vo.getId());
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return false; 
+				return false; // 검색값이 이미 존재하면 false
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -86,7 +65,7 @@ public class Like_BoardDao {
 				e.printStackTrace();
 			}
 		}
-		return true; 
+		return true; // 검색값이 존재하지 않는다면 true
 	}
 	
 	
@@ -152,12 +131,14 @@ public class Like_BoardDao {
 	}
 	
 	// delete
-	public void delete(int num) {
+	public void deleteLike(Like_BoardVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "delete * from like_board where num = ?";
+		String sql = "delete from like_board where num=? and id=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, vo.getNum());
+			pstmt.setString(2, vo.getId());
+			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -171,6 +152,8 @@ public class Like_BoardDao {
 			}
 		}
 	}
+	
+	
 	
 	
 }

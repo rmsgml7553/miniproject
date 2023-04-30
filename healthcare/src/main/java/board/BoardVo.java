@@ -1,6 +1,9 @@
 package board;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import board_rep.Board_repVo;
 
 public class BoardVo {
 	
@@ -11,6 +14,7 @@ public class BoardVo {
 	private int cnt;
 	private String path;
 	private Date w_date;
+	private ArrayList<Board_repVo> list;
 	
 	
 	public BoardVo() {} ;
