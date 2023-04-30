@@ -17,7 +17,7 @@ public class OutHandler implements Handler {
 		String id = (String)session.getAttribute("loginId");
 		MemberService service = new MemberService();
 		service.delMember(id);
-		
+
 		session.invalidate();
 		return "/index.jsp";
 	}

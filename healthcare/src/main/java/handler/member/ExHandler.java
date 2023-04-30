@@ -22,7 +22,7 @@ public class ExHandler implements Handler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		String id = request.getParameter("id");
 		System.out.println(id);
 		MemberService service = new MemberService();
@@ -33,7 +33,7 @@ public class ExHandler implements Handler {
 			flag = "no";
 		}
 		System.out.println("handler-"+flag);
-	
+
 		JSONObject obj = new JSONObject();
 		obj.put("flag", flag);
 		String txt = obj.toJSONString();
