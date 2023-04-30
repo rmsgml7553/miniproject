@@ -89,5 +89,18 @@ public class PharmarcyXMLVo {
 				+ ", wgs84Lon=" + wgs84Lon + "]";
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(this == obj) return true;
+		if(obj == null || getClass() != obj.getClass()) return false;
+		PharmarcyXMLVo vo = (PharmarcyXMLVo) obj;
+		if(vo.getHpid().equals(this.hpid)) return true;
+		else {
+			return false;
+		}
+	}
+
+	
 
 }

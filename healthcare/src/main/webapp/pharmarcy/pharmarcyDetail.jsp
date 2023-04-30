@@ -59,7 +59,7 @@ function change(){
 	}
 	xhttp.open("POST","${pageContext.request.contextPath}/pharmarcy/pharmarcyLike/load.do");
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8")
-	xhttp.send("hpid=${PharmarcyVo.hpid}");
+	xhttp.send("hpid=${PharmarcyVo.hpid}&name=${PharmarcyVo.dutyName}");
 }
 </script>
 </head>

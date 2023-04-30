@@ -15,14 +15,15 @@ public class PharmarcyLikeDao {
 		this.dbconn = DBConnect.getInstance();
 	}
 
-	public void input(String id, String code) {
+	public void input(String id, String code, String name) {
 		System.out.println("id : " + id + "code : " + code);
 		Connection conn = dbconn.conn();
-		String sql = "insert into pharmacy values(?,?)";
+		String sql = "insert into pharmacy values(?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, code);
+			pstmt.setString(3, name);
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -37,16 +38,16 @@ public class PharmarcyLikeDao {
 		}
 	}
 
-	public ArrayList<String> listById(String id) {
-		ArrayList<String> list = new ArrayList<>();
+	public ArrayList<PharmarcyLikeVo> listById(String id) {
+		ArrayList<PharmarcyLikeVo> list = new ArrayList<>();
 		Connection conn = dbconn.conn();
-		String sql = "select code from pharmacy where id = ?";
+		String sql = "select * from pharmacy where id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(rs.getString(1));
+				list.add(new PharmarcyLikeVo(rs.getString(1), rs.getString(2), rs.getString(3)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

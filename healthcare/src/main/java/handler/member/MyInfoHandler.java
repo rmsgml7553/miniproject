@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import handler.Handler;
 import member.MemberService;
@@ -20,12 +21,14 @@ public class MyInfoHandler implements Handler {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-			String id = request.getParameter("id");
-			MemberService service = new MemberService();
-			MemberVo m = service.getByMember(id);
-			request.setAttribute("m", m);
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("loginId");
+		MemberService service = new MemberService();
+		MemberVo m = service.getByMember(id);
+		request.setAttribute("m", m);
 		return "/member/myinfo.jsp";
 	}
 

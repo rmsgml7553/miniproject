@@ -1,13 +1,10 @@
 package handler.member;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.json.simple.JSONObject;
 
 import handler.Handler;
 import member.MemberService;
@@ -29,16 +26,16 @@ public class EditHandler implements Handler {
 		String view = "/member/edit.jsp";
 		HttpSession session =request.getSession(false);
 		String id = (String)session.getAttribute("loginId");
-		
+
 		if(request.getMethod().equals("GET")) {
-			
+
 			MemberService service = new MemberService();
 			MemberVo m = service.getByMember(id);
 			request.setAttribute("m", m);
-			view = "/member/edit.jsp";
+			view = "/member/editform.jsp";
 		} else {
 			MemberService service = new MemberService();
-			
+
 			view = "redirect:/member/getpwd.do";
 		}
 		return view;

@@ -3,7 +3,6 @@ package handler.member;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,14 +34,14 @@ public class JoinNHandler implements Handler {
 			String pwd = request.getParameter("pwd");
 			String name = request.getParameter("name");
 			String phone = request.getParameter("phone");
-			String address = request.getParameter("sample3_address")+" " +request.getParameter("sample3_detailAddress");
+			String address = request.getParameter("sample3_address")+" ";
 			int mCode = Integer.parseInt(request.getParameter("mCode"));
 			String gender = request.getParameter("gender");
 			String y = request.getParameter("year");
 			String m = request.getParameter("month");
 			String d = request.getParameter("day");
 			String str = y+"/"+m+"/"+d;
-			
+
 			try {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 				java.util.Date util;
