@@ -18,13 +18,14 @@ public class C_BookmarkDao {
 
 	public void insert(C_BookmarkVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into clinic values(?,?)";
+		String sql = "insert into clinic values(?,?,?)";
 		
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
 			pstmt.setString(2, vo.getCode());
+			pstmt.setString(3, vo.getC_name());
 		
 			
 			pstmt.executeUpdate();
@@ -72,10 +73,10 @@ public class C_BookmarkDao {
 		return flag;
 	}
 	
-	public ArrayList<String> select(String id){
+	public ArrayList<C_BookmarkVo> select(String id){
 		Connection conn = dbconn.conn();
 		
-		ArrayList<String> list = new ArrayList<>();	
+		ArrayList<C_BookmarkVo> list = new ArrayList<>();	
 		String sql = "select * from clinic where id = ?";
 		
 		try {
@@ -85,7 +86,7 @@ public class C_BookmarkDao {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				list.add((rs.getString(2)));
+				list.add(new C_BookmarkVo(rs.getString(1), rs.getString(2), rs.getString(3)));
 			}
 			
 			

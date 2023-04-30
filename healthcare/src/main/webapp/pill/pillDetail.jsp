@@ -27,7 +27,7 @@ function change(){
 	}
 	xhttp.open("POST","${pageContext.request.contextPath}/pill/pillLike/load.do");
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8")
-	xhttp.send("itemSeq=${PillXMLVo.itemSeq}");
+	xhttp.send("itemSeq=${PillXMLVo.itemSeq}&name=${PillXMLVo.itemName }");
 }
 
 window.onload = function(){

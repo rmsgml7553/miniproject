@@ -15,13 +15,14 @@ public class PillLikeDao {
 		this.dbconn = DBConnect.getInstance();
 	}
 
-	public void input(String id, String code) {
+	public void input(String id, String code, String name) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into pill values(?,?)";
+		String sql = "insert into pill values(?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, code);
+			pstmt.setString(3, name);
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -36,16 +37,16 @@ public class PillLikeDao {
 		}
 	}
 
-	public ArrayList<String> listById(String id) {
-		ArrayList<String> list = new ArrayList<>();
+	public ArrayList<PillLikeVo> listById(String id) {
+		ArrayList<PillLikeVo> list = new ArrayList<>();
 		Connection conn = dbconn.conn();
-		String sql = "select code from pill where id = ?";
+		String sql = "select * from pill where id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				list.add(rs.getString(1));
+				list.add(new PillLikeVo(rs.getString(1), rs.getString(2), rs.getString(3)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

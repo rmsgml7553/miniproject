@@ -20,6 +20,7 @@ public class PharmarcyLikeHandler implements Handler{
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("loginId");
 		String hpid = request.getParameter("hpid");
+		String name = request.getParameter("name");
 		String tf;
 		System.out.println(id);
 		if(request.getMethod().equals("POST")) { 
@@ -34,7 +35,7 @@ public class PharmarcyLikeHandler implements Handler{
 				tf = "N";
 			}else {
 				System.out.println("input here");
-				service.input(id, hpid);
+				service.input(id, hpid,name);
 				tf = "Y";
 			}
 		}else {

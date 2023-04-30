@@ -34,28 +34,80 @@ public class PharmacyXMLHandler implements Handler {
 		try {
 			request.setCharacterEncoding("utf-8");
 			String search = request.getParameter("search");
-			if (search == null)
-				search = "";
-			sb.append(urlstr).append(key).append("&Q1=").append(URLEncoder.encode(search, "utf-8")).append("&QN=")
-					.append(URLEncoder.encode(search, "utf-8"));
-			String temp = sb.toString();	
-
-			URL url = new URL(temp);
-			URLConnection conn = url.openConnection();
-
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(conn.getInputStream());
-
-			Element root = doc.getDocumentElement();
-			NodeList items = root.getElementsByTagName("item");
-			for (int i = 0; i < items.getLength(); i++) {
-				Element item = (Element) items.item(i);
-				String dutyAddr = item.getElementsByTagName("dutyAddr").item(0).getTextContent();
-				String dutyName = item.getElementsByTagName("dutyName").item(0).getTextContent();
-				String dutyTel = item.getElementsByTagName("dutyTel1").item(0).getTextContent();
-				String hpid = item.getElementsByTagName("hpid").item(0).getTextContent();
-				list.add(new PharmarcyXMLVo(dutyAddr, dutyName, dutyTel, null, hpid, null, null));
+			System.out.println("search : " + search);
+			// null일 때는 전체 출력
+			if (search == null) {
+				sb.append(urlstr).append(key);
+				String temp = sb.toString();
+				URL url = new URL(temp);
+				URLConnection conn = url.openConnection();
+				
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				Document doc = builder.parse(conn.getInputStream());
+				
+				Element root = doc.getDocumentElement();
+				NodeList items = root.getElementsByTagName("item");
+				for (int i = 0; i < items.getLength(); i++) {
+					Element item = (Element) items.item(i);
+					String dutyAddr = item.getElementsByTagName("dutyAddr").item(0).getTextContent();
+					String dutyName = item.getElementsByTagName("dutyName").item(0).getTextContent();
+					String dutyTel = item.getElementsByTagName("dutyTel1").item(0).getTextContent();
+					String hpid = item.getElementsByTagName("hpid").item(0).getTextContent();
+					list.add(new PharmarcyXMLVo(dutyAddr, dutyName, dutyTel, null, hpid, null, null));
+				}
+				
+			}else {
+				//null이 아닐 때 두번 출력 후 같은 거 제외
+				
+				// 주소를 기반으로 검색
+				sb.append(urlstr).append(key).append("&Q0=").append(URLEncoder.encode(search, "utf-8"));
+				String temp = sb.toString();	
+				URL url = new URL(temp);
+				URLConnection conn = url.openConnection();
+				
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				Document doc = builder.parse(conn.getInputStream());
+				
+				Element root = doc.getDocumentElement();
+				NodeList items = root.getElementsByTagName("item");
+				for (int i = 0; i < items.getLength(); i++) {
+					Element item = (Element) items.item(i);
+					String dutyAddr = item.getElementsByTagName("dutyAddr").item(0).getTextContent();
+					String dutyName = item.getElementsByTagName("dutyName").item(0).getTextContent();
+					String dutyTel = item.getElementsByTagName("dutyTel1").item(0).getTextContent();
+					String hpid = item.getElementsByTagName("hpid").item(0).getTextContent();
+					list.add(new PharmarcyXMLVo(dutyAddr, dutyName, dutyTel, null, hpid, null, null));
+				}
+				
+				
+				
+				// 기관명을 기반으로 검색
+				sb = new StringBuilder();
+				sb.append(urlstr).append(key).append("&QN=").append(URLEncoder.encode(search, "utf-8"));
+				temp = sb.toString();
+				url = new URL(temp);
+				conn = url.openConnection();
+				
+				factory = DocumentBuilderFactory.newInstance();
+				builder = factory.newDocumentBuilder();
+				doc = builder.parse(conn.getInputStream());
+				
+				root = doc.getDocumentElement();
+				items = root.getElementsByTagName("item");
+				for (int i = 0; i < items.getLength(); i++) {
+					Element item = (Element) items.item(i);
+					String dutyAddr = item.getElementsByTagName("dutyAddr").item(0).getTextContent();
+					String dutyName = item.getElementsByTagName("dutyName").item(0).getTextContent();
+					String dutyTel = item.getElementsByTagName("dutyTel1").item(0).getTextContent();
+					String hpid = item.getElementsByTagName("hpid").item(0).getTextContent();
+					// 같은 거 나올 경우 제외하고 삽입
+					// contains를 이용하기 위해 equals override
+					if(!list.contains(new PharmarcyXMLVo(dutyAddr, dutyName, dutyTel, null, hpid, dutyTel, hpid))) {
+						list.add(new PharmarcyXMLVo(dutyAddr, dutyName, dutyTel, null, hpid, null, null));
+					}
+				}
 			}
 			request.setAttribute("list", list);
 

@@ -17,7 +17,7 @@ public class C_BookmarkService {
 		return dao.find(id, code);
 	}
 	
-	public ArrayList<String> select(String id){
+	public ArrayList<C_BookmarkVo> select(String id){
 		return dao.select(id);
 	}
 	public void delete(String id, String code) {
