@@ -7,27 +7,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/pill/pillList/load.do">
-		<input type="text" name="entpName" placeholder="업체명"> <input
-			type="text" name="itemName" placeholder="제품명"> <br> <span
-			style="color: red">입력이 없을 시 모든 제품을 표시합니다. 최대 100개의 제품이 표시됩니다.</span> <br> <input
-			type="submit" value="검색 하기">
-	</form>
-	<table border="1">
-		<tr>
-			<th>업체명</th>
-			<th>제품명</th>
-		</tr>
-		<c:forEach var="vo" items="${list }">
-			<tr>
-				<td><a
-					href="${pageContext.request.contextPath }/pill/pillDetail/load.do?itemSeq=${vo.itemSeq}">${vo.entpName }</a></td>
-				<td>${vo.itemName }</td>
-			</tr>
-		</c:forEach>
-	</table>
+	<div class = "container">
+		<h2>약 리스트</h2>
+		<div class ="table-responsive">
+			<table class = "table table-hover">
+				<thead>
+					<tr>
+						<th>업체명</th>
+						<th>제품명</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="vo" items="${list }">
+						<tr>
+							<td><a
+								href="${pageContext.request.contextPath }/pill/pillDetail/load.do?itemSeq=${vo.itemSeq}">${vo.entpName }</a></td>
+							<td>${vo.itemName }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

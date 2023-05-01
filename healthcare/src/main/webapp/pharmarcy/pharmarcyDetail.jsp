@@ -10,6 +10,9 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 ul {
 	padding: 10px;
@@ -18,6 +21,13 @@ ul {
 li {
 	display: flex;
 	padding: 10px;
+}
+#map{
+padding: 0px;
+}
+.card{
+border-radius: 20px 20px 20px 20px;
+margin: 10px;
 }
 </style>
 
@@ -64,11 +74,18 @@ function change(){
 </script>
 </head>
 <body>
-	<table border="1">
+	
+	
+	
+	
+	<div class="card" style="width:800px">
+    <div class="card-body">
+      <div class = "table-responsive">
+			<table class="table table-hover">
 		<tr>
 			<th>이름</th>
 			<td>${PharmarcyVo.dutyName }</td>
-			<td><span class="material-symbols-outlined" style="color: gray"
+			<td><span class="material-symbols-outlined" style="color: gray; display:"
 				onclick="change()"> stars </span></td>
 		</tr>
 		<tr>
@@ -82,27 +99,35 @@ function change(){
 		<c:forEach var="day" items="${PharmarcyVo.dutyTime }">
 			<tr>
 				<c:forEach var="time" items="${day }">
+					<c:if test = "${empty time }">
+					<td>휴무</td>
+					</c:if>					
+					<c:if test = "${not empty time }">
 					<td>${time }</td>
+					</c:if>					
 				</c:forEach>
 			</tr>
 		</c:forEach>
 
-		<tr>
-			<th>기관 id</th>
-			<td>${PharmarcyVo.hpid }</td>
-		</tr>
-		<tr>
-			<th>위도</th>
-			<td>${PharmarcyVo.wgs84Lat }</td>
-		</tr>
-		<tr>
-			<th>경도</th>
-			<td>${PharmarcyVo.wgs84Lon }</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<th>기관 id</th> -->
+<%-- 			<td>${PharmarcyVo.hpid }</td> --%>
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<th>위도</th> -->
+<%-- 			<td>${PharmarcyVo.wgs84Lat }</td> --%>
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<th>경도</th> -->
+<%-- 			<td>${PharmarcyVo.wgs84Lon }</td> --%>
+<!-- 		</tr> -->
 
 	</table>
-	<div id="map" style="width: 500px; height: 400px;"></div>
-	<script type="text/javascript"
+	</div>
+    </div>
+     <div class="card-body" id="map">
+     <div id="map" style="width: 800px; height: 400px;"></div>
+     <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=49a26a707e1180839f672089c3c60e78"></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -128,6 +153,12 @@ function change(){
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);
 	</script>
+     </div>
+</div>
+	
+	
+	
+	
 
 	<table border="1">
 		<tr>

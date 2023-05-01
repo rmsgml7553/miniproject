@@ -54,7 +54,7 @@ public class PharmarcyDetailHandler implements Handler {
 			String dutyAddr = item.getElementsByTagName("dutyAddr").item(0).getTextContent();
 			String dutyName = item.getElementsByTagName("dutyName").item(0).getTextContent();
 			String dutyTel = item.getElementsByTagName("dutyTel1").item(0).getTextContent();
-			String[][] dutyTimeList = new String[8][3];
+			String[][] dutyTimeList = new String[8][2];
 
 			for (int j = 1; j <= 8; j++) {
 				switch (j) {
@@ -93,9 +93,10 @@ public class PharmarcyDetailHandler implements Handler {
 				if (dutyTimeC != null && dutyTimeS != null) {
 					String tempC = dutyTimeC.getTextContent();
 					String tempS = dutyTimeS.getTextContent();
-
-					dutyTimeList[j - 1][1] = tempS;
-					dutyTimeList[j - 1][2] = tempC;
+					
+					StringBuilder tempBuilder = new StringBuilder();
+					tempBuilder.append(tempS).append(" ~ ").append(tempC);
+					dutyTimeList[j - 1][1] = tempBuilder.toString();
 				}
 
 			}
