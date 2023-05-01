@@ -15,37 +15,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-<script
-   src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-</style>
-
-<script type="text/javascript">
-   function a() {
-
-      const xhttp = new XMLHttpRequest();
-      xhttp.onload = function() {
-         let tags = document.getElementsByTagName("input");
-         let res = document.getElementById("res");
-         let obj = xhttp.responseText;
-         console.log(obj);
-         let arr = JSON.parse(obj);
-         if (arr.flag == "로그인 완료") {
-            window.location.href = "${pageContext.request.contextPath}/index2.jsp";
-         } else {
-            alert(arr.flag);
-         }
-
-      }
-      let param = "?id=" + f.id.value + "&pwd=" + f.pwd.value;
-      xhttp.open("get", "${pageContext.request.contextPath}/member/login.do"
-            + param);
-      xhttp.send();
-
-   }
-</script>
-
-
 <style>
 html {
 	overflow: hidden;
@@ -63,7 +32,7 @@ video {
 	width: 100%;
 	position: fixed;
 	z-index: 1;
-	opacity:;
+	opacity: 0.5;
 }
 
 nav {
@@ -133,6 +102,7 @@ nav {
 	position: relative;
 	opacity: 1;
 	z-index: 2;
+	text-align: left;
 }
 
 .img {
@@ -187,7 +157,6 @@ nav {
 	});
 	
 </script>
-
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm bg-success fixed-top bg-light">
@@ -223,13 +192,8 @@ nav {
 					<c:if test = "${empty sessionScope.loginId }">
 					<li class="loginbox">
 						<ul class="nav">
-							<li class="nav-item">
-							
-							</li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/member/login.jsp">로그인</a></li>
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/member/join.jsp">회원가입</a></li>
-							<li class="nav-item">    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#login">로그인</button>
-</li>
 						</ul>
 					</li>
 					</c:if>
@@ -264,7 +228,14 @@ nav {
 
 	<div class="section" id="section1">
 		<div class="img">
-			<h1>INDEX</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
 		</div>
 	</div>
 	<div class="section" id="section2">
@@ -284,45 +255,6 @@ nav {
 	</div>
 	
 	<!-- 모달은 여기에 -->
-	 <!-- The Modal -->
-         <div class="modal" id="login">
-            <div class="modal-dialog modal-dialog-centered">
-               <div class="modal-content">
 
-
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                     <form
-                        action="${pageContext.request.contextPath }/member/login.do"
-                        name="f" method="post" class="was-validated">
-                        <div class="mb-3 mt-3">
-                           <label for="id" class="form-label"><b>아이디</b></label> <input
-                              type="text" class="form-control" id="id" placeholder="ID"
-                              name="id" required>
-                           <div class="valid-feedback">Valid.</div>
-                           <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div class="mb-3">
-                           <label for="pwd" class="form-label"><b>비밀번호</b></label> <input
-                              type="password" class="form-control" id="pwd"
-                              placeholder="Password" name="pwd" required>
-                           <div class="valid-feedback">Valid.</div>
-                           <div class="invalid-feedback">Please fill out this field.</div>
-                        </div>
-                        <div style="text-align: center;">
-                           <input type="button" class="btn btn-primary" id="button"
-                              onclick="a()"
-                              style="background-color: RGB(58, 162, 201); border: 0px;"
-                              value="로그인">
-                        </div>
-                     </form>
-                  </div>
-
-
-               </div>
-            </div>
-         </div>
-
-	
 </body>
 </html>
