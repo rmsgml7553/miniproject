@@ -5,29 +5,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<form
-		action="${pageContext.request.contextPath }/pharmarcy/pharmarcyList/load.do">
-		<input type="text" name="search" placeholder="약국 주소 및 이름 검색">
-		<input type="submit" value="검색">
-	</form>
-	<table border="1">
-		<tr>
-			<th>이름</th>
-			<th>주소</th>
-			<th>번호</th>
-		</tr>
-		<c:forEach var="vo" items="${list }">
-			<tr>
-				<td><a
-					href="${pageContext.request.contextPath }/pharmarcy/pharmarcyDetail/load.do?hpid=${vo.hpid}">${vo.dutyName }</a></td>
-				<td>${vo.dutyAddr }</td>
-				<td>${vo.dutyTel }</td>
-			</tr>
-		</c:forEach>
-	</table>
+	<div class="container">
+		<h2>약국 리스트</h2>
+		<div class = "table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>이름</th>
+						<th>주소</th>
+						<th>번호</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="vo" items="${list }">
+						<tr>
+							<td><a
+								href="${pageContext.request.contextPath }/pharmarcy/pharmarcyDetail/load.do?hpid=${vo.hpid}">${vo.dutyName }</a></td>
+							<td>${vo.dutyAddr }</td>
+							<td>${vo.dutyTel }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 </body>
 </html>
