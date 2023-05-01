@@ -32,7 +32,7 @@ video {
 	width: 100%;
 	position: fixed;
 	z-index: 1;
-	opacity:;
+	opacity: 0.5;
 }
 
 nav {
@@ -227,7 +227,7 @@ nav {
 
 	<div class="section" id="section1">
 		<div class="img">
-			<h1>INDEX</h1>
+			<h1>INDEX22222</h1>
 		</div>
 	</div>
 	<div class="section" id="section2">
