@@ -21,12 +21,10 @@ public class InstitutionAroundMeHandler implements Handler{
 			e.printStackTrace();
 		}
 		HttpSession session = request.getSession();
-		String category = request.getParameter("category");
 		String id = (String)session.getAttribute("loginId");
 		MemberService service = new MemberService();
 		String address = service.getByMember(id).getAddress();
 		request.setAttribute("address", address);
-		request.setAttribute("category", category);
 		return "/member/InstitutionsAroundMe.jsp";
 	}
 
