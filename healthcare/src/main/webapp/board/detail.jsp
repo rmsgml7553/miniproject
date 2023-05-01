@@ -9,13 +9,13 @@
 <style>
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
+  'FILL' 1,
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
 }
 </style>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript">
 window.onload = function(){
 	let like = document.getElementById("like");
@@ -74,7 +74,7 @@ function change(){
 <body>
 ${sessionScope.loginId }
 
-<h3>글작성 페이지</h3>
+<h3>${vo.title }</h3>
 <a href="${pageContext.request.contextPath }/board/list.do">글목록으로 이동</a><br/>
 
 <span class="material-symbols-outlined" id="like" style = "coloer:gray" onclick = "change()">

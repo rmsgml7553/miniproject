@@ -13,7 +13,7 @@ response.setContentType("text/html; charset=UTF-8");
 <title>Insert title here</title>
 <style>
 .material-symbols-outlined {
-	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
 </style>
 <link rel="stylesheet"
@@ -176,7 +176,7 @@ $(document).ready(function(){
 		<tr>
 			<th>병원이름</th>
 			<td>${vo.name }<span class="material-symbols-outlined"
-				id="${vo.code}"> stars </span>
+				id="${vo.code}"> star </span>
 			</td>
 		</tr>
 		<tr>
