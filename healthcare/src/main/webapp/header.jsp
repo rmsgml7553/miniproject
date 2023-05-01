@@ -16,9 +16,6 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <style>
-html {
-	overflow: hidden;
-}
 	html, body {
 	padding: 0px;
 	width: 100%;
@@ -27,12 +24,13 @@ html {
 	margin: 0;
 	position: relative;
 }
-
-video {
-	width: 100%;
-	position: fixed;
-	z-index: 1;
-	opacity:0.7;
+#header{
+background-color: rgb(248, 249, 250);
+position: fixed;
+top:0;
+height: 112px;
+width: 100%;
+border-bottom: 1px solid rgb(203, 205, 206);
 }
 
 nav {
@@ -90,77 +88,18 @@ nav {
 #menu {
 	margin-top: 3px;
 }
-
-.myModal {
-	width: 80%;
-	height: 1000px;
+section, hr{
+margin-top: 112px;
 }
 
-.section {
-	width: 100%;
-	height: 100%;
-	position: relative;
-	opacity: 1;
-	z-index: 2;
-}
-
-.img {
-	position: absolute;
-	right: 0px;
-	bottom: 0px;
-}
-
-#section1 {
-	
-}
-
-#section2 {
-	
-}
-
-#section3 {
-	
-}
-
-#section4 {
- 	background-color: white; 
-}
 </style>
-<script>
-	var mHtml = $("html");
-	var page = 1;
-	mHtml.animate({
-		scrollTop : 0
-	}, 10);
-	window.addEventListener("wheel", function(e) {
-		e.preventDefault();
-	}, {
-		passive : false
-	});
-	$(window).on("wheel", function(e) {
-		if (mHtml.is(":animated"))
-			return;
-		if (e.originalEvent.deltaY > 0) {
-			if (page == 4)
-				return;
-			page++;
-		} else if (e.originalEvent.deltaY < 0) {
-			if (page == 1)
-				return;
-			page--;
-		}
-		var posTop = (page - 1) * $(window).height();
-		mHtml.animate({
-			scrollTop : posTop
-		});
-	});
-	
-</script>
+
 </head>
-<body>
+<body style="background-color : rgb(206, 233, 239)">
+<div class="header">
 	<nav class="navbar navbar-expand-sm bg-success fixed-top bg-light">
 		<div class="container-fluid">
-			<img alt="logo" src="img/logo.png" width="9%" height="9%" onclick = "javascript:location.href='${pageContext.request.contextPath }/index.jsp'"  style="cursor: pointer">
+			<img alt="logo" src="./img/logo.png" width="9%" height="9%" onclick = "javascript:location.href='${pageContext.request.contextPath }/index.jsp'"  style="cursor: pointer">
 
 			<div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto">
@@ -219,47 +158,91 @@ nav {
 			</div>
 		</div>
 	</nav>
-
-	<div class="modal" id="myModal">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">Modal Heading</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-
-				<!-- Modal body -->
-				<div class="modal-body">Modal body..</div>
-			</div>
-		</div>
-	</div>
-
-	<video muted autoplay loop>
-		<source src="img/video.mp4" type="video/mp4">
-	</video>
-
-	<div class="section" id="section1">
-		<div class="img">
-			<h1>INDEX</h1>
-		</div>
-	</div>
-	<div class="section" id="section2">
-		<div class="img">
-			<img src="img/2.png">
-		</div>
-	</div>
-	<div class="section" id="section3">
-		<div class="img">
-			<img src="img/3.png">
-		</div>
-	</div>
-	<div class="section" id="section4">
-		<div class="img">
-			<img src="img/4.png">
-		</div>
-	</div>
-
+</div>
+<div id="header"></div>
+<section>
+aaa<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+bbb<br>
+</section>
+<footer style="background-color : rgb(248, 249, 250); height:100px;width:100%;"></footer>
 </body>
 </html>
