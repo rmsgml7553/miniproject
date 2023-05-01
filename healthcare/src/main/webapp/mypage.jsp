@@ -102,6 +102,7 @@ nav {
 	position: relative;
 	opacity: 1;
 	z-index: 2;
+	text-align: left;
 }
 
 .img {
@@ -227,7 +228,14 @@ nav {
 
 	<div class="section" id="section1">
 		<div class="img">
-			<h1>INDEX22222</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
+			<h1>MY PAGE</h1>
 		</div>
 	</div>
 	<div class="section" id="section2">
@@ -245,6 +253,8 @@ nav {
 			<img src="img/4.png">
 		</div>
 	</div>
+	
+	<!-- 모달은 여기에 -->
 
 </body>
 </html>
