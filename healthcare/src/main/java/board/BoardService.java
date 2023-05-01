@@ -2,6 +2,8 @@ package board;
 
 import java.util.ArrayList;
 
+import like_board.Like_BoardVo;
+
 public class BoardService {
 	private BoardDao dao;
 	
@@ -30,6 +32,7 @@ public class BoardService {
 	}
 	
 	
+	
 	// 제목 조회수를 1개씩 늘린다.
 	public void updateCnt(int num) {
 		dao.updateCnt(num);
@@ -49,6 +52,11 @@ public class BoardService {
 	// 조회수 증가
 	public void cnt(int num) {
 		dao.cnt(num);
+	}
+	
+	//update
+	public void update(BoardVo vo) {
+		dao.update(vo);
 	}
 	
 	
