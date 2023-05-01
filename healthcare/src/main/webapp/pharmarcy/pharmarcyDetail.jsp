@@ -74,59 +74,50 @@ function change(){
 </script>
 </head>
 <body>
-	
-	
-	
-	
-	<div class="card" style="width:800px">
-    <div class="card-body">
-      <div class = "table-responsive">
-			<table class="table table-hover">
-		<tr>
-			<th>이름</th>
-			<td>${PharmarcyVo.dutyName }</td>
-			<td><span class="material-symbols-outlined" style="color: gray; display:"
-				onclick="change()"> stars </span></td>
-		</tr>
-		<tr>
-			<th>주소</th>
-			<td>${PharmarcyVo.dutyAddr }</td>
-		</tr>
-		<tr>
-			<th>전화 번호</th>
-			<td>${PharmarcyVo.dutyTel }</td>
-		</tr>
-		<c:forEach var="day" items="${PharmarcyVo.dutyTime }">
-			<tr>
-				<c:forEach var="time" items="${day }">
-					<c:if test = "${empty time }">
-					<td>휴무</td>
-					</c:if>					
-					<c:if test = "${not empty time }">
-					<td>${time }</td>
-					</c:if>					
-				</c:forEach>
-			</tr>
-		</c:forEach>
+	<div class="container mt-5">
+    	<h1>${PharmarcyVo.dutyName }
+			<span class="material-symbols-outlined" style="color: gray; font-size:30px;" onclick="change()"> stars </span>
+    	</h1>  
 
-<!-- 		<tr> -->
-<!-- 			<th>기관 id</th> -->
-<%-- 			<td>${PharmarcyVo.hpid }</td> --%>
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<th>위도</th> -->
-<%-- 			<td>${PharmarcyVo.wgs84Lat }</td> --%>
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<th>경도</th> -->
-<%-- 			<td>${PharmarcyVo.wgs84Lon }</td> --%>
-<!-- 		</tr> -->
-
-	</table>
+		<div class="row">
+			<div class="col-sm-7">
+     			<div id="map" style="width: 100%; height: 400px;"></div>
+			<hr class="d-sm-none">
+			</div>
+    		<div class="col-sm-4">
+				<div class = "table-responsive">
+					<table class="table table-hover">
+						<tr>
+							<th>이름</th>
+							<td>${PharmarcyVo.dutyName }</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td>${PharmarcyVo.dutyAddr }</td>
+						</tr>
+						<tr>
+							<th>전화 번호</th>
+							<td>${PharmarcyVo.dutyTel }</td>
+						</tr>
+						<c:forEach var="day" items="${PharmarcyVo.dutyTime }">
+							<tr>
+								<c:forEach var="time" items="${day }">
+									<c:if test = "${empty time }">
+									<td>휴무</td>
+									</c:if>					
+									<c:if test = "${not empty time }">
+									<td>${time }</td>
+									</c:if>					
+								</c:forEach>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+    		</div>
+		</div>
 	</div>
-    </div>
-     <div class="card-body" id="map">
-     <div id="map" style="width: 800px; height: 400px;"></div>
+	
+     
      <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=49a26a707e1180839f672089c3c60e78"></script>
 	<script>
@@ -153,66 +144,62 @@ function change(){
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);
 	</script>
-     </div>
-</div>
-	
-	
-	
+	<c:if test="${empty sessionScope.loginId }">
+			<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly style="width: 200px">
+	</c:if> 
+	<c:if test="${not empty sessionScope.loginId}">
+		<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRep/load.do?hpid=${PharmarcyVo.hpid}" method = "post">
+			<input type="text" name="newRep" placeholder="댓글 작성">
+			<input type="submit" value="작성하기">
+		</form>
+	</c:if>
 	
 
-	<table border="1">
-		<tr>
-			<td><c:if test="${empty sessionScope.loginId }">
-					<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly
-						style="width: 200px">
-				</c:if> <c:if test="${not empty sessionScope.loginId}">
-				<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRep/load.do?hpid=${PharmarcyVo.hpid}" method = "post">
-					<input type="text" name="newRep" placeholder="댓글 작성">
-					<input type="submit" value="작성하기">
-				</form>
-				</c:if></td>
-		</tr>
-	</table>
-	<div id="repList">
-		<ul class = "repWrite">
-		</ul>
+	<div class = "container mt-3">
+		댓글
+		<ul class = "list-group">
 			<c:forEach var = "repVo" items="${repList }">
-				<ul class = "repMain${repVo.num }">
-					<li>작성자 : ${repVo.id }</li>
-					<li>내용 : ${repVo.content }</li>
-					<li>작성 날짜 : ${repVo.date }</li>
-					<li>${repVo.num }</li>
-					<c:if test="${not empty sessionScope.loginId && sessionScope.loginId eq repVo.id }">
-					<li>
-						<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRepDel/load.do?num=${repVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
-						<input type="submit" value="삭제하기" >
-						</form>
-					</li>
-					</c:if>
-					<c:if test="${code eq PharmarcyVo.hpid}">
-					<li>
+				<li class="list-group-item d-flex justify-content-between">
+					<div>내용 : ${repVo.content }</div>
+					<div class = "d-flex">
+						<c:if test="${not empty sessionScope.loginId && sessionScope.loginId eq repVo.id }">
+								<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRepDel/load.do?num=${repVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
+								<input type="submit" value="삭제하기" >
+								</form>
+						</c:if>
+						작성자 : ${repVo.id }, 작성 날짜 : ${repVo.date }
+					</div>
+				</li>
+				<c:if test="${code eq PharmarcyVo.hpid}">
+					<li class="list-group-item">
 						<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRrep/load.do?pnum=${repVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
 							<input type="text" placeholder="답글을 작성해주세요." name="newRrep">
 							<input type="submit" value = "답글 작성하기">
 						</form>
 					</li>
-					</c:if>
-				<c:forEach var ="rrepVo" items="${repVo.list }">
-					<ul class = "rrepMain">
-						<li>답글 작성자 : ${rrepVo.id }</li>
-						<li>답글 내용 : ${rrepVo.content }</li>
-						<li>답글 작성 날짜 : ${rrepVo.date }</li>
-						<c:if test="${not empty code && code eq PharmarcyVo.hpid }">
-						<li>
-							<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRrepDel/load.do?num=${rrepVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
-								<input type="submit" value="삭제하기">
-							</form>
-						</li>
-						</c:if>
-					</ul>
-				</c:forEach>
-				</ul>
+				</c:if>
+				<c:if test = "${not empty repVo.list }">
+					<li class="list-group-item">
+						답글
+						<ul class = "list-group ">
+						<c:forEach var ="rrepVo" items="${repVo.list }">
+							<li class="list-group-item d-flex justify-content-between">
+								<div>답글 내용 : ${rrepVo.content }</div>
+								<div>
+									답글 작성자 : ${rrepVo.id }, 답글 작성 날짜 : ${rrepVo.date }
+									<c:if test="${not empty code && code eq PharmarcyVo.hpid }">
+										<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRrepDel/load.do?num=${rrepVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
+											<input type="submit" value="삭제하기">
+										</form>
+									</c:if>
+								</div>
+							</li>
+						</c:forEach>
+						</ul>
+					</li>
+				</c:if>
 			</c:forEach>
+		</ul>
 	</div>
 </body>
 </html>
