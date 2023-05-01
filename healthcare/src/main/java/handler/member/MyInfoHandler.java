@@ -1,10 +1,14 @@
 package handler.member;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import handler.Handler;
 import member.MemberService;
@@ -21,15 +25,19 @@ public class MyInfoHandler implements Handler {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		String view = "/member/mypage.jsp";
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("loginId");
 		MemberService service = new MemberService();
 		MemberVo m = service.getByMember(id);
+		view = "/member/myinfo.jsp";
 		request.setAttribute("m", m);
-		return "/member/myinfo.jsp";
+		request.setAttribute("view", view);
+		
+		
+		return view;
 	}
 
 }
