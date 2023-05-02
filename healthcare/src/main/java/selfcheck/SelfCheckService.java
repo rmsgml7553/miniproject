@@ -36,16 +36,8 @@ public class SelfCheckService {
 		return dao.selectWeight(id);
 	}
 
-	public ArrayList<SelfCheckVo> showAmr(String id) {
-		return dao.selectAmr(id);
-	}
-	
-	public ArrayList<SelfCheckVo> showBmi(String id) {
-		return dao.selectBmi(id);
-	}
-	
-	public ArrayList<SelfCheckVo> showStress(String id) {
-		return dao.selectStress(id);
+	public SelfCheckVo selectSelfcheck(String id) {
+		return dao.selectSelfcheck(id);
 	}
 
 	public int getAge() {

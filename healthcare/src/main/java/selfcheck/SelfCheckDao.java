@@ -56,7 +56,7 @@ public class SelfCheckDao {
 	public ArrayList<SelfCheckVo> selectDate(String id){
 		Connection conn = dbconn.conn();
 		ArrayList<SelfCheckVo> list = new ArrayList<>();
-		String sql = "select chDate from selfsheck where id=?";
+		String sql = "select chDate from selfcheck where id=?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -81,12 +81,12 @@ public class SelfCheckDao {
 	public ArrayList<SelfCheckVo> selectWeight(String id){
 		Connection conn = dbconn.conn();
 		ArrayList<SelfCheckVo> list = new ArrayList<>();
-		String sql = "select weight from selfsheck where id=?";
+		String sql = "select weight from selfcheck where id=? order by chDate desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				list.add(new SelfCheckVo(rs.getString(1),rs.getDate(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
 			}
 		} catch (SQLException e) {
@@ -105,36 +105,12 @@ public class SelfCheckDao {
 	public ArrayList<SelfCheckVo> selectHeight(String id){
 		Connection conn = dbconn.conn();
 		ArrayList<SelfCheckVo> list = new ArrayList<>();
-		String sql = "select height from selfsheck where id=?";
+		String sql = "select height from selfcheck where id=? order by chDate desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				list.add(new SelfCheckVo(rs.getString(1),rs.getDate(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
-	public ArrayList<SelfCheckVo> selectBmr(String id){
-		Connection conn = dbconn.conn();
-		ArrayList<SelfCheckVo> list = new ArrayList<>();
-		String sql = "select bmr from selfsheck where id=?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
+			if(rs.next()) {
 				list.add(new SelfCheckVo(rs.getString(1),rs.getDate(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
 			}
 		} catch (SQLException e) {
@@ -151,16 +127,16 @@ public class SelfCheckDao {
 		return list;
 	}
 	
-	public ArrayList<SelfCheckVo> selectAmr(String id){
+	public SelfCheckVo selectSelfcheck(String id){
 		Connection conn = dbconn.conn();
-		ArrayList<SelfCheckVo> list = new ArrayList<>();
-		String sql = "select amr from selfsheck where id=?";
+		SelfCheckVo vo = null;
+		String sql = "select bmr, amr, bmi, stress from selfcheck where id=? order by chDate desc";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				list.add(new SelfCheckVo(rs.getString(1),rs.getDate(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
+			if(rs.next()) {
+				vo = new SelfCheckVo(id, null, 0, 0, rs.getDouble(1), rs.getDouble(2), rs.getDouble(3), rs.getDouble(4));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -173,57 +149,8 @@ public class SelfCheckDao {
 				e.printStackTrace();
 			}
 		}
-		return list;
+		return vo;
 	}
 	
-	public ArrayList<SelfCheckVo> selectBmi(String id){
-		Connection conn = dbconn.conn();
-		ArrayList<SelfCheckVo> list = new ArrayList<>();
-		String sql = "select bmi from selfsheck where id=?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				list.add(new SelfCheckVo(rs.getString(1),rs.getDate(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
-	
-	public ArrayList<SelfCheckVo> selectStress(String id){
-		Connection conn = dbconn.conn();
-		ArrayList<SelfCheckVo> list = new ArrayList<>();
-		String sql = "select stress from selfsheck where id=?";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
-				list.add(new SelfCheckVo(rs.getString(1),rs.getDate(2),rs.getInt(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getInt(8)));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
 	
 }
