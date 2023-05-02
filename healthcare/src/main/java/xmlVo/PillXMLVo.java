@@ -8,14 +8,16 @@ public class PillXMLVo {
 	private String useMethodQesitm; // 사용법
 	private String atpnWarnQesitm; // 주의사항 경고
 	private String atpnQesitm; // 주의 사항
-	private String intrcQesitm; //상호 작용
-	private String seQesitm; //부작용
+	private String intrcQesitm; // 상호 작용
+	private String seQesitm; // 부작용
 	private String depositMethodQesitm; // 보관법
 	private String itemImage; // 이미지 경로
+	private String updateDe;
 
 	public PillXMLVo(String entpName, String itemName, String itemSeq, String efcyQesitm, String useMethodQesitm,
 			String atpnWarnQesitm, String atpnQesitm, String intrcQesitm, String seQesitm, String depositMethodQesitm,
-			String itemImage) {
+			String itemImage, String updateDe) {
+		super();
 		this.entpName = entpName;
 		this.itemName = itemName;
 		this.itemSeq = itemSeq;
@@ -27,6 +29,7 @@ public class PillXMLVo {
 		this.seQesitm = seQesitm;
 		this.depositMethodQesitm = depositMethodQesitm;
 		this.itemImage = itemImage;
+		this.updateDe = updateDe;
 	}
 
 	public String getEntpName() {
@@ -117,12 +120,21 @@ public class PillXMLVo {
 		this.itemImage = itemImage;
 	}
 
+	public String getUpdateDe() {
+		return updateDe;
+	}
+
+	public void setUpdateDe(String updateDe) {
+		this.updateDe = updateDe;
+	}
+
 	@Override
 	public String toString() {
 		return "PillXMLVo [entpName=" + entpName + ", itemName=" + itemName + ", itemSeq=" + itemSeq + ", efcyQesitm="
 				+ efcyQesitm + ", useMethodQesitm=" + useMethodQesitm + ", atpnWarnQesitm=" + atpnWarnQesitm
 				+ ", atpnQesitm=" + atpnQesitm + ", intrcQesitm=" + intrcQesitm + ", seQesitm=" + seQesitm
-				+ ", depositMethodQesitm=" + depositMethodQesitm + ", itemImage=" + itemImage + "]";
+				+ ", depositMethodQesitm=" + depositMethodQesitm + ", itemImage=" + itemImage + ", updateDe=" + updateDe
+				+ "]";
 	}
 
 }

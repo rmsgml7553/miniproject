@@ -29,6 +29,13 @@ padding: 0px;
 border-radius: 20px 20px 20px 20px;
 margin: 10px;
 }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
 </style>
 
 <script>
@@ -64,7 +71,7 @@ function change(){
 		}else if(obj.tf == "N"){
 			star.style.color = "gray";
 		}else if(obj.tf == "NotLogin"){
-			alert("login 후 이용 가능합니다.");
+			alert("login 후 이용 가능합니다.");	
 		}
 	}
 	xhttp.open("POST","${pageContext.request.contextPath}/pharmarcy/pharmarcyLike/load.do");
