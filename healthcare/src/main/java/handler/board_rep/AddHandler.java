@@ -1,5 +1,6 @@
 package handler.board_rep;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,15 @@ public class AddHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 	
 		Board_repService service = new Board_repService();
 		int num = Integer.parseInt(request.getParameter("num"));
