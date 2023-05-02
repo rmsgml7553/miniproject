@@ -50,46 +50,49 @@ public class PillDetailHandler implements Handler{
 			
 			Element root = doc.getDocumentElement();
 			Element item = (Element) root.getElementsByTagName("item").item(0);
-			String entpName = item.getElementsByTagName("entpName").item(0).getTextContent();
-			String itemName = item.getElementsByTagName("itemName").item(0).getTextContent();
-			String itemSeq = item.getElementsByTagName("itemSeq").item(0).getTextContent();
-			String efcyQesitm = item.getElementsByTagName("efcyQesitm").item(0).getTextContent();
+			String entpName = item.getElementsByTagName("entpName").item(0).getTextContent(); // 업체명
+			String itemName = item.getElementsByTagName("itemName").item(0).getTextContent(); // 제품명
+			String itemSeq = item.getElementsByTagName("itemSeq").item(0).getTextContent();	  // 퓸목 기준 코드
+			String efcyQesitm = item.getElementsByTagName("efcyQesitm").item(0).getTextContent(); // 문항1(효능)
 
-			String useMethodQesitm = null;
+			String useMethodQesitm = null; // 사용법
 			if(item.getElementsByTagName("useMethodQesitm").item(0) != null) {
-				useMethodQesitm = item.getElementsByTagName("useMethodQesitm").item(0).getTextContent();
+				useMethodQesitm = item.getElementsByTagName("useMethodQesitm").item(0).getTextContent(); 
 			}
 			
-			String atpnWarnQesitm = null;
+			String atpnWarnQesitm = null; // 주의사항 경고
 			if(item.getElementsByTagName("atpnWarnQesitm").item(0) != null) {
 				atpnWarnQesitm = item.getElementsByTagName("atpnWarnQesitm").item(0).getTextContent();
 			}			
 			
-			String atpnQesitm = null;
+			String atpnQesitm = null; // 주의사항
 			if(item.getElementsByTagName("atpnQesitm").item(0) != null) {
 				atpnQesitm = item.getElementsByTagName("atpnQesitm").item(0).getTextContent();
 			}
 			
-			String intrcQestim = null;
+			String intrcQestim = null; // 상호작용
 			if(item.getElementsByTagName("intrcQestim").item(0) != null) {
 				intrcQestim = item.getElementsByTagName("intrcQestim").item(0).getTextContent();
 			}
 			
-			String seQestim = null;
+			String seQestim = null; // 부작용
 			if(item.getElementsByTagName("seQestim").item(0) != null) {
 				seQestim = item.getElementsByTagName("seQestim").item(0).getTextContent();
 			}
 			
-			String depositMethodQesitm = null;
+			String depositMethodQesitm = null; // 보관법
 			if(item.getElementsByTagName("depositMethodQesitm").item(0) != null) {
 				depositMethodQesitm = item.getElementsByTagName("depositMethodQesitm").item(0).getTextContent();
 			}
-			
-			String itemImage = null;
+			String updateDe = null; // 수정일자
+			if(item.getElementsByTagName("updateDe").item(0) != null) {
+				updateDe = item.getElementsByTagName("updateDe").item(0).getTextContent();
+			}
+			String itemImage = null; // 이미지
 			if(item.getElementsByTagName("itemImage").item(0) != null) {
 				itemImage = item.getElementsByTagName("itemImage").item(0).getTextContent();
 			}			
-			PillXMLVo vo = new PillXMLVo(entpName, itemName, itemSeq, efcyQesitm, useMethodQesitm, atpnWarnQesitm, atpnQesitm, intrcQestim, seQestim, depositMethodQesitm, itemImage);
+			PillXMLVo vo = new PillXMLVo(entpName, itemName, itemSeq, efcyQesitm, useMethodQesitm, atpnWarnQesitm, atpnQesitm, intrcQestim, seQestim, depositMethodQesitm, itemImage,updateDe);
 			request.setAttribute("PillXMLVo", vo);
 			
 			

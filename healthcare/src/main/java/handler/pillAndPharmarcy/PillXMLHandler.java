@@ -76,7 +76,7 @@ public class PillXMLHandler implements Handler {
 				String itemName = item.getElementsByTagName("itemName").item(0).getTextContent();
 				String itemSeq = item.getElementsByTagName("itemSeq").item(0).getTextContent();
 				
-				vo = new PillXMLVo(entpName, itemName, itemSeq, null, null, null, null, null, null, null, null); 
+				vo = new PillXMLVo(entpName, itemName, itemSeq, null, null, null, null, null, null, null, null,null); 
 				list.add(vo);
 			}
 			request.setAttribute("list", list);
