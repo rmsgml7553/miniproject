@@ -27,7 +27,7 @@
          console.log(obj);
          let arr = JSON.parse(obj);
          if (arr.flag == "로그인 완료") {
-            window.location.href = "${pageContext.request.contextPath}/index2.jsp";
+            window.location.href = "${pageContext.request.contextPath}/member/mypage.jsp";
          } else {
             alert(arr.flag);
          }
@@ -209,7 +209,7 @@ nav {
 										<a class="dropdown-item" href="${pageContext.request.contextPath }/pharmarcy/pharmarcyList.jsp">약국 검색</a>
 									</div>
 									<button type="button" class="btn btn-primary" id="btn4">약 정보</button>
-									<button type="button" class="btn btn-primary" id="btn5" onclick="javascript:location.href='${pageContext.request.contextPath }/selfcheck/charts.do'">자유게시판</button>
+									<button type="button" class="btn btn-primary" id="btn5" onclick="javascript:location.href='${pageContext.request.contextPath }/board/list.do'">자유게시판</button>
 								</div>
 							</div>
 						</div>
@@ -217,7 +217,7 @@ nav {
 					<c:if test = "${empty sessionScope.loginId }">
 					<li class="loginbox">
 						<ul class="nav">
-							<li class="nav-item">    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login" style="background-color: rgb(248, 249, 250);color: RGB(58, 162, 201);font-weight: bold;border: 0px;">회원가입</button></li>
+							<li class="nav-item">    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#join" style="background-color: rgb(248, 249, 250);color: RGB(58, 162, 201);font-weight: bold;border: 0px;">회원가입</button></li>
 							<li class="nav-item">    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login" style="background-color: rgb(248, 249, 250);color: RGB(58, 162, 201);font-weight: bold;border: 0px;">로그인</button></li>
 						</ul>
 					</li>
@@ -225,7 +225,7 @@ nav {
 					<c:if test = "${not empty sessionScope.loginId }">
 					<li class="loginbox">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/member/myinfo.jsp">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/mypage.jsp">마이페이지</a></li>
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></li>
 						</ul>
 					</c:if>
@@ -272,7 +272,7 @@ nav {
 	</div>
 	
 	<!-- 모달은 여기에 -->
-	 <!-- The Modal -->
+	 <!-- The Modal : login -->
          <div class="modal" id="login">
             <div class="modal-dialog modal-dialog-centered">
                <div class="modal-content">
@@ -308,6 +308,38 @@ nav {
                </div>
             </div>
          </div>
+	 <!-- The Modal : join -->
+         <div class="modal" id="join">
+            <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                     <iframe src="${pageContext.request.contextPath }/member/join.jsp" title="iframe"
+								width="100%" height="400px" style="border:none;"> </iframe>
+                  </div>
+               </div>
+            </div>
+         </div>
+    <!-- Modal : join -->
+  <div class="modal fade" id="join" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><b>자가건강검진</b></h4>
+        </div>
+        <div class="modal-body">
+          <iframe src="${pageContext.request.contextPath }/selfcheck/bmi.do" title="iframe"
+							 height="700px" style="border:none;"> </iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 	
 </body>
