@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     
-    
+        <%
+request.setCharacterEncoding("utf-8");
+response.setCharacterEncoding("utf-8");
+response.setContentType("text/html; charset=UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +22,6 @@
 
 <div class="container">
 <h3>글작성</h3>
-<a href="${pageContext.request.contextPath }/board/list.do">글목록으로 이동</a><br/>
 <form action="${pageContext.request.contextPath }/board/add.do" method="post">
 <table border="1">
 
@@ -34,11 +37,10 @@
       <label for="comment">글내용:</label>
       <textarea class="form-control" rows="10" id="comment" name="content"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">작성</button>
-<%-- <tr><th>로그인 ID</th><td><input type="text" name="id" value="${sessionScope.loginId }" readonly></td></tr> --%>
-<!-- <tr><th>제목</th><td><input type="text" name="title"></td></tr> -->
-<!-- <tr><th>글내용</th><td><textarea rows="20" cols="30" name="content"></textarea></td></tr> -->
-<!-- <tr><th>작성</th><td><input type="submit" name="저장" value="저장"></td></tr> -->
+    <button type="submit" class="btn btn-primary" style="margin-right:10px" onclick = "javascript:location.href='${pageContext.request.contextPath }/board/list.do'">취소</button>
+    <button type="submit" class="btn btn-primary" >작성</button>
+    
+
 
 </table>
 </form>

@@ -11,11 +11,13 @@ response.setContentType("text/html; charset=UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-.material-symbols-outlined {
-	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48
-}
-</style>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script
@@ -23,81 +25,37 @@ response.setContentType("text/html; charset=UTF-8");
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
 
+
+<style>
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
+
+th{
+width:100px;
+}
+
+ul {
+	padding: 10px;
+}
+
+li {
+	display: flex;
+	padding: 10px;
+}
+#map{
+padding: 0px;
+}
+</style>
+
+
 <script type="text/javascript"> 
 
 window.onload = function(){
 	star();
-// 	comments();
+
 }
-// function comments(){
-// const xhttp = new XMLHttpRequest();
-	
-	
-// 	let param = "?code=${vo.code}";  
-// 	xhttp.open("GET","${pageContext.request.contextPath}/clinic/comment.do"+param);
 
-// 	xhttp.send();
-	
-// 	xhttp.onload = function(){
-	
-// 		var button = document.createElement("input");
-// 		button.type= "button";
-		
-		
-// 		let val = xhttp.responseText;
-// 		console.log(val);
-// 		let arr = JSON.parse(val);
-// 		let html = "<table border ='1'>";
-// 		for(let obj of arr ){
-// 		html += '<tr><td> 작성자 : ' + obj.id + '<br/>';
-// 		html += '내용 : ' + obj.content + '<br/>';
-// 		html += '작성일 : ' + obj.date + '<br/>';
-// 		html += '</td></tr>';
-		
-//  		};
-// 		html += '</table>';
-// 		let div = document.getElementById("r");
-// 		 div.innerHTML = html;
-// 	}
-	 
-	
-// }
-
-
-// function addcomments(){
-// 	const xhttp = new XMLHttpRequest();
-	
-// 	let param = 'id=${sessionScope.loginId}';
-// 	param += '&code=${vo.code}';  
-// 	param += "&content=" + document.getElementById('content').value;
-
-	
-// 	xhttp.open("POST","${pageContext.request.contextPath}/clinic/addrep.do");
-// 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=euc-kr");
-// 	xhttp.send(param);
-	
-	
-// 	xhttp.onload = function(){
-	
-// 		let val = xhttp.responseText;
-// 		console.log(val);
-// 		let arr = JSON.parse(val);
-// 		console.log(arr);
-// 		let html = "<table border ='1'>";
-// 		for(let obj of arr ){
-// 		html += '<tr><td> 작성자 : ' + obj.id + '<br/>';
-// 		html += '내용 : ' + obj.content + '<br/>';
-// 		html += '작성일 : ' + obj.date + '<br/>';
-// 		html += '</td></tr>';
-		
-//  		};
-// 		html += '</table>';
-// 		let div = document.getElementById("r");
-// 		 div.innerHTML = html;
-// 	}
-	 
-// 	document.getElementById('content').value = "";
-// }
 
 
 function a(num){
@@ -169,53 +127,57 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	${sessionScope.loginId}
-	<br />
-	<h3>병원 정보</h3>
-	<table border="1">
-		<tr>
-			<th>병원이름</th>
-			<td>${vo.name }<span class="material-symbols-outlined"
+
+	<div class="container mt-5">
+		<h1>${vo.name }<span class="material-symbols-outlined"
 				id="${vo.code}"> star </span>
-			</td>
-		</tr>
-		<tr>
-			<th>code</th>
-			<td>${vo.code }</td>
-		</tr>
-		<tr>
-			<th>운영상태</th>
-			<td>${vo.onoff }</td>
-		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td>${vo.phone }</td>
-		</tr>
-		<tr>
-			<th>주소</th>
-			<td>${vo.address }</td>
-		</tr>
+		</h1>
+		
+		<div class="row">
+			<div class="col-sm-6">	
+				<div id="map" style="width: 100%; height: 400px;"></div>
+			<hr class="d-sm-none">
+			</div>
+				<div class="col-sm-5">
+					<div class = "table-responsive">
+						<table class="table table-hover">
+							<tr>
+								<th>이름</th>
+								<td>${vo.name }</td>
+							</tr>
+							<tr>
+								<th>운영상태</th>
+								<td>${vo.onoff }</td>
+							</tr>
+							<tr>
+								<th>전화번호</th>
+								<td>${vo.phone }</td>
+							</tr>
+							<tr>
+								<th>주소</th>
+								<td>${vo.address }</td>
+							</tr>
+					
+							<tr>
+								<th>구분</th>
+								<td>${vo.clinic }</td>
+							</tr>
+							
+							<tr>
+								<th>진료 과목</th>
+								<td>
+								<c:forEach var="item" items="${vo.subject }">
+								${item}
+								</c:forEach>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<tr>
-			<th>업태 구분명</th>
-			<td>${vo.clinic }</td>
-		</tr>
-		<tr>
-			<th>좌표x</th>
-			<td id="x">${vo.x }</td>
-		</tr>
-		<tr>
-			<th>좌표y</th>
-			<td id="y">${vo.y }</td>
-		</tr>
-		<tr>
-			<th>진료 과목</th>
-			<td><c:forEach var="item" items="${vo.subject }">
-				</c:forEach></td>
-		</tr>
-	</table>
 
-	<div id="map" style="width: 500px; height: 400px;"></div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=49a26a707e1180839f672089c3c60e78"></script>
 	<script>
@@ -258,59 +220,67 @@ marker.setMap(map);
 
 
 </script>
-	<table border="1">
-		<tr>
-			<td><c:if test="${empty sessionScope.loginId }">
-					<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly
-						style="width: 200px">
-				</c:if> <c:if test="${not empty sessionScope.loginId}">
+<div class = "container mt-3">
+	<c:if test="${empty sessionScope.loginId }">
+			<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonlystyle="width: 200px">
+	</c:if>
+	 <c:if test="${not empty sessionScope.loginId}">
 				<form action="${pageContext.request.contextPath }/clinic/addrep.do?hpid=${vo.code}" method = "post">
 					<input type="text" name="newRep" placeholder="댓글 작성">
 					<input type="submit" value="작성하기">
 				</form>
-				</c:if></td>
-		</tr>
-	</table>
-	<div id="repList">
-		<ul class = "repWrite">
-		</ul>
+		</c:if>
+		
+		
+	
+		댓글
+		<ul class = "list-group">
+		
 			<c:forEach var = "repVo" items="${repList }">
-				<ul class = "repMain${repVo.num }">
-					<li>작성자 : ${repVo.id }</li>
-					<li>내용 : ${repVo.content }</li>
-					<li>작성 날짜 : ${repVo.date }</li>
-					<li>${repVo.num }</li>
+				<li class="list-group-item d-flex justify-content-between">
+					<div>내용 : ${repVo.content }</div>
+					<div class = "d-flex">
 					<c:if test="${not empty sessionScope.loginId && sessionScope.loginId eq repVo.id }">
-					<li>
+				
 						<form action="${pageContext.request.contextPath }/clinic/delRep.do?num=${repVo.num}&hpid=${vo.code}" method="post">
 						<input type="submit" value="삭제하기" >
 						</form>
+						</c:if>
+						작성자 : ${repVo.id },작성 날짜 : ${repVo.date }
+						</div>
+				
 					</li>
-					</c:if>
+					
 					<c:if test="${code eq vo.code}">
-					<li>
+					<li class="list-group-item">
 						<form action="${pageContext.request.contextPath }/clinic/addRrep.do?cnum=${repVo.num}&hpid=${vo.code}" method="post">
 							<input type="text" placeholder="답글을 작성해주세요." name="newRrep">
 							<input type="submit" value = "답글 작성하기">
 						</form>
 					</li>
 					</c:if>
-				<c:forEach var ="rrepVo" items="${repVo.list }">
-					<ul class = "rrepMain">
-						<li>답글 작성자 : ${rrepVo.id }</li>
-						<li>답글 내용 : ${rrepVo.content }</li>
-						<li>답글 작성 날짜 : ${rrepVo.date }</li>
-						<c:if test="${not empty code && code eq vo.code }">
-						<li>
-							<form action="${pageContext.request.contextPath }/clinic/delRrep.do?num=${rrepVo.num}&hpid=${vo.code}" method="post">
-								<input type="submit" value="삭제하기">
-							</form>
+					<c:if test = "${not empty repVo.list }">
+						<li class="list-group-item">
+						답글
+						<ul class = "list-group ">
+							<c:forEach var ="rrepVo" items="${repVo.list }">
+								<li class="list-group-item d-flex justify-content-between">
+									<div> 답글 내용 : ${rrepVo.content }</div>
+									<div>
+									답글 작성자 : ${rrepVo.id }, 답글 작성 날짜 : ${rrepVo.date }
+										<c:if test="${not empty code && code eq vo.code }">				
+											<form action="${pageContext.request.contextPath }/clinic/delRrep.do?num=${rrepVo.num}&hpid=${vo.code}" method="post">
+											<input type="submit" value="삭제하기">
+											</form>
+										</c:if>
+									</div>
+								</li>							
+							</c:forEach>
+						</ul>
 						</li>
-						</c:if>
-					</ul>
-				</c:forEach>
-				</ul>
+					</c:if>
 			</c:forEach>
+		</ul>
 	</div>
 </body>
 </html>
