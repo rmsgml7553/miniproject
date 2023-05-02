@@ -95,7 +95,7 @@ margin-top: 112px;
 </style>
 
 </head>
-<body style="background-color : rgb(206, 233, 239)">
+<body>
 <div class="header">
 	<nav class="navbar navbar-expand-sm bg-success fixed-top bg-light">
 		<div class="container-fluid">
@@ -243,6 +243,6 @@ bbb<br>
 bbb<br>
 bbb<br>
 </section>
-<footer style="background-color : rgb(248, 249, 250); height:100px;width:100%;"></footer>
+<footer style="background-color : rgb(248, 249, 250); height:100px;width:100%; border"><hr></footer>
 </body>
 </html>
