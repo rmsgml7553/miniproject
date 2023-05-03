@@ -418,7 +418,7 @@ a {
 
 .placeinfo .tel {
 	color: #0f7833;
-}
+}*-
 
 .placeinfo .jibun {
 	color: #999;

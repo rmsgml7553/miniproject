@@ -23,7 +23,7 @@ public class PillLikeDao {
 			pstmt.setString(1, id);
 			pstmt.setString(2, code);
 			pstmt.setString(3, name);
-			pstmt.execute();
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -95,7 +95,7 @@ public class PillLikeDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, code);
-			pstmt.execute();
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
