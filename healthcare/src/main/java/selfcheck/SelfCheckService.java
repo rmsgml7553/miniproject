@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import member.MemberService;
+
 public class SelfCheckService {
 	private SelfCheckDao dao;
 
@@ -40,11 +42,15 @@ public class SelfCheckService {
 		return dao.selectSelfcheck(id);
 	}
 
-	public int getAge() {
+	public int getAge(String id) {
 		
-		int birthYear = 1990;
-		int birthMonth = 12; 
-		int birthDay = 27;
+		MemberService memberService = new MemberService();
+		
+		Date birth = memberService.getByMember(id).getBirth();
+		
+		int birthYear = birth.getYear();
+		int birthMonth = birth.getMonth(); 
+		int birthDay = birth.getDay();
 		
 		Calendar current = Calendar.getInstance();
         int currentYear  = current.get(Calendar.YEAR);
@@ -59,9 +65,11 @@ public class SelfCheckService {
         
 	}
 
-	public double calBmr(int height, int weight, int age, String gender) {
+	public double calBmr(int height, int weight, String id) {
 		double result;
-		
+		int age = getAge(id);
+		MemberService service = new MemberService();
+		String gender = service.getByMember(id).getGender();
 		if (gender.equals("m")) {
 			result = 88.4 + 13.4 * weight + 4.8 * height - 5.68 * age;
 		} else {

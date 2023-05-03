@@ -141,7 +141,7 @@ window.onload = function(){
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function(){
 		let txt = xhttp.responseText;
-		console.log(txt)
+		console.log("txt : " + txt);
 		let obj = JSON.parse(txt);
 		if(obj.tf == "Y"){
 			star.style.color = "#ffcc00";
@@ -156,24 +156,24 @@ window.onload = function(){
 </head>
 <body>
 
-	회사명
-	${PillXMLVo.entpName }
-	<span class="material-symbols-outlined" style="color:gray" onclick="change()"> star </span>
-	제품명
-	${PillXMLVo.itemName }
-	<img src = "${PillXMLVo.itemImage }" style="width:100ox; height:100px;" alt ="현재 제공된 약 사진이 없습니다.">
+	<c:if test = "${not empty PillXMLVo.itemImage }">
+		<img src = "${PillXMLVo.itemImage }" style="width:100%; height:500px;" alt ="현재 제공된 약 사진이 없습니다.">
+	</c:if>
   <hr class="d-sm-none">
-	${sessionScope.loginId }
 	<div class = "chat" style="background-color:#f7f7f7; border : black solid 1px; border-radius:20px;">
 		<div class="message" id="conversation">
 	        <div class="row message-previous">
 	          <div class="col-sm-12 previous">
 	            <a onclick="previous(this)" id="ankitjain28" name="20">
-					약 정보를 확인하세요!
+					회사명 : ${PillXMLVo.entpName }
+					<span class="material-symbols-outlined" style="color:gray" onclick="change()"> star </span>
+					<br>
+					제품명 : ${PillXMLVo.itemName }
+					<br>
 					<c:if test = "${not empty PillXMLVo.updateDe }">
-					<br>마지막 수정 날짜 : ${PillXMLVo.updateDe }
+					마지막 수정 날짜 : ${PillXMLVo.updateDe }
 					</c:if>
-	            </a>
+		            </a>
 	          </div>
 	        </div>
 	      </div>

@@ -17,7 +17,9 @@
 ul {
 	padding: 10px;
 }
-
+th{
+	width:100px;	
+}
 li {
 	display: flex;
 	padding: 10px;
@@ -151,37 +153,37 @@ function change(){
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);
 	</script>
-	<c:if test="${empty sessionScope.loginId }">
-			<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly style="width: 200px">
-	</c:if> 
-	<c:if test="${not empty sessionScope.loginId}">
-		<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRep/load.do?hpid=${PharmarcyVo.hpid}" method = "post">
-			<input type="text" name="newRep" placeholder="댓글 작성">
-			<input type="submit" value="작성하기">
-		</form>
-	</c:if>
 	
 
 	<div class = "container mt-3">
+		<c:if test="${empty sessionScope.loginId }">
+				<input type="text" placeholder="로그인 후 댓글을 달 수 있습니다." readonly style="width: 200px">
+		</c:if> 
+		<c:if test="${not empty sessionScope.loginId}">
+			<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRep/load.do?hpid=${PharmarcyVo.hpid}" method = "post">
+				<input type="text" class = "form-control" name="newRep" placeholder="댓글 작성" style="width:90%;display:inline;margin-bottom:20px;">
+				<input type="submit" class = "btn btn-light" value="작성하기" style = "float:right; background-color:#3AA2D2">
+			</form>
+		</c:if>
 		댓글
 		<ul class = "list-group">
 			<c:forEach var = "repVo" items="${repList }">
 				<li class="list-group-item d-flex justify-content-between">
 					<div>내용 : ${repVo.content }</div>
-					<div class = "d-flex">
+					<div>
+						작성자 : ${repVo.id }, 작성 날짜 : ${repVo.date }
 						<c:if test="${not empty sessionScope.loginId && sessionScope.loginId eq repVo.id }">
 								<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRepDel/load.do?num=${repVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
-								<input type="submit" value="삭제하기" >
+								<input type="submit" class = "btn btn-danger" value="del" >
 								</form>
 						</c:if>
-						작성자 : ${repVo.id }, 작성 날짜 : ${repVo.date }
 					</div>
 				</li>
 				<c:if test="${code eq PharmarcyVo.hpid}">
 					<li class="list-group-item">
 						<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRrep/load.do?pnum=${repVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
 							<input type="text" placeholder="답글을 작성해주세요." name="newRrep">
-							<input type="submit" value = "답글 작성하기">
+							<input type="submit" class="btn btn-light" value = "답글 작성하기" style=" background-color:#3AA2D2;">
 						</form>
 					</li>
 				</c:if>
@@ -196,7 +198,7 @@ function change(){
 									답글 작성자 : ${rrepVo.id }, 답글 작성 날짜 : ${rrepVo.date }
 									<c:if test="${not empty code && code eq PharmarcyVo.hpid }">
 										<form action="${pageContext.request.contextPath }/pharmarcy/pharmarcyRrepDel/load.do?num=${rrepVo.num}&hpid=${PharmarcyVo.hpid}" method="post">
-											<input type="submit" value="삭제하기">
+											<input type="submit" class="btn btn-danger" value="del">
 										</form>
 									</c:if>
 								</div>
