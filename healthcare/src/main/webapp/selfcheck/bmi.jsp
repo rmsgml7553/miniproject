@@ -15,6 +15,11 @@
 <script>
 	
 </script>
+<style type="text/css">
+p{
+margin-top: 20px;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -24,11 +29,11 @@
 			method="post">
 			<div class="form-group">
 				<label for="usr">키</label> <input type="number" class="form-control"
-					id="usr" name="height">
+					id="usr" name="height" required>
 			</div>
 			<div class="form-group">
 				<label for="usr">몸무게</label> <input type="number"
-					class="form-control" id="usr" name="weight">
+					class="form-control" id="usr" name="weight" required>
 			</div>
 			<div class="form-group">
 				<label for="usr">나이</label> <input type="number"
