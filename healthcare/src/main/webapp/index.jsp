@@ -86,7 +86,7 @@ html {
 video {
 	width: 100%;
 	position: fixed;
-	z-index: 1;
+	z-index: 0.5;
 	opacity:;
 }
 
@@ -104,11 +104,13 @@ nav {
 #search {
 	border-radius: 30px 0px 0px 30px;
 	height: 50px;
+	width: 300px;
+	
 }
 
 #option {
 	border-radius: 0px 0px 0px 0px;
-	width: 110px;
+	width: 150px;
 	margin-left: -5px;
 	margin-right: 3.5px;
 }
@@ -121,11 +123,12 @@ nav {
 	border-radius: 0px 0px 0px 0px;
 }
 
-#btn5 {
+#btn4 {
 	border-radius: 0px 30px 30px 0px;
+
 }
 
-#btn1, #btn2, #btn3, #btn4, #btn5, #searchbtn {
+#btn1, #btn2, #btn3, #btn4, #searchbtn {
 	height: 50px;
 	border: none;
 	background-color: RGB(58, 162, 201);
@@ -189,67 +192,48 @@ nav {
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm bg-success fixed-top bg-light">
-		<div class="container-fluid">
-			<img alt="logo" src="img/logo.png" width="9%" height="9%" onclick = "javascript:location.href='${pageContext.request.contextPath }/index.jsp'"  style="cursor: pointer">
-
-			<div class="collapse navbar-collapse" id="mynavbar">
-				<ul class="navbar-nav me-auto">
-					<li id="menu">
-						<div class="btn-group">
-							<button type="button" class="btn btn-primary" id="btn1">건강정보</button>
-							<div class="btn-group">
-								<button type="button" class=button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" id="btn2">자가건강 테스트</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item " href="#">테스트 하기</a> 
-										<a class="dropdown-item" href="#">테스트 결과</a>
-								</div>
-			
-							<div class="btn-group">
-								<button type="button" class="btn btn-primary dropdown-toggle"
-									data-bs-toggle="dropdown" id="btn3">의료 기관</button>
-									<div class="dropdown-menu">
-										<a class="dropdown-item" href="${pageContext.request.contextPath }/clinic/cliniclist.jsp">병원 검색</a> 
-										<a class="dropdown-item" href="${pageContext.request.contextPath }/pharmarcy/pharmarcyList.jsp">약국 검색</a>
-									</div>
-									<button type="button" class="btn btn-primary" id="btn4">약 정보</button>
-									<button type="button" class="btn btn-primary" id="btn5" onclick="javascript:location.href='${pageContext.request.contextPath }/board/list.do'">자유게시판</button>
-								</div>
-							</div>
-						</div>
-					</li>
-					<c:if test = "${empty sessionScope.loginId }">
-					<li class="loginbox">
-						<ul class="nav">
-							<li class="nav-item">    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#join" style="background-color: rgb(248, 249, 250);color: RGB(58, 162, 201);font-weight: bold;border: 0px;">회원가입</button></li>
-							<li class="nav-item">    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login" style="background-color: rgb(248, 249, 250);color: RGB(58, 162, 201);font-weight: bold;border: 0px;">로그인</button></li>
-						</ul>
-					</li>
-					</c:if>
-					<c:if test = "${not empty sessionScope.loginId }">
-					<li class="loginbox">
-						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/mypage.jsp">마이페이지</a></li>
-							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a></li>
-						</ul>
-					</c:if>
-				</ul>
-				<form class="d-flex" action ="${pageContext.request.contextPath }/search/load.do">
-					<input class="form-control me-2" type="text" placeholder="검색" name="search" id="search"> 
-					<select class="form-select" id="option" name="institution">
+<!-- 내비시작 -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-light fixed-top">
+  <div class="container-fluid">
+	<img alt="logo" src="img/logo.png" width="9%" height="9%" onclick = "javascript:location.href='${pageContext.request.contextPath }/index.jsp'"  style="cursor: pointer">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+			<div class="btn-group">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bmi" id="btn1">자가건강전검</button>
+  				<button type="button" class="btn btn-primary" id="btn2" onclick = "javascript:location.href='${pageContext.request.contextPath }/board/list.do'"  style="cursor: pointer">자유게시판</button>
+  				<c:if test = "${empty sessionScope.loginId }">
+  				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#join" id="btn3">회원가입</button>
+  				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login" id="btn4">로그인</button>
+  				</c:if>
+  				<c:if test = "${not empty sessionScope.loginId }">
+  				<button type="button" class="btn btn-primary" id="btn3" onclick = "javascript:location.href='${pageContext.request.contextPath }/member/myinfo.jsp'"  style="cursor: pointer">마이페이지</button>
+  				<button type="button" class="btn btn-primary" id="btn4" onclick = "javascript:location.href='${pageContext.request.contextPath }/member/logout.do'"  style="cursor: pointer">로그아웃</button>
+  				</c:if>
+			</div>
+        </li>
+        <li class="nav-item">
+          
+        </li>
+      </ul>
+      <form class="d-flex" action ="${pageContext.request.contextPath }/search/load.do">
+        <input class="form-control me-2" type="text" placeholder="검색" name="search" id="search">
+        <select class="form-select" id="option" name="institution">
 						<option value="clinic">병원</option>
 						<option value="pharmarcy">약국</option>
 						<option value="pillItem">약 : 제품명</option>
 						<option value="pillEntp">약 : 업체명</option>
 						<input type="hidden" name="from" value="searchHandler">
 					</select>
-					<input class="btn btn-primary" type="submit" id="searchbtn" value="search">
-				</form>
-			</div>
-		</div>
-	</nav>
-
-
+        <button class="btn btn-primary" type="submit" id="searchbtn">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!--  내비끝 -->
 	<video muted autoplay loop>
 		<source src="img/video.mp4" type="video/mp4">
 	</video>
@@ -276,12 +260,52 @@ nav {
 	</div>
 	
 	<!-- 모달은 여기에 -->
-	 <!-- The Modal : login -->
+	<!-- 회원가입 -->
+<div class="modal" id="join" >
+  <div class="modal-dialog modal-lg" style="width:535px;">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header" >
+        <h5 class="modal-title"><b>회원가입</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  onclick="location.reload()"></button>
+      </div>
+
+      <!-- Modal body -->
+      <iframe src="${pageContext.request.contextPath }/member/join.jsp" title="iframe"
+							 height="500px" style="border:none;"> </iframe>
+
+    </div>
+  </div>
+</div>
+<!-- 자가건강 -->
+<div class="modal" id="bmi">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title"><b>자가건강전검</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="location.reload()"></button>
+      </div>
+
+      <!-- Modal body -->
+      <iframe src="${pageContext.request.contextPath }/selfcheck/bmi.do" title="iframe"
+							 height="600px" style="border:none;"> </iframe>
+
+    </div>
+  </div>
+</div>
+<!-- The Modal : login -->
          <div class="modal" id="login">
             <div class="modal-dialog modal-dialog-centered">
                <div class="modal-content">
 
-
+ <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title"><b>로그인</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  onclick="location.reload()"></button>
+      </div>
                   <!-- Modal body -->
                   <div class="modal-body">
                      <form
@@ -304,7 +328,6 @@ nav {
                         <div style="text-align: center;">
                            <input type="button" class="btn btn-primary" id="button"
                               onclick="a()"
-                              style="background-color: RGB(58, 162, 201); border: 0px;"
                               value="로그인">
                         </div>
                      </form>
@@ -312,38 +335,6 @@ nav {
                </div>
             </div>
          </div>
-	 <!-- The Modal : join -->
-         <div class="modal" id="join">
-            <div class="modal-dialog modal-dialog-centered">
-               <div class="modal-content">
-
-
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                     <iframe src="${pageContext.request.contextPath }/member/join.jsp" title="iframe"
-								width="100%" height="400px" style="border:none;"> </iframe>
-                  </div>
-               </div>
-            </div>
-         </div>
-    <!-- Modal : join -->
-  <div class="modal fade" id="join" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><b>자가건강검진</b></h4>
-        </div>
-        <div class="modal-body">
-          <iframe src="${pageContext.request.contextPath }/selfcheck/bmi.do" title="iframe"
-							 height="700px" style="border:none;"> </iframe>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 	
 </body>
