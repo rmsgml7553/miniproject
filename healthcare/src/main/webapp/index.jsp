@@ -27,7 +27,7 @@
          console.log(obj);
          let arr = JSON.parse(obj);
          if (arr.flag == "로그인 완료") {
-            window.location.href = "${pageContext.request.contextPath}/member/mypage.jsp";
+            window.location.href = "${pageContext.request.contextPath}/member/logincomplete.do";
          } else {
             alert(arr.flag);
          }
