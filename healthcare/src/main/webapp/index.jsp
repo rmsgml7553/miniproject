@@ -130,6 +130,7 @@ nav {
 	border: none;
 	background-color: RGB(58, 162, 201);
 	font-weight: bold;
+	color: white;
 }
 
 .loginbox {
@@ -161,8 +162,11 @@ nav {
 
 .img {
 	position: absolute;
-	right: 0px;
-	bottom: 0px;
+	right: 0px; 
+	bottom: 0px; 
+	width:100%;
+
+	
 }
 
 #section1 {
@@ -252,7 +256,7 @@ nav {
 
 	<div class="section" id="section1">
 		<div class="img">
-			<h1>INDEX</h1>
+			<img src="img/a.png">
 		</div>
 	</div>
 	<div class="section" id="section2">
