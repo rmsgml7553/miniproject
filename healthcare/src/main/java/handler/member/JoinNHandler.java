@@ -35,7 +35,6 @@ public class JoinNHandler implements Handler {
 			String name = request.getParameter("name");
 			String phone = request.getParameter("phone");
 			String address = request.getParameter("sample3_address")+" ";
-			int mCode = Integer.parseInt(request.getParameter("mCode"));
 			String gender = request.getParameter("gender");
 			String y = request.getParameter("year");
 			String m = request.getParameter("month");
@@ -49,12 +48,12 @@ public class JoinNHandler implements Handler {
 				java.sql.Date birth;
 				birth =  new java.sql.Date(util.getTime());
 				MemberService service = new MemberService();
-				service.joinMember(new MemberVo(id, pwd, name, phone, address, mCode, gender, birth));
+				service.joinMember(new MemberVo(id, pwd, name, phone, address, 0, gender, birth));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			view = "redirect:/member/login.jsp";
+			view = "/member/joinComplete.jsp";
 		}
 		return view;
 	}

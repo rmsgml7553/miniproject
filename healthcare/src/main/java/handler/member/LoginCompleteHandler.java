@@ -47,6 +47,7 @@ public class LoginCompleteHandler implements Handler {
 		PillLikeService pillservice = new PillLikeService();
 		ArrayList<PillLikeVo> plvo = pillservice.listById(id);
 		request.setAttribute("plvo", plvo);
+		System.out.println("add : " +address);
 		view = "/member/mypage.jsp";
 		return view;
 	}

@@ -37,10 +37,10 @@ function myFunction(){
 				let obj = xhttp.responseText;
 				let arr = JSON.parse(obj);
 				console.log(arr);
-					if(arr.flag == ""){
+					if(arr.flag == "no"){
 						html += "아이디를 입력해주세요.";
 					}
-					if(arr.flag =="true"){
+					else if(arr.flag =="true"){
 							html += "사용가능한 아이디입니다.";
 					} else {
 						html += "중복된 아이디입니다.";
@@ -88,7 +88,7 @@ function pwdFunction(){
 		tf = false;
 	} 
 	else if(pwd2 == pwd){
-		html += "사용가능한 비밀번호 입니다.";	
+		html += "비밀번호가 일치 합니다.";	
 		tf = true;
 	} else {
 		html += "비밀번호가 다릅니다. 다시 입력해주세요.";
@@ -103,9 +103,11 @@ function nameFunction(){
 	let name = document.getElementById("name").value;
 	console.log(name);
 	let nameMsg = document.getElementById("nameMsg");
-	let RegExp =  /^(?=.*[가-힣a-z-A-Z])$/;
-	let res = RegExp.test(name);
+// 	let RegExp =  /^(?=.*[가-힣a-z-A-Z])$/;
+	let RegExp =  /^[a-zA-Z\uAC00-\uD7A3]*$/;
 
+	let res = RegExp.test(name);
+	console.log(res);
 	nameMsg.style.display = "";
 	let html = "";
 	
@@ -149,10 +151,10 @@ function codeFunction(){
 			<input type="text" name="id" id="id" size="50" autofocus required onblur="myFunction()"><br/>
 			<span class="error_next_box" id="idMsg" >필수정보입니다.</span><br /> 
 				<label for="pwd">비밀번호</label><br /> 
-				<input type="password" id="pwd" name="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
+				<input type="password" id="pwd" name="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자 특수문자로만 입력" onblur="pwdFunction()"><br />
 			<span class="error_next_box" id="pwdMsg" >필수정보입니다.</span><br /> 
 			<label for="pwd2">비밀번호 재확인</label><br /> 
-			<input type="password" id="pwd2" name="pwd2" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력" onblur="pwdFunction()"><br />
+			<input type="password" id="pwd2" name="pwd2" size="50" required placeholder="4~12자의 영문 대소문자와 숫자 특수문자로만 입력" onblur="pwdFunction()"><br />
 			<span class="error_next_box" id="pwdMsg2" >필수정보입니다.</span><br /> 
 			<label for="name">이름</label><br /> 
 			<input type="text" name="name" id="name" size="50" required placeholder="이름을 입력해주세요."
@@ -175,6 +177,8 @@ function codeFunction(){
 					style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
 					onclick="foldDaumPostcode()" alt="접기 버튼">
 			</div>
+
+
 
 			<script
 				src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

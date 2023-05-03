@@ -32,8 +32,7 @@
 
 		}
 		let param = "?id=" + f.id.value + "&pwd=" + f.pwd.value;
-		xhttp.open("get", "${pageContext.request.contextPath}/member/login.do"
-				+ param);
+		xhttp.open("get", "${pageContext.request.contextPath}/member/login.do" + param);
 		xhttp.send();
 
 	}

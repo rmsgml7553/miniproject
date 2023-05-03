@@ -1,306 +1,804 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
+	integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <style>
 /* 기본 css */
 * {
-box-sizing:border-box;
- }
- body { 
-   background-color: rgb(0, 134, 248);
-   width:100%; 
-   font-family: SF Pro Text,Helvetica Neue,sans-serif; 
-  }
-  
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgb(0, 134, 248);
+	width: 100%;
+	font-family: SF Pro Text, Helvetica Neue, sans-serif;
+}
+
 /* body { */
 /*   background-color: rgb(48, 154, 176); */
 /*   width:100%; */
 /*   font-family: SF Pro Text,Helvetica Neue,sans-serif; */
-  
+
 /*  } */
-    
-main{
-	position : absolute;
-	left : 50%;
+main {
+	position: absolute;
+	left: 50%;
 	transform: translate(-50%);
 }
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
-  width: 120px;
-  height: 100px;
- }
- 
-  span {
-    display: inline-block;
-    width: 70px;
-    height: 70px;
-    margin: 6px;
-    background-color: #f9f9f9;
-  }
-  
-  
-  main .first{
-  	display: flex;
-  }
-  
-  
-  div .card{
-  border-radius: 25px;
-  overflow: hidden;
-  display: flex;
-  position: relative;
-  margin : 15px;
-  }  
 
-  
-  main .first .card:nth-child(1) {
-  width: 315px;
-  height: 315px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: center;
-  }
-  
-  main .first .card:nth-child(2) {
-  width: 660px;
-  height: 315px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: center;
-  }
-  
-  
-  main > .card:nth-child(2) {
-  width: 1005px;
-  height: 345px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: center;
-  }
-  
-   main > .card:nth-child(3) { 
-   width: 1005px; 
-   height: 345px; 
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
-   text-align: center; 
-   top: 10px;
-  
-   } 
-  
-  .toolbar{
-  width:100%;
-  heigth: 70px;
-  }
-  
-  .material-symbols-outlined #main{
-  width: 70px;
-  heigth: 70px;
-  }
-  
-  .grow-on-hover {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transition: perspective(1px) translateZ(0);
-  tranform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  }
-  
-  .grow-on-hover:hover, .grow-on-hover:focus, .grow-on-hover:active {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-  }
-  
-  #navbar {
-  background-color: rgba(37,38,40,.21); 
-  opacity: 0.5;
-  }
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48 width:
+		 120px;
+	height: 100px;
+}
+
+span {
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	margin: 6px;
+	background-color: #f9f9f9;
+}
+
+main .first {
+	display: flex;
+}
+
+div .card {
+	border-radius: 25px;
+	overflow: hidden;
+	display: flex;
+	position: relative;
+	margin: 15px;
+}
+
+main .first .card:nth-child(1) {
+	width: 315px;
+	height: 315px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+main .first div{
+	margin-left: 10px;
+}
+
+main .first div:nth-child(2){
+	font-color: #1D1D1F;
+	font-size: 17px;
 	
-  .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
-}		
+}
+
+
+main .first .card:nth-child(2) {
+	width: 660px;
+	height: 315px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	text-align: center;
+}
+
+main .first .card:nth-child(3) {
+	width: 1005px;
+	height: 345px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	text-align: center;
+	background-color: black;
+}
+
+div.card.grow-on-hover.card4 {
+	width: 1005px;
+	height: 345px;
+	top: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	text-align: center;
+}
+
+
+
+
+.toolbar {
+	width: 100%;
+	heigth: 70px;
+}
+
+.material-symbols-outlined #main {
+	width: 70px;
+	heigth: 70px;
+}
+
+.grow-on-hover {
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transition: perspective(1px) translateZ(0);
+	tranform: perspective(1px) translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-property: transform;
+	transition-property: transform;
+}
+
+.grow-on-hover:hover, .grow-on-hover:focus, .grow-on-hover:active {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+#navbar {
+	background-color: rgba(37, 38, 40, .21);
+	opacity: 0.5;
+}
+
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
+}
 
 .container>i {
 	margin-top: 15px;
 	color: gray;
+	margin-left: 25%;
 }
+
+
+.container div{
+	margin-bottom: 10px;
+}
+
+
 
 .container div:nth-child(2) {
-	margin-top: 20px;
+	margin-top: 15px;
 }
-
 
 a {
-  text-decoration: none;
-  color: black;
-  }
- 
-
-
-.box {
-   height: 80px;
-   border-style: solid; 
-   border-color: #D7EAF6; 
-   background-color: #D7EAF6; 
-   margin-bottom: 20px;
-   }  
-
-.box > span {
-   background-color: #D7EAF6; 
-   font-weight:bold;
-   font-size: 21px;
-   width: 170px;
-   height: 40px;
-   margin-top: 20px;
-   margin-left: 40px;
-   overflow: hidden;
-   linear-gradient(to right, #E6F0FA, #EDF2F8 10%); 
+	text-decoration: none;
+	color: black;
 }
 
-.carousel-item{
-  	width:100px;
-  	height:100px;
-  }
+.carousel-control-prev-icon {
+	background-color: black;
+	border-radius: 10px;
+}
 
-.carousel2{
+.carousel-control-next-icon {
+	background-color: black;
+	border-radius: 10px;
+}
+
+
+.carousel2 {
 	height: 250px;
 }
 
+/* 즐겨찾기 */
 
-  
+ div.card-img-overlay {
+ background-color: #F8F9FA;
+ width: 280px;
+ height: 310px; 
+ }
+ 
+ div.list {
+ background-color: #E9ECEF;
+ width: 250px;
+ height: 166px;
+ margin-top: 10px;
+ border-radius: 8px;
+ }
+ 
+ p, h4 {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ div.container.box.contrast {
+ height: 345px;
+ width: 1005px;
+ 
+ }
+
+
 /* 주변지도 (병원, 약국) css */
-.info {position:relative;top:5px;left:5px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;font-size:12px;padding:5px;background:#fff;list-style:none;margin:0;} 
-.info:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
-.info .label {display:inline-block;width:50px;}
-.number {font-weight:bold;color:#00a0e9;} 
+.info {
+	position: relative;
+	top: 5px;
+	left: 5px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
+	font-size: 12px;
+	padding: 5px;
+	background: #fff;
+	list-style: none;
+	margin: 0;
+}
 
-.map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-.map_wrap {position:relative;width:100%;height:350px;}
-#category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
-#category li {float:left;list-style: none;width:50px;px;border-right:1px solid #acacac;padding:6px 0;text-align: center; cursor: pointer;}
-#category li.on {background: #eee;}
-#category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
-#category li:last-child{margin-right:0;border-right:0;}
-#category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
-#category li .pharmacy {background-position: -10px -72px;}
-#category li .hospital {background-position: -10px -72px;}
-#category li.on .category_bg {background-position-x:-46px;}
-.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
-.placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
-.placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-.placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-.placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
-.placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-.placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
-.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
-.placeinfo .tel {color:#0f7833;}
-.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
+.info:nth-of-type(n) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .label {
+	display: inline-block;
+	width: 50px;
+}
+
+.number {
+	font-weight: bold;
+	color: #00a0e9;
+}
+
+.map_wrap, .map_wrap * {
+	margin: 0;
+	padding: 0;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	font-size: 12px;
+}
+
+.map_wrap {
+	position: relative;
+	width: 100%;
+	height: 350px;
+}
+
+#category {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	border-radius: 5px;
+	border: 1px solid #909090;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+	background: #fff;
+	overflow: hidden;
+	z-index: 2;
+}
+
+#category li {
+	float: left;
+	list-style: none;
+	width: 50px; px;
+	border-right: 1px solid #acacac;
+	padding: 6px 0;
+	text-align: center;
+	cursor: pointer;
+}
+
+#category li.on {
+	background: #eee;
+}
+
+#category li:hover {
+	background: #ffe6e6;
+	border-left: 1px solid #acacac;
+	margin-left: -1px;
+}
+
+#category li:last-child {
+	margin-right: 0;
+	border-right: 0;
+}
+
+#category li span {
+	display: block;
+	margin: 0 auto 3px;
+	width: 27px;
+	height: 28px;
+}
+
+#category li .category_bg {
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png)
+		no-repeat;
+}
+
+#category li .pharmacy {
+	background-position: -10px -72px;
+}
+
+#category li .hospital {
+	background-position: -10px -72px;
+}
+
+#category li.on .category_bg {
+	background-position-x: -46px;
+}
+
+.placeinfo_wrap {
+	position: absolute;
+	bottom: 28px;
+	left: -150px;
+	width: 300px;
+}
+
+.placeinfo {
+	position: relative;
+	width: 100%;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
+	padding-bottom: 10px;
+	background: #fff;
+}
+
+.placeinfo:nth-of-type(n) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.placeinfo_wrap .after {
+	content: '';
+	position: relative;
+	margin-left: -12px;
+	left: 50%;
+	width: 22px;
+	height: 12px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.placeinfo a, .placeinfo a:hover, .placeinfo a:active {
+	color: #fff;
+	text-decoration: none;
+}
+
+.placeinfo a, .placeinfo span {
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.placeinfo span {
+	margin: 5px 5px 0 5px;
+	cursor: default;
+	font-size: 13px;
+}
+
+.placeinfo .title {
+	font-weight: bold;
+	font-size: 14px;
+	border-radius: 6px 6px 0 0;
+	margin: -1px -1px 0 -1px;
+	padding: 10px;
+	color: #fff;
+	background: #d95050;
+	background: #d95050
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
+		no-repeat right 14px center;
+}
+
+.placeinfo .tel {
+	color: #0f7833;
+}
+
+.placeinfo .jibun {
+	color: #999;
+	font-size: 11px;
+	margin-top: 0;
+}
 </style>
 
 </head>
 <body>
-<div>
-<!-- 	네비바 start-->
-	<header class="">
+	<div>
+		<!-- 	네비바 start-->
+		<header class="">
 			<nav class="navbar navbar-expand-sm" id="navbar">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="#">
-	 				 <img src="/img/logo.png" >
+					<a class="navbar-brand" href="#"> <img src="/img/logo.png">
 					</a>
 				</div>
 			</nav>
 		</header>
-<!-- 	네비바 end-->
+		<!-- 	네비바 end-->
 
-<!-- 메인	 card-1 : 내 정보	start  -->
-	<main>
-	<div class = "first">
-	 <div class="card grow-on-hover" onclick = "javascript:location.href='${pageContext.request.contextPath }/member/myinfo.do'">
-	 	<div class="container">
-	 		<i class='fas fa-user-circle' style='font-size:120px;'></i>
-		 	<div>${sessionScope.loginId }</div>
-		 	<div>
-		 	${vo.mcode == 1 ? "일반":"관계자"}</div>
-		 	<div><a href="${pageContext.request.contextPath }/member/myinfo.do">내정보 보기</a></div>	 	
-	 	</div>
-	 </div>
-<!-- 메인	 card-1	end -->
 
-<!-- 메인	 card-2 :셀프체크 그래프 start-->	 
-	 <div class="card grow-on-hover">
-	 	<div class="container">
-	 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-			  <div class="carousel-inner">
-			    <div class="carousel-item active" style="background-color:red">
-			<!--       <img src="..." class="d-block w-100" alt="..."> -->
-			    </div>
-			    <div class="carousel-item " style="background-color:blue">
-			    </div>
-			    <div class="carousel-item" style="background-color:green">
-			    </div>
-			  </div>
-			  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
+
+
+
+
+		<!---------------------- 메인	 card-1 : 내 정보	start  ---------------------->
+		<main>
+			<div class="first">
+				<div class="card grow-on-hover"
+					onclick="javascript:location.href='${pageContext.request.contextPath }/member/myinfo.do'">
+					<div class="container">
+						<i class='fas fa-user-circle' style='font-size: 120px;'></i>
+						<div style="font-size: 32px;font-weight: 400;">${sessionScope.loginId }</div>
+						<div>${vo.mcode == 1 ? "일반":"관계자"}</div>
+						<div>
+							<a href="${pageContext.request.contextPath }/member/myinfo.do">내정보
+								보기</a>
+						</div>
+					</div>
+				</div>
+				<!-- 메인	 card-1	end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				<!---------------------- 메인	 card-2 :셀프체크 그래프 start ---------------------->
+				<div class="card grow-on-hover">
+					<div class="container">
+						<div id="carouselExampleControls" class="carousel slide"
+							data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<canvas id="amr"></canvas>
+								</div>
+								<div class="carousel-item ">
+									<canvas id="bmr"></canvas>
+								</div>
+								<div class="carousel-item">
+									<canvas id="bmi"></canvas>
+								</div>
+								<div class="carousel-item">
+									<canvas id="stress"></canvas>
+								</div>
+							</div>
+							<a class="carousel-control-prev" href="#carouselExampleControls"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="false"></span>
+								<span class="sr-only">Previous</span>
+							</a> <a class="carousel-control-next" href="#carouselExampleControls"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="false"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+
+					</div>
+				</div>
 			</div>
-			
-		</div>
-	 </div>
-	</div>
-<!-- 메인	 card-2	end-->	 
+			<!-- 메인	 card-2	end-->
 
-<!-- 메인	 card-3	내주변검색 지도 : start -->	 
-	 <div class="card grow-on-hover">
-	 	<div class="container" id = "map">
-				 	<div class="map_wrap">
-			<div id="map" style="width: 100%; height: 400px;"></div>
-		    <ul id="category">
-		        <li id="PM9" data-order="2"> 
-		            <span class="category_bg pharmacy"></span>
-		            약국
-		        </li>  
-		        <li id="HP8" data-order="5"> 
-		            <span class="category_bg hospital"></span>
-		            병원
-		        </li>      
-		    </ul>
-		</div>
-	 	</div>
-	 </div>
-	 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=49a26a707e1180839f672089c3c60e78&libraries=services"></script>
-<script>
+			<script type="text/javascript">
+            var context = document
+                .getElementById('amr')
+                .getContext('2d');
+            var myChart = new Chart(context, {
+                type: 'bar', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: [
+                        //x 축
+                        'avg','mine','danger','low'
+                    ],
+                    datasets: [
+                        { //데이터
+                            label: 'amr', //차트 제목
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            data: [
+                                '1500',${amr},'2500','500'//x축 label에 대응되는 데이터 값
+                            ],
+                            backgroundColor: [
+                                //색상
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                //경계선 색상
+                                'rgba(38, 159, 184, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2 //경계선 굵기
+                        }/* ,
+                        {
+                            label: 'test2',
+                            fill: false,
+                            data: [
+                                8, 34, 12, 24
+                            ],
+                            borderColor: 'rgb(157, 109, 12)'
+                        } */
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+			<script type="text/javascript">
+            var context = document
+                .getElementById('bmr')
+                .getContext('2d');
+            var myChart = new Chart(context, {
+                type: 'bar', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: [
+                        //x 축
+                        'avg','mine','danger','low'
+                    ],
+                    datasets: [
+                        { //데이터
+                            label: 'bmr', //차트 제목
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            data: [
+                                '1500',${bmr},'2500','500'//x축 label에 대응되는 데이터 값
+                            ],
+                            backgroundColor: [
+                                //색상
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                //경계선 색상
+                                'rgba(38, 159, 184, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2 //경계선 굵기
+                        }/* ,
+                        {
+                            label: 'test2',
+                            fill: false,
+                            data: [
+                                8, 34, 12, 24
+                            ],
+                            borderColor: 'rgb(157, 109, 12)'
+                        } */
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+			<script type="text/javascript">
+            var context = document
+                .getElementById('bmi')
+                .getContext('2d');
+            var myChart = new Chart(context, {
+                type: 'bar', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: [
+                        //x 축
+                        'avg','mine','danger','low'
+                    ],
+                    datasets: [
+                        { //데이터
+                            label: 'bmi', //차트 제목
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            data: [
+                                '50',${bmi},'100','10'//x축 label에 대응되는 데이터 값
+                            ],
+                            backgroundColor: [
+                                //색상
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                //경계선 색상
+                                'rgba(38, 159, 184, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2 //경계선 굵기
+                        }/* ,
+                        {
+                            label: 'test2',
+                            fill: false,
+                            data: [
+                                8, 34, 12, 24
+                            ],
+                            borderColor: 'rgb(157, 109, 12)'
+                        } */
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+			<script type="text/javascript">
+            var context = document
+                .getElementById('stress')
+                .getContext('2d');
+            var myChart = new Chart(context, {
+                type: 'bar', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: [
+                        //x 축
+                        'avg','mine','danger','low'
+                    ],
+                    datasets: [
+                        { //데이터
+                            label: 'stress', //차트 제목
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            data: [
+                                '50',${stress},'100','10'//x축 label에 대응되는 데이터 값
+                            ],
+                            backgroundColor: [
+                                //색상
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                //경계선 색상
+                                'rgba(38, 159, 184, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 2 //경계선 굵기
+                        }/* ,
+                        {
+                            label: 'test2',
+                            fill: false,
+                            data: [
+                                8, 34, 12, 24
+                            ],
+                            borderColor: 'rgb(157, 109, 12)'
+                        } */
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!---------------------- 메인	 card-3	내주변검색 지도 : start ---------------------->
+
+			<div class="card grow-on-hover">
+				<div class="containe">
+					<div class="map_wrap">
+						<div id="map" style="width: 100%; height: 400px;"></div>
+						<ul id="category">
+							<li id="PM9" data-order="2"><span
+								class="category_bg pharmacy"></span> 약국</li>
+							<li id="HP8" data-order="5"><span
+								class="category_bg hospital"></span> 병원</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=49a26a707e1180839f672089c3c60e78&libraries=services"></script>
+			<script>
 
 	// 지도 생성 및 지도 중심을 주소에 맞추기
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -326,10 +824,10 @@ a {
 	        });
 	
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">내 위치</div>'
-	        });
-	        infowindow.open(map, marker);
+// 	        var infowindow = new kakao.maps.InfoWindow({
+// 	            content: '<div style="width:150px;text-align:center;padding:6px 0;">내 위치</div>'
+// 	        });
+// 	        infowindow.open(map, marker);
 			
 	        map.setCenter(coords);
 	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
@@ -771,50 +1269,55 @@ a {
 	    return content;
 	}
 </script>
-<!-- 메인	 card-3	내주변검색 지도 : end -->	 
+			<!-- 메인	 card-3	내주변검색 지도 : end -->
 
 
 
-<!-- 메인	 card-4	즐겨찾기(약국, 병원, 약) : start -->	 
-	 
-	 <div class="card grow-on-hover card4">
-	 	<div class="container box contrast">
-	 	<span>즐겨찾기</span>
-	 	</div>
-	 	<div id="demo" class="carousel slide carousel2" data-bs-ride="carousel">
-	 	 <!-- The slideshow/carousel -->
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <h1>약</h1>
-		    </div>
-		    <div class="carousel-item">
-		      <h1>병원</h1>
-		    </div>
-		    <div class="carousel-item">
-		      <h1>약국</h1> 
-		    </div>
-		  </div>
-		
-		  <!-- Left and right controls/icons -->
-		  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-		    <span class="carousel-control-prev-icon"></span>
-		  </button>
-		  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-		    <span class="carousel-control-next-icon"></span>
-		  </button>
-		</div>
-			 	
-		 	<div>즐겨찾기</div>
-		 	<div>약, 병원, 약국</div>	 	
-	 </div>
-	</main>
-<!-- 메인	 card-4	즐겨찾기(약국, 병원, 약) : end -->	 
-	 <footer>
-	 
-	 </footer>
-	 
-	 
-	 
-</div>
+			<!-- 메인	 card-4	즐겨찾기(약국, 병원, 약) : start -->
+
+			<div class="card grow-on-hover card4" style="margin-top: 10px;">
+				<div class="container box contrast">
+				  <div class="card" style="width:500px">
+					  <div class="card-img-overlay">
+					    <h4 class="card-title">pharmarcy</h4>
+					    <p class="card-text">아이디</p>
+					    <p class="card-text">count</p>
+					    <p class="card-text">2</p>
+					    <div class="list">
+					    <p>list</p>
+					    </div>
+					  </div>
+					</div>
+				  <div class="card" style="width:500px">
+					  <div class="card-img-overlay">
+					    <h4 class="card-title">pill</h4>
+					    <p class="card-text">아이디</p>
+					    <p class="card-text">count</p>
+					    <p class="card-text">2</p>
+					    <div class="list">
+					    <p>list</p>
+					    </div>
+					  </div>
+					</div>
+				  <div class="card" style="width:500px">
+					  <div class="card-img-overlay">
+					    <h4 class="card-title">clinic</h4>
+					    <p class="card-text">아이디</p>
+					    <p class="card-text">count</p>
+					    <p class="card-text">2</p>
+					    <div class="list">
+					    <p>list</p>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- 메인	 card-4	즐겨찾기(약국, 병원, 약) : end -->
+		<footer> </footer>
+
+
+
+	</div>
 </body>
 </html>
