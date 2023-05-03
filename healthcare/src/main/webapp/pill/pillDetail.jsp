@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 .material-symbols-outlined {
   font-variation-settings:
@@ -20,9 +23,9 @@
   padding: 0 !important;
   margin: 0 !important;
   height: 100%;
-  /*width: 100%;*/
+  width: 100%;
   border-left: 1px solid rgba(0, 0, 0, .08);
-  /*overflow-y: auto;*/
+  overflow-y: auto;
 }
 
 .message {
@@ -162,7 +165,7 @@ window.onload = function(){
   <hr class="d-sm-none">
 	${sessionScope.loginId }
 	<div class = "chat" style="background-color:#f7f7f7; border : black solid 1px; border-radius:20px;">
-		<div class="row message" id="conversation">
+		<div class="message" id="conversation">
 	        <div class="row message-previous">
 	          <div class="col-sm-12 previous">
 	            <a onclick="previous(this)" id="ankitjain28" name="20">
@@ -176,7 +179,7 @@ window.onload = function(){
 	      </div>
 	      
 	      <c:if test = "${not empty PillXMLVo.efcyQesitm }">
-	      <div class = "row message">
+	      <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-sender">
 	            <div class="sender">
@@ -190,7 +193,7 @@ window.onload = function(){
 	          </div>
 	        </div>
 	      </div>
-		  <div class = "row message">
+		  <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-receiver">
 	            <div class="receiver">
@@ -207,7 +210,7 @@ window.onload = function(){
 	      </c:if>
 	      
 	      <c:if test = "${not empty PillXMLVo.useMethodQesitm }">
-	      <div class = "row message">
+	      <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-sender">
 	            <div class="sender">
@@ -221,7 +224,7 @@ window.onload = function(){
 	          </div>
 	        </div>
 	      </div>
-		  <div class = "row message">
+		  <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-receiver">
 	            <div class="receiver">
@@ -239,7 +242,7 @@ window.onload = function(){
 
 
 	      <c:if test = "${not empty PillXMLVo.atpnWarnQesitm }">
-	      <div class = "row message">
+	      <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-sender">
 	            <div class="sender">
@@ -253,7 +256,7 @@ window.onload = function(){
 	          </div>
 	        </div>
 	      </div>
-		  <div class = "row message">
+		  <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-receiver">
 	            <div class="receiver">
@@ -271,7 +274,7 @@ window.onload = function(){
 
 
 	      <c:if test = "${not empty PillXMLVo.atpnQesitm }">
-	      <div class = "row message">
+	      <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-sender">
 	            <div class="sender">
@@ -285,7 +288,7 @@ window.onload = function(){
 	          </div>
 	        </div>
 	      </div>
-		  <div class = "row message">
+		  <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-receiver">
 	            <div class="receiver">
@@ -303,7 +306,7 @@ window.onload = function(){
 
 
 	      <c:if test = "${not empty PillXMLVo.intrcQesitm }">
-	      <div class = "row message">
+	      <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-sender">
 	            <div class="sender">
@@ -317,7 +320,7 @@ window.onload = function(){
 	          </div>
 	        </div>
 	      </div>
-		  <div class = "row message">
+		  <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-receiver">
 	            <div class="receiver">
@@ -335,7 +338,7 @@ window.onload = function(){
 
 
 	      <c:if test = "${not empty PillXMLVo.seQesitm }">
-	      <div class = "row message">
+	      <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-sender">
 	            <div class="sender">
@@ -349,7 +352,7 @@ window.onload = function(){
 	          </div>
 	        </div>
 	      </div>
-		  <div class = "row message">
+		  <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-receiver">
 	            <div class="receiver">
@@ -367,7 +370,7 @@ window.onload = function(){
 
 
 	      <c:if test = "${not empty PillXMLVo.depositMethodQesitm }">
-	      <div class = "row message">
+	      <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-sender">
 	            <div class="sender">
@@ -381,7 +384,7 @@ window.onload = function(){
 	          </div>
 	        </div>
 	      </div>
-		  <div class = "row message">
+		  <div class = "message">
 	        <div class="row message-body">
 	          <div class="col-sm-12 message-main-receiver">
 	            <div class="receiver">
