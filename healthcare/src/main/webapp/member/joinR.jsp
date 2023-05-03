@@ -165,17 +165,15 @@ function codeFunction(){
 				id="pwdMsg2">필수정보 입니다.</span><br /> <label for="name">이름</label><br />
 			<input type="text" name="name" id="name" size="50" required
 				placeholder="이름을 입력해주세요." onblur="nameFunction()"><br /> <span
-				class="error_next_box" id="nameMsg">필수정보 입니다.</span><br /> <label
-				for="phone">전화번호</label><br /> <input type="text" name="phone"
-				size="50"><br /> <label for="address">주소</label><br /> <input
-				type="text" id="sample3_postcode" placeholder="우편번호" size="50">
-			<input type="button" onclick="sample3_execDaumPostcode()"
-				value="우편번호 찾기"><br> <input type="text"
-				name="sample3_address" id="sample3_address" placeholder="주소"
-				size="50"><br> <input type="text"
-				name="sample3_detailAddress" id="sample3_detailAddress"
-				placeholder="상세주소" size="22"> <input type="text"
-				id="sample3_extraAddress" placeholder="참고항목" size="22">
+				class="error_next_box" id="nameMsg">필수정보 입니다.</span><br /> 
+				<label for="phone">전화번호</label><br /> 
+				<input type="text" name="phone" size="50"><br /> 
+				<label for="address">주소</label><br /> 
+				<input type="text" id="sample3_postcode" placeholder="우편번호" size="50">
+				<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br> 
+				<input type="text" name="sample3_address" id="sample3_address" placeholder="주소" size="50"><br> 
+				<input type="hidden" name="sample3_detailAddress" id="sample3_detailAddress" placeholder="상세주소" size="22"> 
+				<input type="hidden" id="sample3_extraAddress" placeholder="참고항목" size="22">
 
 			<div id="wrap"
 				style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">

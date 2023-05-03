@@ -40,7 +40,8 @@ public class LoginCompleteHandler implements Handler {
 		request.setAttribute("address", address);
 		PharmarcyLikeService pharmservice = new PharmarcyLikeService();
 		ArrayList<PharmarcyLikeVo> phlvo = pharmservice.listById(id); 
-		request.setAttribute("pharmlvo", phlvo);
+		System.out.println("logincomhandler"+phlvo);
+		request.setAttribute("phlvo", phlvo);
 		C_BookmarkService cservice = new C_BookmarkService();
 		ArrayList<C_BookmarkVo> clvo = cservice.select(id);
 		request.setAttribute("clvo", clvo);
