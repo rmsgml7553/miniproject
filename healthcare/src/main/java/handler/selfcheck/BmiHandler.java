@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import handler.Handler;
+import member.MemberService;
 import selfcheck.SelfCheckService;
 
 public class BmiHandler implements Handler {
@@ -27,13 +28,11 @@ public class BmiHandler implements Handler {
 		} else {
 			int height = Integer.parseInt(request.getParameter("height"));
 			int weight = Integer.parseInt(request.getParameter("weight"));
-			int age = Integer.parseInt(request.getParameter("age"));
-			String gender = request.getParameter("gender");
 			String exer = request.getParameter("exer");
-
-			SelfCheckService service = new SelfCheckService();
-			double bmr = service.calBmr(height, weight, age, gender);
 			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("loginId");
+			SelfCheckService service = new SelfCheckService();
+			double bmr = service.calBmr(height, weight, id);
 			session.setAttribute("bmr", bmr);
 			session.setAttribute("height", height);
 			session.setAttribute("weight", weight);
