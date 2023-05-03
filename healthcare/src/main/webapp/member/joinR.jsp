@@ -44,10 +44,10 @@ function myFunction(){
 				let obj = xhttp.responseText;
 				let arr = JSON.parse(obj);
 				console.log(arr);
-					if(arr.flag == ""){
+					if(arr.flag == "no"){
 						html += "아이디를 입력해주세요.";
 					}
-					if(arr.flag =="true"){
+					else if(arr.flag =="true"){
 							html += "사용가능한 아이디입니다.";
 					} else {
 						html += "중복된 아이디입니다.";
@@ -95,7 +95,7 @@ function pwdFunction(){
 		tf = false;
 	} 
 	else if(pwd2 == pwd){
-		html += "사용가능한 비밀번호 입니다.";	
+		html += "비밀번호가 일치 합니다.";	
 		tf = true;
 	} else {
 		html += "비밀번호가 다릅니다. 다시 입력해주세요.";
@@ -156,11 +156,11 @@ function codeFunction(){
 				id="id" size="50" autofocus required onblur="myFunction()"><br />
 			<span class="error_next_box" id="idMsg">필수정보 입니다.</span><br /> <label
 				for="pwd">비밀번호</label><br /> <input type="password" name="pwd"
-				id="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"
+				id="pwd" size="50" required placeholder="4~12자의 영문 대소문자와 숫자 특수문자로만 입력"
 				onblur="pwdFunction()"><br /> <span class="error_next_box"
 				id="pwdMsg">필수정보 입니다.</span><br /> <label for="pwd2">비밀번호
 				재확인</label><br /> <input type="password" name="pwd2" id="pwd2" size="50"
-				required placeholder="4~12자의 영문 대소문자와 숫자로만 입력"
+				required placeholder="4~12자의 영문 대소문자와 숫자 특수문자로만 입력"
 				onblur="pwdFunction()"><br /> <span class="error_next_box"
 				id="pwdMsg2">필수정보 입니다.</span><br /> <label for="name">이름</label><br />
 			<input type="text" name="name" id="name" size="50" required

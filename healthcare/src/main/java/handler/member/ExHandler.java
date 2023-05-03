@@ -27,10 +27,12 @@ public class ExHandler implements Handler {
 		System.out.println(id);
 		MemberService service = new MemberService();
 		MemberVo vo = service.getByMember(id);
-		String flag =(vo==null)? "true": "false";
+		String flag = null;
 		if(id.length() == 0) {
 			System.out.println("1");
 			flag = "no";
+		}else {
+			flag =(vo==null)? "true": "false";
 		}
 		System.out.println("handler-"+flag);
 

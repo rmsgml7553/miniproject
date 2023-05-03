@@ -54,7 +54,7 @@ public class JoinRHandler implements Handler {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			view = "redirect:/member/login.jsp";
+			view = "/member/joinComplete.jsp";
 		}
 		return view;
 	}
