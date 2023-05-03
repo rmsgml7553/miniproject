@@ -220,33 +220,61 @@ a {
 }
 
 /* 즐겨찾기 */
+a{
+	text-decoration: none;  
 
- div.card-img-overlay {
- background-color: #F8F9FA;
- width: 280px;
- height: 310px; 
- }
- 
- div.list {
- background-color: #E9ECEF;
- width: 250px;
- height: 166px;
- margin-top: 10px;
- border-radius: 8px;
- }
- 
- p, h4 {
- margin: 0;
- padding: 0;
- }
- 
- div.container.box.contrast {
- height: 345px;
- width: 1005px;
- 
- }
+}
 
+div.card.like {
+	background-color: #F8F9FA;
+ 	width: 282px;
+ 	height: 310px;
+ 	border-radius: 8px;
+ 	floag:left;
+}
 
+div.list  {
+	background-color: #E9ECEF;
+	width: 252px;
+	height: 180px;
+	margin-top: 10px;
+	border-radius: 8px;
+	overflow-y: scroll;
+
+}
+
+.list::-webkit-scrollbar {
+	display: none;
+}
+
+p, h4 {
+	text-align: left;
+	margin:0;
+	padding: 0;
+	font-family: Calibri;
+}
+
+p.count {
+	font-weight: bolder;
+	font-size: 24px;
+}
+
+.list>p:nth-child(1) {
+ 	padding-top: 10px;
+ 	padding-left: 10px;
+}
+#block {
+	margin: 0 auto;
+
+}
+
+#block  div {
+	display: inline-block;
+}
+.text {
+	font-weight: bolder;
+	font-size: 20px;
+}
 /* 주변지도 (병원, 약국) css */
 .info {
 	position: relative;
@@ -449,7 +477,7 @@ a {
 		<!---------------------- 메인	 card-1 : 내 정보	start  ---------------------->
 		<main>
 			<div class="first">
-				<div class="card grow-on-hover"
+				<div class="card grow-on-hover"  style="cursor:pointer"
 					onclick="javascript:location.href='${pageContext.request.contextPath }/member/myinfo.do'">
 					<div class="container">
 						<i class='fas fa-user-circle' style='font-size: 120px;'></i>
@@ -1274,43 +1302,71 @@ a {
 
 
 			<!-- 메인	 card-4	즐겨찾기(약국, 병원, 약) : start -->
-
+			<div id="block">
 			<div class="card grow-on-hover card4" style="margin-top: 10px;">
-				<div class="container box contrast">
-				  <div class="card" style="width:500px">
+				  <div class="card like">
 					  <div class="card-img-overlay">
+					  	<div>
 					    <h4 class="card-title">pharmarcy</h4>
-					    <p class="card-text">아이디</p>
 					    <p class="card-text">count</p>
-					    <p class="card-text">2</p>
+					    <c:if test="${empty phlvo }">
+					    <p class="card-text text">즐겨찾기 목록이 없습니다. </p>
+					    </c:if>
+					  	<c:if test="${not empty phlvo}">
+					    <p class="card-text text">${phlvo.size()}  </p>
+					    </c:if>
 					    <div class="list">
-					    <p>list</p>
+					    <c:forEach var="vo" items="${phlvo}">
+						    <a href = "${pageContext.request.contextPath }/pharmarcy/pharmarcyDetail/load.do?hpid=${vo.code}">${vo.name} (${vo.code})</a>
+					    	<br>
+					    </c:forEach>	
+					    </div>
 					    </div>
 					  </div>
 					</div>
-				  <div class="card" style="width:500px">
+					
+				  <div class="card like">
 					  <div class="card-img-overlay">
-					    <h4 class="card-title">pill</h4>
-					    <p class="card-text">아이디</p>
-					    <p class="card-text">count</p>
-					    <p class="card-text">2</p>
-					    <div class="list">
-					    <p>list</p>
-					    </div>
-					  </div>
-					</div>
-				  <div class="card" style="width:500px">
-					  <div class="card-img-overlay">
+					  	<div>
 					    <h4 class="card-title">clinic</h4>
-					    <p class="card-text">아이디</p>
 					    <p class="card-text">count</p>
-					    <p class="card-text">2</p>
+					    <c:if test="${empty clvo }">
+					    <p class="card-text text">즐겨찾기 목록이 없습니다. </p>
+					    </c:if>
+					  	<c:if test="${not empty clvo}">
+					    <p class="card-text text">${clvo.size()}  </p>
+					    </c:if>
 					    <div class="list">
-					    <p>list</p>
+					    <c:forEach var="vo" items="${clvo}">
+					    	<a href = "${pageContext.request.contextPath }/clinic/detail.do?code=${vo.code }">${vo.name} (${vo.code})</a>
+					    	<br>
+					    </c:forEach>	
+					    </div>
 					    </div>
 					  </div>
 					</div>
-				</div>
+					
+				  <div class="card like">
+					  <div class="card-img-overlay">
+					  	<div>
+					    <h4 class="card-title">pill</h4>
+					    <p class="card-text">count</p>
+					    <c:if test="${empty plvo }">
+					    <p class="card-text text">즐겨찾기 목록이 없습니다. </p>
+					    </c:if>
+					  	<c:if test="${not empty plvo}">
+					    <p class="card-text text">${plvo.size() } </p>
+					    </c:if>
+					    <div class="list">
+					    <c:forEach var="vo" items="${plvo}">
+					    	${vo.name} (${vo.code})
+					    	<br>
+					    </c:forEach>	
+					    </div>
+					    </div>
+					  </div>
+					</div>
+			</div>
 			</div>
 		</main>
 		<!-- 메인	 card-4	즐겨찾기(약국, 병원, 약) : end -->

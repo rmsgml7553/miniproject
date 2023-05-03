@@ -25,16 +25,15 @@ public class MyInfoHandler implements Handler {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String view = "/member/mypage.jsp";
+		String view = "";
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("loginId");
 		MemberService service = new MemberService();
 		MemberVo m = service.getByMember(id);
-		view = "/member/myinfo.jsp";
 		request.setAttribute("m", m);
-		request.setAttribute("view", view);
+		view = "/member/myinfo.jsp";
 		
 		
 		return view;

@@ -23,31 +23,23 @@ public class EditFormHandler implements Handler {
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		System.out.println(request.getMethod().equals("GET"));
 
 		String view = "";
-		if(request.getMethod().equals("GET")) {
-			HttpSession session = request.getSession(false);
-			String id = (String) session.getAttribute("loginId");
-			MemberService service = new MemberService();
-			MemberVo vo = service.getByMember(id);
-			request.setAttribute("vo", vo);
-			view = "/member/editform.jsp";
-		} else {
-			String id = request.getParameter("id");
-			String pwd = request.getParameter("pwd");
-			System.out.println(pwd);
-			String name = request.getParameter("name");
-			String phone = request.getParameter("phone");
-			String address = request.getParameter("sample3_address")+" " +request.getParameter("sample3_detailAddress");
-			System.out.println(address);
-			MemberService service = new MemberService();
-			MemberVo vo = new MemberVo();
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		System.out.println(pwd);
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("sample3_address")+" " +request.getParameter("sample3_detailAddress");
+		System.out.println(address);
+		MemberService service = new MemberService();
+		MemberVo vo = new MemberVo();
 
-			vo = new MemberVo(id, pwd, name, phone, address, 0, null, null, null);
-			service.editMember(vo);
-			request.setAttribute("vo", vo);
-			view = "/member/myinfo.do";
-		}
+		vo = new MemberVo(id, pwd, name, phone, address, 0, null, null, null);
+		service.editMember(vo);
+		request.setAttribute("vo", vo);
+		view = "/member/myinfo.do";
 
 	return view;
 }
