@@ -6,8 +6,10 @@
 <head>
 <style>
 th{
-
 font-style: bold;
+
+}
+
 }
 </style>
 <meta charset="UTF-8">

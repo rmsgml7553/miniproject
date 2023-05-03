@@ -39,35 +39,6 @@
       xhttp.send();
    }
 </script>
-<script><!-- 페이지넘김 -->
-	var mHtml = $("html");
-	var page = 1;
-	mHtml.animate({
-		scrollTop : 0
-	}, 10);
-	window.addEventListener("wheel", function(e) {
-		e.preventDefault();
-	}, {
-		passive : false
-	});
-	$(window).on("wheel", function(e) {
-		if (mHtml.is(":animated"))
-			return;
-		if (e.originalEvent.deltaY > 0) {
-			if (page == 4)
-				return;
-			page++;
-		} else if (e.originalEvent.deltaY < 0) {
-			if (page == 1)
-				return;
-			page--;
-		}
-		var posTop = (page - 1) * $(window).height();
-		mHtml.animate({
-			scrollTop : posTop
-		});
-	});
-</script>
 <script>
 function selfChkChk(){
 	alert("로그인 후 사용 가능합니다.");
@@ -75,8 +46,7 @@ function selfChkChk(){
 </script>
 
 <style>
-html {
-	overflow: hidden;
+
 }
 	html, body {
 	padding: 0px;
@@ -87,17 +57,24 @@ html {
 	position: relative;
 }
 
-video {
-	width: 100%;
-	position: fixed;
-	z-index: 0.5;
-	opacity:;
-}
-
 nav {
 	margin: 15px;
 	border-radius: 40px 40px 40px 40px;
 	height: 10%;
+
+}
+#nav{
+background-color : white;
+position: fixed;
+top 0px;
+left: 0px;
+right: 0px;
+width : 100%;
+height: 117px;
+border-bottom: 1px solid rgb(221, 221, 221);
+}
+section{
+padding-top: 130px;
 }
 
 #searchbtn {
@@ -159,66 +136,16 @@ nav {
 	height: 1000px;
 }
 
-.section {
-	width: 100%;
-	height: 100%;
-	position: relative;
-	opacity: 1;
-	z-index: 2;
-}
 
-.img {
-
-right: 0px;
-bottom: 0px;
-width:100%;
-height: 100%;
-
-	
-}
-
-#section1 {
-background-image: url("img/1.png");
-background-size: cover;
-}
-
-#section2 {
-background-image: url("img/b.png");
-background-size: cover;
-}
-
-#section3 {
-background-image: url("img/c.png");
-background-size: cover;
-}
-
-#section4 {
-background-image: url("img/d.png");
-background-size: cover;
-background-color: white;
-}
-
-#joinbtn {
-position: absolute;
-top:40%;
-left:15%;
-width: 200px;
-height: 100px;
-font-size: 20px;
-border-radius: 50px;
-}
-
-}
 </style>
 
 
 </head>
 <body>
-
 <!-- 내비시작 -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-light fixed-top">
   <div class="container-fluid">
-	<img alt="logo" src="img/logo.png" width="9%" height="9%" onclick = "javascript:location.href='${pageContext.request.contextPath }/index.jsp'"  style="cursor: pointer">
+	<img alt="logo" src="../img/logo.png" width="9%" height="9%" onclick = "javascript:location.href='${pageContext.request.contextPath }/index.jsp'"  style="cursor: pointer">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -244,9 +171,7 @@ border-radius: 50px;
 			</div>
         </li>
         <li class="nav-item">
-        <c:if test="${not empty sessionScope.loginId }">
-          <p><b>${sessionScope.loginID }</b>님 반갑습니다.</p>
-        </c:if>
+          
         </li>
       </ul>
       <form class="d-flex" action ="${pageContext.request.contextPath }/search/load.do">
@@ -263,24 +188,8 @@ border-radius: 50px;
     </div>
   </div>
 </nav>
+<div id="nav"></div>
 <!--  내비끝 -->
-	<video muted autoplay loop>
-		<source src="img/video.mp4" type="video/mp4">
-	</video>
-
-	<div class="section" id="section1">
-	</div>
-	<div class="section" id="section2">
-	</div>
-	<div class="section" id="section3">
-	</div>
-	<div class="section" id="section4">
-	<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#join" id="joinbtn">
-  		<span class="spinner-grow spinner-grow-sm" ></span>
- 	 	무료 회원가입
-	</button>
-	</div>
-	
 	<!-- 모달은 여기에 -->
 	<!-- 회원가입 -->
 <div class="modal" id="join" >
@@ -357,7 +266,27 @@ border-radius: 50px;
                </div>
             </div>
          </div>
+<section><!-- 내용입력 여기에다가!!!!! -->
+<!-- id, 제목, 글내용 가져가야함. -->
+<h3>수정페이지</h3>
+${sessionScope.loginId }
+<form action="${pageContext.request.contextPath }/board/edit.do?num=${num}" method="POST">
+<table border="1">
+<tr><th>로그인 ID</th><td><input type="text" name="id" value="${id }"  ></td></tr>
+<tr><th>제목</th><td><input type="text" name="title" value="${title }" ></td></tr>
 
-	
+<tr><th>글내용</th><td><textarea rows="20" cols="30" name="content">${content }</textarea></td></tr>
+<tr><th>작성</th><td><input type="submit" name="완료" value="완료"><input type="submit" name="취소" value="취소"></td></tr>
+</table>
+</form>
+
+<!-- 완료 누르면 디테일.jsp로 이동 취소 누르면 detail.jsp로 이동 -->
+</section>
+	<footer style="background-color : white;position: fixed;bottom: 0px;left:0px;width:100%;height:60px;border-top: 1px solid rgb(221, 221, 221);font-size: 12px; ">
+<span style="position: absolute;left:30px;">서울특별시 송파구 위례성대로 14 | 대표번호 | 02-410-9114 | 소비자상담실 : 080-916-9000 <br>
+투자문의 02-410-0404 (알빠노 주식회사)<br>
+[SSL 보안프로그램 적용]ALBBANO는 더욱 안심하고 신뢰할 수 있는 서비스를 제공하기 위해 최선을 다하고 있습니다.
+<b>©ALBBANO .Co.,Ltd.</b></span>
+</footer>
 </body>
 </html>
