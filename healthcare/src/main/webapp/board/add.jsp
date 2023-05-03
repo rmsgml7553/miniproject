@@ -37,8 +37,8 @@ response.setContentType("text/html; charset=UTF-8");
       <label for="comment">글내용:</label>
       <textarea class="form-control" rows="10" id="comment" name="content"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary" style="margin-right:10px" onclick = "javascript:location.href='${pageContext.request.contextPath }/board/list.do'">취소</button>
-    <button type="submit" class="btn btn-primary" >작성</button>
+    <button type="submit" class="btn btn-light btn-sm" style="margin-right:10px" onclick = "javascript:location.href='${pageContext.request.contextPath }/board/list.do'">취소</button>
+    <button type="submit" class="btn btn-primary btn-sm" style="background-color:#3AA2D2;border: 0px" >작성</button>
     
 
 

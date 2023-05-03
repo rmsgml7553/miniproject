@@ -30,7 +30,7 @@ width:400px;
 <body>
 
 <div class="container">
-<h3>자유게시판</h3>
+<h3 style = "margin-bottom:50px">자유게시판</h3>
 
 <c:if test = "${not empty sessionScope.loginId }">
  
@@ -49,8 +49,8 @@ width:400px;
 </c:forEach>
   </tbody>
 </table>
-<button type="button" class="btn btn-primary" style="float:right" onclick ="javascript:location.href='${pageContext.request.contextPath}/board/add.do?id=${sessionScope.loginId}'">글 작성</button>
-
+<button type="button" class="btn btn-primary btn-sm" style="background-color:#3AA2D2;float:right;border: 0px" onclick ="javascript:location.href='${pageContext.request.contextPath}/board/add.do?id=${sessionScope.loginId}'">글 작성</button>
+</div>
 
 </body>
 </html>

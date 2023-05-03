@@ -105,10 +105,11 @@ function change(){
 <div class="container">
 	<h1 style = "display:inline">${vo.title }</h1>
 	
-	<span class="material-symbols-outlined">person</span>${vo.id }
-	<span class="material-symbols-outlined" id="like" style = "coloer:gray;padding-left:20px" onclick = "change()">favorite</span>
+	<span class="material-symbols-outlined" style = "color:gray;padding-left:20px">person</span>${vo.id }
+	<span class="material-symbols-outlined" id="like" style = "color:gray;padding-left:20px" onclick = "change()">favorite</span>
 	<span id = "like_cnt">${count}</span>
-
+	<span class="material-symbols-outlined" style = "color:gray;padding-left:20px">visibility</span>${vo.cnt }
+	
 	<div class="row">
 		<div class="col">
 			
@@ -176,12 +177,12 @@ function change(){
 
 <%-- <a href="${pageContext.request.contextPath }/board/list.do">글목록으로 이동</a><br/> --%>
 
-<button type="button" class="btn btn-primary btn-sm" onclick = "javascrip:location.href='${pageContext.request.contextPath }/board/list.do'" style="float:right;">목록</button><br/><br/>
+<button type="button" class="btn btn-primary btn-sm" onclick = "javascrip:location.href='${pageContext.request.contextPath }/board/list.do'" style="float:right;background-color:#3AA2D2;border: 0px">목록</button><br/><br/>
 	
 	<div class = "container mt -3">
 		
 		<c:if test = "${ empty sessionScope.loginId }">
-			<input type="text" class="form-control" placeholder="로그인 후 댓글을 달 수 있습니다." style="width: 85%" readonly>
+			<input type="text" class="form-control" placeholder="로그인 후 댓글을 달 수 있습니다." style="width: 90%;margin-bottom:20px" readonly>
 		</c:if>
 		<c:if test = "${not empty sessionScope.loginId }">
 			<div class="form-group mb-3" >
@@ -190,7 +191,7 @@ function change(){
 				 <div class="input-group-append">
 					<input type = "text" name = "content" class="form-control" style="width:90%;display:inline;margin-bottom:20px" >
 					
-						<input type = "submit" class="btn btn-light" style="float:right;" value = "댓글 작성">
+						<input type = "submit" class="btn btn-light" style="float:right" value = "댓글 작성">
 					</div>
 		
 				</form>
