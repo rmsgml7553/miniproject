@@ -30,6 +30,7 @@ public class GetPwdHandler implements Handler {
 
 		if(request.getMethod().equals("GET")) {
 			String chk = request.getParameter("pwdcheck");
+			System.out.println(chk);
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("loginId");
 			MemberService service = new MemberService();

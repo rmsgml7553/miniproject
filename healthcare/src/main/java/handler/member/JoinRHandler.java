@@ -41,7 +41,7 @@ public class JoinRHandler implements Handler {
 			String m = request.getParameter("month");
 			String d = request.getParameter("day");
 			String str = y+"/"+m+"/"+d;
-
+			
 			try {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 				java.util.Date util;
@@ -49,7 +49,8 @@ public class JoinRHandler implements Handler {
 				java.sql.Date birth;
 				birth =  new java.sql.Date(util.getTime());
 				MemberService service = new MemberService();
-				service.joinMember(new MemberVo(id, pwd, name, phone, address,0, code, gender, birth));
+				service.joinRMember(new MemberVo(id, pwd, name, phone, address, 1, code, gender, birth));
+				System.out.println(new MemberVo(id, pwd, name, phone, address,0, code, gender, birth));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

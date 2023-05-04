@@ -110,7 +110,7 @@ function nameFunction(){
 	let name = document.getElementById("name").value;
 	console.log(name);
 	let nameMsg = document.getElementById("nameMsg");
-	let RegExp =  /^(?=.*[가-힣a-z-A-Z])$/;
+	let RegExp =  /^[a-zA-Z\uAC00-\uD7A3]*$/;
 	let res = RegExp.test(name);
 
 	nameMsg.style.display = "";

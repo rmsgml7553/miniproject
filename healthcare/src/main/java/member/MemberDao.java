@@ -45,7 +45,7 @@ public class MemberDao {
 	// 관계자 가입
 	public void reInsert(MemberVo vo) {
 		Connection conn = dbconn.conn();
-		String sql = "insert into  member values (?, ?, ?, ?, ?, ?, ?, 2, ?, ?)";
+		String sql = "insert into  member values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getId());
@@ -75,7 +75,7 @@ public class MemberDao {
 	// 탈퇴
 	public void deleteMember(String id) {
 		Connection conn = dbconn.conn();
-		String sql = "delete from member where id=?";
+		String sql = "delete member where id=?";
 		System.out.println("탈퇴 dao");
 		System.out.println(id);
 		try {

@@ -19,7 +19,7 @@ public class OutHandler implements Handler {
 		service.delMember(id);
 
 		session.invalidate();
-		return "/index.jsp";
+		return "redirect:/index.jsp";
 	}
 
 }
