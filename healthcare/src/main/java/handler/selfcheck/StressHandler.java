@@ -66,7 +66,7 @@ public class StressHandler implements Handler {
 			session.setAttribute("stressRs", rs);
 			
 //     		String id = (String) idsession.getAttribute("loginId");
-			String id = "aaa";
+			String id = (String)session.getAttribute("loginId");
 			int height = (int) session.getAttribute("height");
 			System.out.println(height);
 			int weight = (int) session.getAttribute("weight");
@@ -80,9 +80,10 @@ public class StressHandler implements Handler {
 			session.setAttribute("bmr1", bmr1);
 			session.setAttribute("amr1", amr1);
 			session.setAttribute("bmi1", bmi1);
-
-			service.addSelfCh(new SelfCheckVo(id, null, height, weight, bmr, amr, bmi, stress));
 			
+			service.addSelfCh(new SelfCheckVo(id, null, height, weight, bmr, amr, bmi, stress));
+
+			System.out.println(new SelfCheckVo(id, null, height, weight, bmr, amr, bmi, stress));
 			LocalDate now = LocalDate.now();
 			session.setAttribute("now", now);
 	       

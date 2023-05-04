@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import handler.Handler;
 import member.MemberService;
+import member.MemberVo;
 import selfcheck.SelfCheckService;
 
 public class BmiHandler implements Handler {
@@ -24,12 +25,19 @@ public class BmiHandler implements Handler {
 			session.removeAttribute("stress");
 			session.removeAttribute("stressRs");
 			session.removeAttribute("bmiRs");
+			MemberService service = new MemberService();
+			SelfCheckService selfService = new SelfCheckService();
+			String id = (String)session.getAttribute("loginId");
+			if(id != null) {
+				request.setAttribute("age", selfService.getAge(id));
+				request.setAttribute("gender",service.getByMember(id).getGender());
+			}
 			view = "/selfcheck/bmi.jsp";
 		} else {
 			int height = Integer.parseInt(request.getParameter("height"));
 			int weight = Integer.parseInt(request.getParameter("weight"));
 			String exer = request.getParameter("exer");
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession(false);
 			String id = (String)session.getAttribute("loginId");
 			SelfCheckService service = new SelfCheckService();
 			double bmr = service.calBmr(height, weight, id);

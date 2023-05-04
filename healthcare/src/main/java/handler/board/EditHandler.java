@@ -46,10 +46,15 @@ public class EditHandler implements Handler {
 		} else { //post 방식
 			System.out.println("edit 핸들러 도착");
 			
+		
 			int num = Integer.parseInt(request.getParameter("num"));
 			String id = request.getParameter("id");
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
+			
+			System.out.println("id: " + id);
+			System.out.println("title : " + title);
+			System.out.println("content : " + content);
 			
 		
 			

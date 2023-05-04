@@ -227,10 +227,10 @@ border-radius: 50px;
         <li class="nav-item">
 			<div class="btn-group">
 				<c:if test="${empty sessionScope.loginId }">
-				<button type="button" class="btn btn-primary" id="btn1" onclick="selfChkChk()">자가건강전검</button>
+				<button type="button" class="btn btn-primary" id="btn1" onclick="selfChkChk()">자가건강점검</button>
 				</c:if>
 				<c:if test="${not empty sessionScope.loginId }">
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bmi" id="btn1">자가건강전검</button>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bmi" id="btn1">자가건강점검</button>
 				</c:if>
   				<button type="button" class="btn btn-primary" id="btn2" onclick = "javascript:location.href='${pageContext.request.contextPath }/board/list.do'"  style="cursor: pointer">자유게시판</button>
   				<c:if test = "${empty sessionScope.loginId }">
@@ -242,11 +242,6 @@ border-radius: 50px;
   				<button type="button" class="btn btn-primary" id="btn4" onclick = "javascript:location.href='${pageContext.request.contextPath }/member/logout.do'"  style="cursor: pointer">로그아웃</button>
   				</c:if>
 			</div>
-        </li>
-        <li class="nav-item">
-        <c:if test="${not empty sessionScope.loginId }">
-          <p><b>${sessionScope.loginID }</b>님 반갑습니다.</p>
-        </c:if>
         </li>
       </ul>
       <form class="d-flex" action ="${pageContext.request.contextPath }/search/load.do">
@@ -275,10 +270,12 @@ border-radius: 50px;
 	<div class="section" id="section3">
 	</div>
 	<div class="section" id="section4">
-	<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#join" id="joinbtn">
-  		<span class="spinner-grow spinner-grow-sm" ></span>
- 	 	무료 회원가입
-	</button>
+	<c:if test = "${empty sessionScope.loginId }">
+		<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#join" id="joinbtn">
+	  		<span class="spinner-grow spinner-grow-sm" ></span>
+	 	 	무료 회원가입
+		</button>
+	</c:if>
 	</div>
 	
 	<!-- 모달은 여기에 -->
@@ -307,7 +304,7 @@ border-radius: 50px;
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h5 class="modal-title"><b>자가건강전검</b></h5>
+        <h5 class="modal-title"><b>자가건강점검</b></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="location.reload()"></button>
       </div>
 
@@ -337,20 +334,20 @@ border-radius: 50px;
                            <label for="id" class="form-label"><b>아이디</b></label> <input
                               type="text" class="form-control" id="id" placeholder="ID"
                               name="id" required>
-                           <div class="valid-feedback">Valid.</div>
-                           <div class="invalid-feedback">Please fill out this field.</div>
+                           <div class="valid-feedback">입력 감사합니다.</div>
+                           <div class="invalid-feedback">아이디를 입력해 주세요.</div>
                         </div>
                         <div class="mb-3">
                            <label for="pwd" class="form-label"><b>비밀번호</b></label> <input
                               type="password" class="form-control" id="pwd"
                               placeholder="Password" name="pwd" required>
-                           <div class="valid-feedback">Valid.</div>
-                           <div class="invalid-feedback">Please fill out this field.</div>
+                           <div class="valid-feedback">입력 감사합니다.</div>
+                           <div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
                         </div>
                         <div style="text-align: center;">
-                           <input type="button" class="btn btn-default" id="button"
+                           <input type="button" class="btn"
                               onclick="a()"
-                              value="로그인">
+                              value="로그인" style="background-color:rgb(233, 236, 239);color:black;border: 0px">
                         </div>
                      </form>
                   </div>

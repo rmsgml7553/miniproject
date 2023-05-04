@@ -1,6 +1,8 @@
 package selfcheck;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -46,17 +48,22 @@ public class SelfCheckService {
 		
 		MemberService memberService = new MemberService();
 		
-		Date birth = memberService.getByMember(id).getBirth();
+		java.sql.Date sqlBirth = memberService.getByMember(id).getBirth();
 		
-		int birthYear = birth.getYear();
-		int birthMonth = birth.getMonth(); 
-		int birthDay = birth.getDay();
-		
+		java.util.Date birth = new java.util.Date(sqlBirth.getTime());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy");
+		int birthYear = Integer.parseInt(dateFormat.format(birth));
+		dateFormat = new SimpleDateFormat("mm");
+		int birthMonth = Integer.parseInt(dateFormat.format(birth));
+		dateFormat = new SimpleDateFormat("dd");
+		int birthDay= Integer.parseInt(dateFormat.format(birth));
 		Calendar current = Calendar.getInstance();
         int currentYear  = current.get(Calendar.YEAR);
         int currentMonth = current.get(Calendar.MONTH) + 1;
         int currentDay   = current.get(Calendar.DAY_OF_MONTH);
-        
+        System.out.println("birthY : " + birthYear);
+        System.out.println("currentY : " + currentYear);
+        System.out.println("currentY : " + currentYear);
         int age = currentYear - birthYear;
         if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay) {
         	age--;
@@ -68,6 +75,7 @@ public class SelfCheckService {
 	public double calBmr(int height, int weight, String id) {
 		double result;
 		int age = getAge(id);
+		System.out.println(age);
 		MemberService service = new MemberService();
 		String gender = service.getByMember(id).getGender();
 		if (gender.equals("m")) {

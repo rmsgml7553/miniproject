@@ -31,6 +31,7 @@ public class SelfCheckDao {
 //			private double amr; //활동대사량
 //			private double bmi;  //비만지수
 //			private double stress; //스트레스
+			System.out.println("insert");
 			pstmt.setString(1, vo.getId());
 			pstmt.setInt(2, vo.getHeight());
 			pstmt.setInt(3, vo.getWeight());
@@ -38,7 +39,7 @@ public class SelfCheckDao {
 			pstmt.setDouble(5, vo.getAmr());
 			pstmt.setDouble(6, vo.getBmi());
 			pstmt.setDouble(7, vo.getStress());
-			pstmt.executeUpdate();
+			System.out.println(pstmt.executeUpdate());
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

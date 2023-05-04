@@ -1,11 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link
@@ -49,8 +59,36 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+<script> <!-- ë¡œê·¸ì¸ -->
+   function a() {
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function() {
+         let tags = document.getElementsByTagName("input");
+         let res = document.getElementById("res");
+         let obj = xhttp.responseText;
+         console.log(obj);
+         let arr = JSON.parse(obj);
+         if (arr.flag == "ë¡œê·¸ì¸ ì™„ë£Œ") {
+            window.location.href = "${pageContext.request.contextPath}/member/logincomplete.do";
+         } else {
+            alert(arr.flag);
+         }
+
+      }
+      let param = "?id=" + f.id.value + "&pwd=" + f.pwd.value;
+      xhttp.open("get", "${pageContext.request.contextPath}/member/login.do"
+            + param);
+      xhttp.send();
+   }
+</script>
+<script>
+function selfChkChk(){
+	alert("ë¡œê·¸ì¸ í›„ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤.");
+}
+</script>
 <style>
-/* ±âº» css */
+/* ê¸°ë³¸ css */
 * {
 	box-sizing: border-box;
 }
@@ -58,6 +96,7 @@
 body {
 	background-color: rgb(0, 134, 248);
 	width: 100%;
+	margin-bottom:200px;
 	font-family: SF Pro Text, Helvetica Neue, sans-serif;
 }
 
@@ -219,7 +258,7 @@ a {
 	height: 250px;
 }
 
-/* Áñ°ÜÃ£±â */
+/* ì¦ê²¨ì°¾ê¸° */
 a{
 	text-decoration: none;  
 
@@ -275,12 +314,12 @@ p.count {
 	font-weight: bolder;
 	font-size: 20px;
 }
-/* ÁÖº¯Áöµµ (º´¿ø, ¾à±¹) css */
+/* ì£¼ë³€ì§€ë„ (ë³‘ì›, ì•½êµ­) css */
 .info {
 	position: relative;
 	top: 5px;
 	left: 5px;
-	border-radius: 6px;
+/* 	border-radius: 6px; */
 	border: 1px solid #ccc;
 	border-bottom: 2px solid #ddd;
 	font-size: 12px;
@@ -288,6 +327,9 @@ p.count {
 	background: #fff;
 	list-style: none;
 	margin: 0;
+}
+.info ul{
+	height:60px;
 }
 
 .info:nth-of-type(n) {
@@ -298,17 +340,19 @@ p.count {
 .info .label {
 	display: inline-block;
 	width: 50px;
+	height:20px;
 }
 
 .number {
 	font-weight: bold;
 	color: #00a0e9;
+	height:20px;
 }
 
 .map_wrap, .map_wrap * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Malgun Gothic', dotum, 'µ¸¿ò', sans-serif;
+	font-family: 'Malgun Gothic', dotum, 'ë‹ì›€', sans-serif;
 	font-size: 12px;
 }
 
@@ -385,6 +429,7 @@ p.count {
 	bottom: 28px;
 	left: -150px;
 	width: 300px;
+	height:
 }
 
 .placeinfo {
@@ -429,6 +474,8 @@ p.count {
 	margin: 5px 5px 0 5px;
 	cursor: default;
 	font-size: 13px;
+	width:240px;
+	height:30px;
 }
 
 .placeinfo .title {
@@ -455,26 +502,239 @@ p.count {
 }
 </style>
 
+<style>
+
+}
+	html, body {
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	disdplay: block;
+	margin: 0;
+	position: relative;
+}
+
+nav {
+	margin: 15px;
+	border-radius: 40px 40px 40px 40px;
+	height: 10%;
+
+}
+#nav{
+background-color : white;
+position: fixed;
+top 0px;
+left: 0px;
+right: 0px;
+width : 100%;
+height: 117px;
+border-bottom: 1px solid rgb(221, 221, 221);
+}
+section{
+padding-top: 130px;
+padding-bottom: 80px;
+}
+
+#searchbtn {
+	border-radius: 0px 30px 30px 0px;
+	height: 50px;
+}
+
+#search {
+	border-radius: 30px 0px 0px 30px;
+	height: 50px;
+	width: 300px;
+	
+}
+
+#option {
+	border-radius: 0px 0px 0px 0px;
+	width: 150px;
+	margin-left: -5px;
+	margin-right: 3.5px;
+}
+
+#btn1 {
+	border-radius: 30px 0px 0px 30px;
+}
+
+#btn2, #btn3 {
+	border-radius: 0px 0px 0px 0px;
+}
+
+#btn4 {
+	border-radius: 0px 30px 30px 0px;
+
+}
+
+#btn1, #btn2, #btn3, #btn4, #searchbtn {
+	height: 50px;
+	border: none;
+	background-color: RGB(58, 162, 201);
+	font-weight: bold;
+	color: white;
+}
+
+.loginbox {
+	margin-top: 8.5px;
+	margin-left: 12px;
+}
+
+.loginbox a {
+	color: RGB(58, 162, 201);
+	font-weight: bold;
+}
+
+#menu {
+	margin-top: 3px;
+}
+
+.myModal {
+	width: 80%;
+	height: 1000px;
+}
+
+
+</style>
+
+
 </head>
 <body>
-	<div>
-		<!-- 	³×ºñ¹Ù start-->
-		<header class="">
-			<nav class="navbar navbar-expand-sm" id="navbar">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#"> <img src="/img/logo.png">
-					</a>
-				</div>
-			</nav>
-		</header>
-		<!-- 	³×ºñ¹Ù end-->
+<!-- ë‚´ë¹„ì‹œì‘ -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-light fixed-top">
+  <div class="container-fluid">
+	<img alt="logo" src="../img/logo.png" width="9%" height="9%" onclick = "javascript:location.href='${pageContext.request.contextPath }/index.jsp'"  style="cursor: pointer">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+			<div class="btn-group">
+				<c:if test="${empty sessionScope.loginId }">
+				<button type="button" class="btn btn-primary" id="btn1" onclick="selfChkChk()">ìê°€ê±´ê°•ì ê²€</button>
+				</c:if>
+				<c:if test="${not empty sessionScope.loginId }">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bmi" id="btn1">ìê°€ê±´ê°•ì ê²€</button>
+				</c:if>
+  				<button type="button" class="btn btn-primary" id="btn2" onclick = "javascript:location.href='${pageContext.request.contextPath }/board/list.do'"  style="cursor: pointer">ììœ ê²Œì‹œíŒ</button>
+  				<c:if test = "${empty sessionScope.loginId }">
+  				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#join" id="btn3">íšŒì›ê°€ì…</button>
+  				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login" id="btn4">ë¡œê·¸ì¸</button>
+  				</c:if>
+  				<c:if test = "${not empty sessionScope.loginId }">
+  				<button type="button" class="btn btn-primary" id="btn3" onclick = "javascript:location.href='${pageContext.request.contextPath }/member/logincomplete.do'"  style="cursor: pointer">ë§ˆì´í˜ì´ì§€</button>
+  				<button type="button" class="btn btn-primary" id="btn4" onclick = "javascript:location.href='${pageContext.request.contextPath }/member/logout.do'"  style="cursor: pointer">ë¡œê·¸ì•„ì›ƒ</button>
+  				</c:if>
+			</div>
+        </li>
+        <li class="nav-item">
+          
+        </li>
+      </ul>
+      <form class="d-flex" action ="${pageContext.request.contextPath }/search/load.do">
+        <input class="form-control me-2" type="text" placeholder="ê²€ìƒ‰" name="search" id="search">
+        <select class="form-select" id="option" name="institution">
+						<option value="clinic">ë³‘ì›</option>
+						<option value="pharmarcy">ì•½êµ­</option>
+						<option value="pillItem">ì•½ : ì œí’ˆëª…</option>
+						<option value="pillEntp">ì•½ : ì—…ì²´ëª…</option>
+						<input type="hidden" name="from" value="searchHandler">
+					</select>
+        <button class="btn btn-primary" type="submit" id="searchbtn">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!--  ë‚´ë¹„ë -->
+	<!-- ëª¨ë‹¬ì€ ì—¬ê¸°ì— -->
+	<!-- íšŒì›ê°€ì… -->
+<div class="modal" id="join" >
+  <div class="modal-dialog modal-lg" style="width:535px;">
+    <div class="modal-content">
 
+      <!-- Modal Header -->
+      <div class="modal-header" >
+        <h5 class="modal-title"><b>íšŒì›ê°€ì…</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  onclick="location.reload()"></button>
+      </div>
 
+      <!-- Modal body -->
+      <iframe src="${pageContext.request.contextPath }/member/join.jsp" title="iframe"
+							 height="500px" style="border:none;"> </iframe>
 
+    </div>
+  </div>
+</div>
+<!-- ìê°€ê±´ê°• -->
+<div class="modal" id="bmi">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
 
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title"><b>ìê°€ê±´ê°•ì ê²€</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="location.reload()"></button>
+      </div>
 
+      <!-- Modal body -->
+      <iframe src="${pageContext.request.contextPath }/selfcheck/bmi.do" title="iframe"
+							 height="600px" style="border:none;"> </iframe>
 
-		<!---------------------- ¸ŞÀÎ	 card-1 : ³» Á¤º¸	start  ---------------------->
+    </div>
+  </div>
+</div>
+<!-- ë¡œê·¸ì¸ì°½ -->
+         <div class="modal" id="login">
+            <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+
+ <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title"><b>ë¡œê·¸ì¸</b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"  onclick="location.reload()"></button>
+      </div>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                     <form
+                        action="${pageContext.request.contextPath }/member/login.do"
+                        name="f" method="post" class="was-validated">
+                        <div class="mb-3 mt-3">
+                           <label for="id" class="form-label"><b>ì•„ì´ë””</b></label> <input
+                              type="text" class="form-control" id="id" placeholder="ID"
+                              name="id" required>
+                           <div class="valid-feedback">Valid.</div>
+                           <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="mb-3">
+                           <label for="pwd" class="form-label"><b>ë¹„ë°€ë²ˆí˜¸</b></label> <input
+                              type="password" class="form-control" id="pwd"
+                              placeholder="Password" name="pwd" required>
+                           <div class="valid-feedback">Valid.</div>
+                           <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div style="text-align: center;">
+                           <input type="button" class="btn btn-default" id="button"
+                              onclick="a()"
+                              value="ë¡œê·¸ì¸">
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+         
+         
+         
+         
+         
+<section>
+<!------------------------------- ë‚´ìš©ì…ë ¥ ì—¬ê¸°ì—ë‹¤ê°€!!!!! ----------------------------------------->
+
+<div>
+
+		<!---------------------- ë©”ì¸	 card-1 : ë‚´ ì •ë³´	start  ---------------------->
 		<main>
 			<div class="first">
 				<div class="card grow-on-hover"  style="cursor:pointer"
@@ -482,14 +742,14 @@ p.count {
 					<div class="container">
 						<i class='fas fa-user-circle' style='font-size: 120px;'></i>
 						<div style="font-size: 32px;font-weight: 400;">${sessionScope.loginId }</div>
-						<div>${vo.mcode == 1 ? "ÀÏ¹İ":"°ü°èÀÚ"}</div>
+						<div>${vo.mcode == 1 ? "ì¼ë°˜":"ê´€ê³„ì"}</div>
 						<div>
-							<a href="${pageContext.request.contextPath }/member/myinfo.do">³»Á¤º¸
-								º¸±â</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo.do">ë‚´ì •ë³´
+								ë³´ê¸°</a>
 						</div>
 					</div>
 				</div>
-				<!-- ¸ŞÀÎ	 card-1	end -->
+				<!-- ë©”ì¸	 card-1	end -->
 
 
 
@@ -506,7 +766,7 @@ p.count {
 
 
 
-				<!---------------------- ¸ŞÀÎ	 card-2 :¼¿ÇÁÃ¼Å© ±×·¡ÇÁ start ---------------------->
+				<!---------------------- ë©”ì¸	 card-2 :ì…€í”„ì²´í¬ ê·¸ë˜í”„ start ---------------------->
 				<div class="card grow-on-hover">
 					<div class="container">
 						<div id="carouselExampleControls" class="carousel slide"
@@ -519,7 +779,7 @@ p.count {
 									<canvas id="bmr"></canvas>
 								</div>
 								<div class="carousel-item">
-									<canvas id="bmi"></canvas>
+									<canvas id="bmi2"></canvas>
 								</div>
 								<div class="carousel-item">
 									<canvas id="stress"></canvas>
@@ -539,28 +799,28 @@ p.count {
 					</div>
 				</div>
 			</div>
-			<!-- ¸ŞÀÎ	 card-2	end-->
+			<!-- ë©”ì¸	 card-2	end-->
 
 			<script type="text/javascript">
             var context = document
                 .getElementById('amr')
                 .getContext('2d');
             var myChart = new Chart(context, {
-                type: 'bar', // Â÷Æ®ÀÇ ÇüÅÂ
-                data: { // Â÷Æ®¿¡ µé¾î°¥ µ¥ÀÌÅÍ
+                type: 'bar', // ì°¨íŠ¸ì˜ í˜•íƒœ
+                data: { // ì°¨íŠ¸ì— ë“¤ì–´ê°ˆ ë°ì´í„°
                     labels: [
-                        //x Ãà
-                        'avg','mine','danger','low'
+                        //x ì¶•
+                        'mine','avg','danger','low'
                     ],
                     datasets: [
-                        { //µ¥ÀÌÅÍ
-                            label: 'amr', //Â÷Æ® Á¦¸ñ
-                            fill: false, // line ÇüÅÂÀÏ ¶§, ¼± ¾ÈÂÊÀ» Ã¤¿ì´ÂÁö ¾ÈÃ¤¿ì´ÂÁö
+                        { //ë°ì´í„°
+                            label: 'amr', //ì°¨íŠ¸ ì œëª©
+                            fill: false, // line í˜•íƒœì¼ ë•Œ, ì„  ì•ˆìª½ì„ ì±„ìš°ëŠ”ì§€ ì•ˆì±„ìš°ëŠ”ì§€
                             data: [
-                                '1500',${amr},'2500','500'//xÃà label¿¡ ´ëÀÀµÇ´Â µ¥ÀÌÅÍ °ª
+                            	${amr},'1500','2500','500'//xì¶• labelì— ëŒ€ì‘ë˜ëŠ” ë°ì´í„° ê°’
                             ],
                             backgroundColor: [
-                                //»ö»ó
+                                //ìƒ‰ìƒ
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
@@ -569,7 +829,7 @@ p.count {
                                 'rgba(255, 159, 64, 0.2)'
                             ],
                             borderColor: [
-                                //°æ°è¼± »ö»ó
+                                //ê²½ê³„ì„  ìƒ‰ìƒ
                                 'rgba(38, 159, 184, 1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
@@ -577,7 +837,7 @@ p.count {
                                 'rgba(153, 102, 255, 1)',
                                 'rgba(255, 159, 64, 1)'
                             ],
-                            borderWidth: 2 //°æ°è¼± ±½±â
+                            borderWidth: 2 //ê²½ê³„ì„  êµµê¸°
                         }/* ,
                         {
                             label: 'test2',
@@ -607,21 +867,21 @@ p.count {
                 .getElementById('bmr')
                 .getContext('2d');
             var myChart = new Chart(context, {
-                type: 'bar', // Â÷Æ®ÀÇ ÇüÅÂ
-                data: { // Â÷Æ®¿¡ µé¾î°¥ µ¥ÀÌÅÍ
+                type: 'bar', // ì°¨íŠ¸ì˜ í˜•íƒœ
+                data: { // ì°¨íŠ¸ì— ë“¤ì–´ê°ˆ ë°ì´í„°
                     labels: [
-                        //x Ãà
-                        'avg','mine','danger','low'
+                        //x ì¶•
+                        'mine','avg','danger','low'
                     ],
                     datasets: [
-                        { //µ¥ÀÌÅÍ
-                            label: 'bmr', //Â÷Æ® Á¦¸ñ
-                            fill: false, // line ÇüÅÂÀÏ ¶§, ¼± ¾ÈÂÊÀ» Ã¤¿ì´ÂÁö ¾ÈÃ¤¿ì´ÂÁö
+                        { //ë°ì´í„°
+                            label: 'bmr', //ì°¨íŠ¸ ì œëª©
+                            fill: false, // line í˜•íƒœì¼ ë•Œ, ì„  ì•ˆìª½ì„ ì±„ìš°ëŠ”ì§€ ì•ˆì±„ìš°ëŠ”ì§€
                             data: [
-                                '1500',${bmr},'2500','500'//xÃà label¿¡ ´ëÀÀµÇ´Â µ¥ÀÌÅÍ °ª
+                            	${bmr},'1500','2500','500'//xì¶• labelì— ëŒ€ì‘ë˜ëŠ” ë°ì´í„° ê°’
                             ],
                             backgroundColor: [
-                                //»ö»ó
+                                //ìƒ‰ìƒ
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
@@ -630,7 +890,7 @@ p.count {
                                 'rgba(255, 159, 64, 0.2)'
                             ],
                             borderColor: [
-                                //°æ°è¼± »ö»ó
+                                //ê²½ê³„ì„  ìƒ‰ìƒ
                                 'rgba(38, 159, 184, 1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
@@ -638,7 +898,7 @@ p.count {
                                 'rgba(153, 102, 255, 1)',
                                 'rgba(255, 159, 64, 1)'
                             ],
-                            borderWidth: 2 //°æ°è¼± ±½±â
+                            borderWidth: 2 //ê²½ê³„ì„  êµµê¸°
                         }/* ,
                         {
                             label: 'test2',
@@ -664,25 +924,26 @@ p.count {
             });
         </script>
 			<script type="text/javascript">
-            var context = document
-                .getElementById('bmi')
-                .getContext('2d');
+			var context = document
+            .getElementById('bmi2')
+            .getContext('2d');
+            console.log('bmi : ' + document.getElementById("bmi"));
             var myChart = new Chart(context, {
-                type: 'bar', // Â÷Æ®ÀÇ ÇüÅÂ
-                data: { // Â÷Æ®¿¡ µé¾î°¥ µ¥ÀÌÅÍ
+                type: 'bar', // ì°¨íŠ¸ì˜ í˜•íƒœ
+                data: { // ì°¨íŠ¸ì— ë“¤ì–´ê°ˆ ë°ì´í„°
                     labels: [
-                        //x Ãà
-                        'avg','mine','danger','low'
+                        //x ì¶•
+                        'mine','avg','danger','low'
                     ],
                     datasets: [
-                        { //µ¥ÀÌÅÍ
-                            label: 'bmi', //Â÷Æ® Á¦¸ñ
-                            fill: false, // line ÇüÅÂÀÏ ¶§, ¼± ¾ÈÂÊÀ» Ã¤¿ì´ÂÁö ¾ÈÃ¤¿ì´ÂÁö
+                        { //ë°ì´í„°
+                            label: 'bmi', //ì°¨íŠ¸ ì œëª©
+                            fill: false, // line í˜•íƒœì¼ ë•Œ, ì„  ì•ˆìª½ì„ ì±„ìš°ëŠ”ì§€ ì•ˆì±„ìš°ëŠ”ì§€
                             data: [
-                                '50',${bmi},'100','10'//xÃà label¿¡ ´ëÀÀµÇ´Â µ¥ÀÌÅÍ °ª
+                            	${bmi},'50','100','10'//xì¶• labelì— ëŒ€ì‘ë˜ëŠ” ë°ì´í„° ê°’
                             ],
                             backgroundColor: [
-                                //»ö»ó
+                                //ìƒ‰ìƒ
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
@@ -691,7 +952,7 @@ p.count {
                                 'rgba(255, 159, 64, 0.2)'
                             ],
                             borderColor: [
-                                //°æ°è¼± »ö»ó
+                                //ê²½ê³„ì„  ìƒ‰ìƒ
                                 'rgba(38, 159, 184, 1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
@@ -699,7 +960,7 @@ p.count {
                                 'rgba(153, 102, 255, 1)',
                                 'rgba(255, 159, 64, 1)'
                             ],
-                            borderWidth: 2 //°æ°è¼± ±½±â
+                            borderWidth: 2 //ê²½ê³„ì„  êµµê¸°
                         }/* ,
                         {
                             label: 'test2',
@@ -729,21 +990,21 @@ p.count {
                 .getElementById('stress')
                 .getContext('2d');
             var myChart = new Chart(context, {
-                type: 'bar', // Â÷Æ®ÀÇ ÇüÅÂ
-                data: { // Â÷Æ®¿¡ µé¾î°¥ µ¥ÀÌÅÍ
+                type: 'bar', // ì°¨íŠ¸ì˜ í˜•íƒœ
+                data: { // ì°¨íŠ¸ì— ë“¤ì–´ê°ˆ ë°ì´í„°
                     labels: [
-                        //x Ãà
-                        'avg','mine','danger','low'
+                        //x ì¶•
+                        'mine','avg','danger','low'
                     ],
                     datasets: [
-                        { //µ¥ÀÌÅÍ
-                            label: 'stress', //Â÷Æ® Á¦¸ñ
-                            fill: false, // line ÇüÅÂÀÏ ¶§, ¼± ¾ÈÂÊÀ» Ã¤¿ì´ÂÁö ¾ÈÃ¤¿ì´ÂÁö
+                        { //ë°ì´í„°
+                            label: 'stress', //ì°¨íŠ¸ ì œëª©
+                            fill: false, // line í˜•íƒœì¼ ë•Œ, ì„  ì•ˆìª½ì„ ì±„ìš°ëŠ”ì§€ ì•ˆì±„ìš°ëŠ”ì§€
                             data: [
-                                '50',${stress},'100','10'//xÃà label¿¡ ´ëÀÀµÇ´Â µ¥ÀÌÅÍ °ª
+                            	${stress},'50','100','10'//xì¶• labelì— ëŒ€ì‘ë˜ëŠ” ë°ì´í„° ê°’
                             ],
                             backgroundColor: [
-                                //»ö»ó
+                                //ìƒ‰ìƒ
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
                                 'rgba(255, 206, 86, 0.2)',
@@ -752,7 +1013,7 @@ p.count {
                                 'rgba(255, 159, 64, 0.2)'
                             ],
                             borderColor: [
-                                //°æ°è¼± »ö»ó
+                                //ê²½ê³„ì„  ìƒ‰ìƒ
                                 'rgba(38, 159, 184, 1)',
                                 'rgba(54, 162, 235, 1)',
                                 'rgba(255, 206, 86, 1)',
@@ -760,7 +1021,7 @@ p.count {
                                 'rgba(153, 102, 255, 1)',
                                 'rgba(255, 159, 64, 1)'
                             ],
-                            borderWidth: 2 //°æ°è¼± ±½±â
+                            borderWidth: 2 //ê²½ê³„ì„  êµµê¸°
                         }/* ,
                         {
                             label: 'test2',
@@ -809,7 +1070,7 @@ p.count {
 
 
 
-			<!---------------------- ¸ŞÀÎ	 card-3	³»ÁÖº¯°Ë»ö Áöµµ : start ---------------------->
+			<!---------------------- ë©”ì¸	 card-3	ë‚´ì£¼ë³€ê²€ìƒ‰ ì§€ë„ : start ---------------------->
 
 			<div class="card grow-on-hover">
 				<div class="containe">
@@ -817,9 +1078,9 @@ p.count {
 						<div id="map" style="width: 100%; height: 400px;"></div>
 						<ul id="category">
 							<li id="PM9" data-order="2"><span
-								class="category_bg pharmacy"></span> ¾à±¹</li>
+								class="category_bg pharmacy"></span> ì•½êµ­</li>
 							<li id="HP8" data-order="5"><span
-								class="category_bg hospital"></span> º´¿ø</li>
+								class="category_bg hospital"></span> ë³‘ì›</li>
 						</ul>
 					</div>
 				</div>
@@ -828,72 +1089,72 @@ p.count {
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=49a26a707e1180839f672089c3c60e78&libraries=services"></script>
 			<script>
 
-	// Áöµµ »ı¼º ¹× Áöµµ Áß½ÉÀ» ÁÖ¼Ò¿¡ ¸ÂÃß±â
-	var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
+	// ì§€ë„ ìƒì„± ë° ì§€ë„ ì¤‘ì‹¬ì„ ì£¼ì†Œì— ë§ì¶”ê¸°
+	var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
 	    mapOption = {
-	        center: new kakao.maps.LatLng(37.5666805, 126.9784147), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-	        level: 3 // ÁöµµÀÇ È®´ë ·¹º§
+	        center: new kakao.maps.LatLng(37.5666805, 126.9784147), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+	        level: 3 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
 	    };  
 	
-	// Áöµµ¸¦ »ı¼ºÇÕ´Ï´Ù    
+	// ì§€ë„ë¥¼ ìƒì„±í•©ë‹ˆë‹¤    
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	var geocoder = new kakao.maps.services.Geocoder();
-	// ÁÖ¼Ò·Î ÁÂÇ¥¸¦ °Ë»öÇÕ´Ï´Ù
+	// ì£¼ì†Œë¡œ ì¢Œí‘œë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤
 	geocoder.addressSearch('${address}', function(result, status) {
 	
-	    // Á¤»óÀûÀ¸·Î °Ë»öÀÌ ¿Ï·áµÆÀ¸¸é 
+	    // ì •ìƒì ìœ¼ë¡œ ê²€ìƒ‰ì´ ì™„ë£Œëìœ¼ë©´ 
 	     if (status === kakao.maps.services.Status.OK) {
 	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 	
-	        // °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡¸¦ ¸¶Ä¿·Î Ç¥½ÃÇÕ´Ï´Ù
+	        // ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¥¼ ë§ˆì»¤ë¡œ í‘œì‹œí•©ë‹ˆë‹¤
 	        var marker = new kakao.maps.Marker({
 	            map: map,
 	            position: coords
 	        });
 	
-	        // ÀÎÆ÷À©µµ¿ì·Î Àå¼Ò¿¡ ´ëÇÑ ¼³¸íÀ» Ç¥½ÃÇÕ´Ï´Ù
+	        // ì¸í¬ìœˆë„ìš°ë¡œ ì¥ì†Œì— ëŒ€í•œ ì„¤ëª…ì„ í‘œì‹œí•©ë‹ˆë‹¤
 // 	        var infowindow = new kakao.maps.InfoWindow({
-// 	            content: '<div style="width:150px;text-align:center;padding:6px 0;">³» À§Ä¡</div>'
+// 	            content: '<div style="width:150px;text-align:center;padding:6px 0;">ë‚´ ìœ„ì¹˜</div>'
 // 	        });
 // 	        infowindow.open(map, marker);
 			
 	        map.setCenter(coords);
-	        // ÁöµµÀÇ Áß½ÉÀ» °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡·Î ÀÌµ¿½ÃÅµ´Ï´Ù
+	        // ì§€ë„ì˜ ì¤‘ì‹¬ì„ ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚µë‹ˆë‹¤
 	     } 
 	});
 
 	
 	
-	// Ä«Å×°í¸®º° À§Ä¡ º¸±â
+	// ì¹´í…Œê³ ë¦¬ë³„ ìœ„ì¹˜ ë³´ê¸°
 	
 	
-	// ¸¶Ä¿¸¦ Å¬¸¯ÇßÀ» ¶§ ÇØ´ç Àå¼ÒÀÇ »ó¼¼Á¤º¸¸¦ º¸¿©ÁÙ Ä¿½ºÅÒ¿À¹ö·¹ÀÌÀÔ´Ï´Ù
+	// ë§ˆì»¤ë¥¼ í´ë¦­í–ˆì„ ë•Œ í•´ë‹¹ ì¥ì†Œì˜ ìƒì„¸ì •ë³´ë¥¼ ë³´ì—¬ì¤„ ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ì…ë‹ˆë‹¤
 	var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
-	    contentNode = document.createElement('div'), // Ä¿½ºÅÒ ¿À¹ö·¹ÀÌÀÇ ÄÁÅÙÃ÷ ¿¤¸®¸ÕÆ® ÀÔ´Ï´Ù 
-	    markers = [], // ¸¶Ä¿¸¦ ´ãÀ» ¹è¿­ÀÔ´Ï´Ù
-	    currCategory = ''; // ÇöÀç ¼±ÅÃµÈ Ä«Å×°í¸®¸¦ °¡Áö°í ÀÖÀ» º¯¼öÀÔ´Ï´Ù
+	    contentNode = document.createElement('div'), // ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ì˜ ì»¨í…ì¸  ì—˜ë¦¬ë¨¼íŠ¸ ì…ë‹ˆë‹¤ 
+	    markers = [], // ë§ˆì»¤ë¥¼ ë‹´ì„ ë°°ì—´ì…ë‹ˆë‹¤
+	    currCategory = ''; // í˜„ì¬ ì„ íƒëœ ì¹´í…Œê³ ë¦¬ë¥¼ ê°€ì§€ê³  ìˆì„ ë³€ìˆ˜ì…ë‹ˆë‹¤
 	 
-	// Àå¼Ò °Ë»ö °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù
+	// ì¥ì†Œ ê²€ìƒ‰ ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	var ps = new kakao.maps.services.Places(map); 
 
-	// Áöµµ¿¡ idle ÀÌº¥Æ®¸¦ µî·ÏÇÕ´Ï´Ù
+	// ì§€ë„ì— idle ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤
 	kakao.maps.event.addListener(map, 'idle', searchPlaces);
 
-	// Ä¿½ºÅÒ ¿À¹ö·¹ÀÌÀÇ ÄÁÅÙÃ÷ ³ëµå¿¡ css class¸¦ Ãß°¡ÇÕ´Ï´Ù 
+	// ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ì˜ ì»¨í…ì¸  ë…¸ë“œì— css classë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤ 
 	contentNode.className = 'placeinfo_wrap';
 
-	// Ä¿½ºÅÒ ¿À¹ö·¹ÀÌÀÇ ÄÁÅÙÃ÷ ³ëµå¿¡ mousedown, touchstart ÀÌº¥Æ®°¡ ¹ß»ıÇßÀ»¶§
-	// Áöµµ °´Ã¼¿¡ ÀÌº¥Æ®°¡ Àü´ŞµÇÁö ¾Êµµ·Ï ÀÌº¥Æ® ÇÚµé·¯·Î kakao.maps.event.preventMap ¸Ş¼Òµå¸¦ µî·ÏÇÕ´Ï´Ù 
+	// ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ì˜ ì»¨í…ì¸  ë…¸ë“œì— mousedown, touchstart ì´ë²¤íŠ¸ê°€ ë°œìƒí–ˆì„ë•Œ
+	// ì§€ë„ ê°ì²´ì— ì´ë²¤íŠ¸ê°€ ì „ë‹¬ë˜ì§€ ì•Šë„ë¡ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ë¡œ kakao.maps.event.preventMap ë©”ì†Œë“œë¥¼ ë“±ë¡í•©ë‹ˆë‹¤ 
 	addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
 	addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 
-	// Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ ÄÁÅÙÃ÷¸¦ ¼³Á¤ÇÕ´Ï´Ù
+	// ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ ì»¨í…ì¸ ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤
 	placeOverlay.setContent(contentNode);  
 
-	// °¢ Ä«Å×°í¸®¿¡ Å¬¸¯ ÀÌº¥Æ®¸¦ µî·ÏÇÕ´Ï´Ù
+	// ê° ì¹´í…Œê³ ë¦¬ì— í´ë¦­ ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤
 	addCategoryClickEvent();
 
-	// ¿¤¸®¸ÕÆ®¿¡ ÀÌº¥Æ® ÇÚµé·¯¸¦ µî·ÏÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// ì—˜ë¦¬ë¨¼íŠ¸ì— ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ë¥¼ ë“±ë¡í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function addEventHandle(target, type, callback) {
 	    if (target.addEventListener) {
 	        target.addEventListener(type, callback);
@@ -902,52 +1163,52 @@ p.count {
 	    }
 	}
 
-	// Ä«Å×°í¸® °Ë»öÀ» ¿äÃ»ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// ì¹´í…Œê³ ë¦¬ ê²€ìƒ‰ì„ ìš”ì²­í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function searchPlaces() {
 	    if (!currCategory) {
 	        return;
 	    }
 	    
-	    // Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ ¼û±é´Ï´Ù 
+	    // ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ ìˆ¨ê¹ë‹ˆë‹¤ 
 	    placeOverlay.setMap(null);
 
-	    // Áöµµ¿¡ Ç¥½ÃµÇ°í ÀÖ´Â ¸¶Ä¿¸¦ Á¦°ÅÇÕ´Ï´Ù
+	    // ì§€ë„ì— í‘œì‹œë˜ê³  ìˆëŠ” ë§ˆì»¤ë¥¼ ì œê±°í•©ë‹ˆë‹¤
 	    removeMarker();
 	    
 	    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true, radius:1000}); 
 	}
 
-	// Àå¼Ò°Ë»öÀÌ ¿Ï·áµÆÀ» ¶§ È£ÃâµÇ´Â Äİ¹éÇÔ¼ö ÀÔ´Ï´Ù
+	// ì¥ì†Œê²€ìƒ‰ì´ ì™„ë£Œëì„ ë•Œ í˜¸ì¶œë˜ëŠ” ì½œë°±í•¨ìˆ˜ ì…ë‹ˆë‹¤
 	function placesSearchCB(data, status, pagination) {
 	    if (status === kakao.maps.services.Status.OK) {
 
-	        // Á¤»óÀûÀ¸·Î °Ë»öÀÌ ¿Ï·áµÆÀ¸¸é Áöµµ¿¡ ¸¶Ä¿¸¦ Ç¥ÃâÇÕ´Ï´Ù
+	        // ì •ìƒì ìœ¼ë¡œ ê²€ìƒ‰ì´ ì™„ë£Œëìœ¼ë©´ ì§€ë„ì— ë§ˆì»¤ë¥¼ í‘œì¶œí•©ë‹ˆë‹¤
 	        displayPlaces(data);
 	    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-	        // °Ë»ö°á°ú°¡ ¾ø´Â°æ¿ì ÇØ¾ßÇÒ Ã³¸®°¡ ÀÖ´Ù¸é ÀÌ°÷¿¡ ÀÛ¼ºÇØ ÁÖ¼¼¿ä
+	        // ê²€ìƒ‰ê²°ê³¼ê°€ ì—†ëŠ”ê²½ìš° í•´ì•¼í•  ì²˜ë¦¬ê°€ ìˆë‹¤ë©´ ì´ê³³ì— ì‘ì„±í•´ ì£¼ì„¸ìš”
 
 	    } else if (status === kakao.maps.services.Status.ERROR) {
-	        // ¿¡·¯·Î ÀÎÇØ °Ë»ö°á°ú°¡ ³ª¿ÀÁö ¾ÊÀº °æ¿ì ÇØ¾ßÇÒ Ã³¸®°¡ ÀÖ´Ù¸é ÀÌ°÷¿¡ ÀÛ¼ºÇØ ÁÖ¼¼¿ä
+	        // ì—ëŸ¬ë¡œ ì¸í•´ ê²€ìƒ‰ê²°ê³¼ê°€ ë‚˜ì˜¤ì§€ ì•Šì€ ê²½ìš° í•´ì•¼í•  ì²˜ë¦¬ê°€ ìˆë‹¤ë©´ ì´ê³³ì— ì‘ì„±í•´ ì£¼ì„¸ìš”
 	        
 	    }
 	}
 
-	// Áöµµ¿¡ ¸¶Ä¿¸¦ Ç¥ÃâÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// ì§€ë„ì— ë§ˆì»¤ë¥¼ í‘œì¶œí•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function displayPlaces(places) {
 
-	    // ¸î¹øÂ° Ä«Å×°í¸®°¡ ¼±ÅÃµÇ¾î ÀÖ´ÂÁö ¾ò¾î¿É´Ï´Ù
-	    // ÀÌ ¼ø¼­´Â ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁö¿¡¼­ÀÇ À§Ä¡¸¦ °è»êÇÏ´Âµ¥ »ç¿ëµË´Ï´Ù
+	    // ëª‡ë²ˆì§¸ ì¹´í…Œê³ ë¦¬ê°€ ì„ íƒë˜ì–´ ìˆëŠ”ì§€ ì–»ì–´ì˜µë‹ˆë‹¤
+	    // ì´ ìˆœì„œëŠ” ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ì—ì„œì˜ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ëŠ”ë° ì‚¬ìš©ë©ë‹ˆë‹¤
 	    var order = document.getElementById(currCategory).getAttribute('data-order');
 
 	    
 
 	    for ( var i=0; i<places.length; i++ ) {
 
-	            // ¸¶Ä¿¸¦ »ı¼ºÇÏ°í Áöµµ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	            // ë§ˆì»¤ë¥¼ ìƒì„±í•˜ê³  ì§€ë„ì— í‘œì‹œí•©ë‹ˆë‹¤
 	            var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
 
-	            // ¸¶Ä¿¿Í °Ë»ö°á°ú Ç×¸ñÀ» Å¬¸¯ ÇßÀ» ¶§
-	            // Àå¼ÒÁ¤º¸¸¦ Ç¥ÃâÇÏµµ·Ï Å¬¸¯ ÀÌº¥Æ®¸¦ µî·ÏÇÕ´Ï´Ù
+	            // ë§ˆì»¤ì™€ ê²€ìƒ‰ê²°ê³¼ í•­ëª©ì„ í´ë¦­ í–ˆì„ ë•Œ
+	            // ì¥ì†Œì •ë³´ë¥¼ í‘œì¶œí•˜ë„ë¡ í´ë¦­ ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤
 	            (function(marker, place) {
 	                kakao.maps.event.addListener(marker, 'click', function() {
 	                    displayPlaceInfo(place);
@@ -956,28 +1217,28 @@ p.count {
 	    }
 	}
 
-	// ¸¶Ä¿¸¦ »ı¼ºÇÏ°í Áöµµ À§¿¡ ¸¶Ä¿¸¦ Ç¥½ÃÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// ë§ˆì»¤ë¥¼ ìƒì„±í•˜ê³  ì§€ë„ ìœ„ì— ë§ˆì»¤ë¥¼ í‘œì‹œí•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function addMarker(position, order) {
-	    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // ¸¶Ä¿ ÀÌ¹ÌÁö url, ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁö¸¦ ¾¹´Ï´Ù
-	        imageSize = new kakao.maps.Size(27, 28),  // ¸¶Ä¿ ÀÌ¹ÌÁöÀÇ Å©±â
+	    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // ë§ˆì»¤ ì´ë¯¸ì§€ url, ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ë¥¼ ì”ë‹ˆë‹¤
+	        imageSize = new kakao.maps.Size(27, 28),  // ë§ˆì»¤ ì´ë¯¸ì§€ì˜ í¬ê¸°
 	        imgOptions =  {
-	            spriteSize : new kakao.maps.Size(72, 208), // ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁöÀÇ Å©±â
-	            spriteOrigin : new kakao.maps.Point(46, (order*36)), // ½ºÇÁ¶óÀÌÆ® ÀÌ¹ÌÁö Áß »ç¿ëÇÒ ¿µ¿ªÀÇ ÁÂ»ó´Ü ÁÂÇ¥
-	            offset: new kakao.maps.Point(11, 28) // ¸¶Ä¿ ÁÂÇ¥¿¡ ÀÏÄ¡½ÃÅ³ ÀÌ¹ÌÁö ³»¿¡¼­ÀÇ ÁÂÇ¥
+	            spriteSize : new kakao.maps.Size(72, 208), // ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ì˜ í¬ê¸°
+	            spriteOrigin : new kakao.maps.Point(46, (order*36)), // ìŠ¤í”„ë¼ì´íŠ¸ ì´ë¯¸ì§€ ì¤‘ ì‚¬ìš©í•  ì˜ì—­ì˜ ì¢Œìƒë‹¨ ì¢Œí‘œ
+	            offset: new kakao.maps.Point(11, 28) // ë§ˆì»¤ ì¢Œí‘œì— ì¼ì¹˜ì‹œí‚¬ ì´ë¯¸ì§€ ë‚´ì—ì„œì˜ ì¢Œí‘œ
 	        },
 	        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
 	            marker = new kakao.maps.Marker({
-	            position: position, // ¸¶Ä¿ÀÇ À§Ä¡
+	            position: position, // ë§ˆì»¤ì˜ ìœ„ì¹˜
 	            image: markerImage 
 	        });
 
-	    marker.setMap(map); // Áöµµ À§¿¡ ¸¶Ä¿¸¦ Ç¥ÃâÇÕ´Ï´Ù
-	    markers.push(marker);  // ¹è¿­¿¡ »ı¼ºµÈ ¸¶Ä¿¸¦ Ãß°¡ÇÕ´Ï´Ù
+	    marker.setMap(map); // ì§€ë„ ìœ„ì— ë§ˆì»¤ë¥¼ í‘œì¶œí•©ë‹ˆë‹¤
+	    markers.push(marker);  // ë°°ì—´ì— ìƒì„±ëœ ë§ˆì»¤ë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤
 
 	    return marker;
 	}
 
-	// Áöµµ À§¿¡ Ç¥½ÃµÇ°í ÀÖ´Â ¸¶Ä¿¸¦ ¸ğµÎ Á¦°ÅÇÕ´Ï´Ù
+	// ì§€ë„ ìœ„ì— í‘œì‹œë˜ê³  ìˆëŠ” ë§ˆì»¤ë¥¼ ëª¨ë‘ ì œê±°í•©ë‹ˆë‹¤
 	function removeMarker() {
 	    for ( var i = 0; i < markers.length; i++ ) {
 	        markers[i].setMap(null);
@@ -985,14 +1246,14 @@ p.count {
 	    markers = [];
 	}
 
-	// Å¬¸¯ÇÑ ¸¶Ä¿¿¡ ´ëÇÑ Àå¼Ò »ó¼¼Á¤º¸¸¦ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ·Î Ç¥½ÃÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// í´ë¦­í•œ ë§ˆì»¤ì— ëŒ€í•œ ì¥ì†Œ ìƒì„¸ì •ë³´ë¥¼ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¡œ í‘œì‹œí•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function displayPlaceInfo (place) {
 	    var content = '<div class="placeinfo">' +
 	                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
 
 	    if (place.road_address_name) {
 	        content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
-	                    '  <span class="jibun" title="' + place.address_name + '">(Áö¹ø : ' + place.address_name + ')</span>';
+	                    '  <span class="jibun" title="' + place.address_name + '">(ì§€ë²ˆ : ' + place.address_name + ')</span>';
 	    }  else {
 	        content += '    <span title="' + place.address_name + '">' + place.address_name + '</span>';
 	    }                
@@ -1007,7 +1268,7 @@ p.count {
 	}
 
 
-	// °¢ Ä«Å×°í¸®¿¡ Å¬¸¯ ÀÌº¥Æ®¸¦ µî·ÏÇÕ´Ï´Ù
+	// ê° ì¹´í…Œê³ ë¦¬ì— í´ë¦­ ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤
 	function addCategoryClickEvent() {
 	    var category = document.getElementById('category'),
 	        children = category.children;
@@ -1017,7 +1278,7 @@ p.count {
 	    }
 	}
 
-	// Ä«Å×°í¸®¸¦ Å¬¸¯ÇßÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// ì¹´í…Œê³ ë¦¬ë¥¼ í´ë¦­í–ˆì„ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function onClickCategory() {
 	    var id = this.id,
 	        className = this.className;
@@ -1035,7 +1296,7 @@ p.count {
 	    }
 	}
 
-	// Å¬¸¯µÈ Ä«Å×°í¸®¿¡¸¸ Å¬¸¯µÈ ½ºÅ¸ÀÏÀ» Àû¿ëÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// í´ë¦­ëœ ì¹´í…Œê³ ë¦¬ì—ë§Œ í´ë¦­ëœ ìŠ¤íƒ€ì¼ì„ ì ìš©í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function changeCategoryClass(el) {
 	    var category = document.getElementById('category'),
 	        children = category.children,
@@ -1055,51 +1316,51 @@ p.count {
 	
 	
 	
-	// ¿ø ±×¸®±â
-	var drawingFlag = false; // ¿øÀÌ ±×·ÁÁö°í ÀÖ´Â »óÅÂ¸¦ °¡Áö°í ÀÖÀ» º¯¼öÀÔ´Ï´Ù
-	var centerPosition; // ¿øÀÇ Áß½ÉÁÂÇ¥ ÀÔ´Ï´Ù
-	var drawingCircle; // ±×·ÁÁö°í ÀÖ´Â ¿øÀ» Ç¥½ÃÇÒ ¿ø °´Ã¼ÀÔ´Ï´Ù
-	var drawingLine; // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ ¹İÁö¸§À» Ç¥½ÃÇÒ ¼± °´Ã¼ÀÔ´Ï´Ù
-	var drawingOverlay; // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ ¹İ°æÀ» Ç¥½ÃÇÒ Ä¿½ºÅÒ¿À¹ö·¹ÀÌ ÀÔ´Ï´Ù
-	var drawingDot; // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ Áß½ÉÁ¡À» Ç¥½ÃÇÒ Ä¿½ºÅÒ¿À¹ö·¹ÀÌ ÀÔ´Ï´Ù
+	// ì› ê·¸ë¦¬ê¸°
+	var drawingFlag = false; // ì›ì´ ê·¸ë ¤ì§€ê³  ìˆëŠ” ìƒíƒœë¥¼ ê°€ì§€ê³  ìˆì„ ë³€ìˆ˜ì…ë‹ˆë‹¤
+	var centerPosition; // ì›ì˜ ì¤‘ì‹¬ì¢Œí‘œ ì…ë‹ˆë‹¤
+	var drawingCircle; // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì„ í‘œì‹œí•  ì› ê°ì²´ì…ë‹ˆë‹¤
+	var drawingLine; // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ë°˜ì§€ë¦„ì„ í‘œì‹œí•  ì„  ê°ì²´ì…ë‹ˆë‹¤
+	var drawingOverlay; // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ë°˜ê²½ì„ í‘œì‹œí•  ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ ì…ë‹ˆë‹¤
+	var drawingDot; // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ì¤‘ì‹¬ì ì„ í‘œì‹œí•  ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ ì…ë‹ˆë‹¤
 
-	var circles = []; // Å¬¸¯À¸·Î ±×·ÁÁø ¿ø°ú ¹İ°æ Á¤º¸¸¦ Ç¥½ÃÇÏ´Â ¼±°ú Ä¿½ºÅÒ¿À¹ö·¹ÀÌ¸¦ °¡Áö°í ÀÖÀ» ¹è¿­ÀÔ´Ï´Ù
+	var circles = []; // í´ë¦­ìœ¼ë¡œ ê·¸ë ¤ì§„ ì›ê³¼ ë°˜ê²½ ì •ë³´ë¥¼ í‘œì‹œí•˜ëŠ” ì„ ê³¼ ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ë¥¼ ê°€ì§€ê³  ìˆì„ ë°°ì—´ì…ë‹ˆë‹¤
 
-	// Áöµµ¿¡ Å¬¸¯ ÀÌº¥Æ®¸¦ µî·ÏÇÕ´Ï´Ù
+	// ì§€ë„ì— í´ë¦­ ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤
 	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 		removeCircles();
-	    // Å¬¸¯ ÀÌº¥Æ®°¡ ¹ß»ıÇßÀ» ¶§ ¿øÀ» ±×¸®°í ÀÖ´Â »óÅÂ°¡ ¾Æ´Ï¸é Áß½ÉÁÂÇ¥¸¦ Å¬¸¯ÇÑ ÁöÁ¡À¸·Î ¼³Á¤ÇÕ´Ï´Ù
+	    // í´ë¦­ ì´ë²¤íŠ¸ê°€ ë°œìƒí–ˆì„ ë•Œ ì›ì„ ê·¸ë¦¬ê³  ìˆëŠ” ìƒíƒœê°€ ì•„ë‹ˆë©´ ì¤‘ì‹¬ì¢Œí‘œë¥¼ í´ë¦­í•œ ì§€ì ìœ¼ë¡œ ì„¤ì •í•©ë‹ˆë‹¤
 	    if (!drawingFlag) {    
 	        
-	        // »óÅÂ¸¦ ±×¸®°íÀÖ´Â »óÅÂ·Î º¯°æÇÕ´Ï´Ù
+	        // ìƒíƒœë¥¼ ê·¸ë¦¬ê³ ìˆëŠ” ìƒíƒœë¡œ ë³€ê²½í•©ë‹ˆë‹¤
 	        drawingFlag = true; 
 	        
-	        // ¿øÀÌ ±×·ÁÁú Áß½ÉÁÂÇ¥¸¦ Å¬¸¯ÇÑ À§Ä¡·Î ¼³Á¤ÇÕ´Ï´Ù 
+	        // ì›ì´ ê·¸ë ¤ì§ˆ ì¤‘ì‹¬ì¢Œí‘œë¥¼ í´ë¦­í•œ ìœ„ì¹˜ë¡œ ì„¤ì •í•©ë‹ˆë‹¤ 
 	        centerPosition = mouseEvent.latLng; 
 
-	        // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ ¹İ°æÀ» Ç¥½ÃÇÒ ¼± °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù
+	        // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ë°˜ê²½ì„ í‘œì‹œí•  ì„  ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	        if (!drawingLine) {
 	            drawingLine = new kakao.maps.Polyline({
-	                strokeWeight: 3, // ¼±ÀÇ µÎ²²ÀÔ´Ï´Ù
-	                strokeColor: '#00a0e9', // ¼±ÀÇ »ö±òÀÔ´Ï´Ù
-	                strokeOpacity: 1, // ¼±ÀÇ ºÒÅõ¸íµµÀÔ´Ï´Ù 0¿¡¼­ 1 »çÀÌ°ªÀÌ¸ç 0¿¡ °¡±î¿ï¼ö·Ï Åõ¸íÇÕ´Ï´Ù
-	                strokeStyle: 'solid' // ¼±ÀÇ ½ºÅ¸ÀÏÀÔ´Ï´Ù
+	                strokeWeight: 3, // ì„ ì˜ ë‘ê»˜ì…ë‹ˆë‹¤
+	                strokeColor: '#00a0e9', // ì„ ì˜ ìƒ‰ê¹”ì…ë‹ˆë‹¤
+	                strokeOpacity: 1, // ì„ ì˜ ë¶ˆíˆ¬ëª…ë„ì…ë‹ˆë‹¤ 0ì—ì„œ 1 ì‚¬ì´ê°’ì´ë©° 0ì— ê°€ê¹Œìš¸ìˆ˜ë¡ íˆ¬ëª…í•©ë‹ˆë‹¤
+	                strokeStyle: 'solid' // ì„ ì˜ ìŠ¤íƒ€ì¼ì…ë‹ˆë‹¤
 	            });    
 	        }
 	        
-	        // ±×·ÁÁö°í ÀÖ´Â ¿øÀ» Ç¥½ÃÇÒ ¿ø °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù
+	        // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì„ í‘œì‹œí•  ì› ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	        if (!drawingCircle) {                    
 	            drawingCircle = new kakao.maps.Circle({ 
-	                strokeWeight: 1, // ¼±ÀÇ µÎ²²ÀÔ´Ï´Ù
-	                strokeColor: '#00a0e9', // ¼±ÀÇ »ö±òÀÔ´Ï´Ù
-	                strokeOpacity: 0.1, // ¼±ÀÇ ºÒÅõ¸íµµÀÔ´Ï´Ù 0¿¡¼­ 1 »çÀÌ°ªÀÌ¸ç 0¿¡ °¡±î¿ï¼ö·Ï Åõ¸íÇÕ´Ï´Ù
-	                strokeStyle: 'solid', // ¼±ÀÇ ½ºÅ¸ÀÏÀÔ´Ï´Ù
-	                fillColor: '#00a0e9', // Ã¤¿ì±â »ö±òÀÔ´Ï´Ù
-	                fillOpacity: 0.2 // Ã¤¿ì±â ºÒÅõ¸íµµÀÔ´Ï´Ù 
+	                strokeWeight: 1, // ì„ ì˜ ë‘ê»˜ì…ë‹ˆë‹¤
+	                strokeColor: '#00a0e9', // ì„ ì˜ ìƒ‰ê¹”ì…ë‹ˆë‹¤
+	                strokeOpacity: 0.1, // ì„ ì˜ ë¶ˆíˆ¬ëª…ë„ì…ë‹ˆë‹¤ 0ì—ì„œ 1 ì‚¬ì´ê°’ì´ë©° 0ì— ê°€ê¹Œìš¸ìˆ˜ë¡ íˆ¬ëª…í•©ë‹ˆë‹¤
+	                strokeStyle: 'solid', // ì„ ì˜ ìŠ¤íƒ€ì¼ì…ë‹ˆë‹¤
+	                fillColor: '#00a0e9', // ì±„ìš°ê¸° ìƒ‰ê¹”ì…ë‹ˆë‹¤
+	                fillOpacity: 0.2 // ì±„ìš°ê¸° ë¶ˆíˆ¬ëª…ë„ì…ë‹ˆë‹¤ 
 	            });     
 	        }
 	        
-	        // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ ¹İ°æ Á¤º¸¸¦ Ç¥½ÃÇÒ Ä¿½ºÅÒ¿À¹ö·¹ÀÌ¸¦ »ı¼ºÇÕ´Ï´Ù
+	        // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ë°˜ê²½ ì •ë³´ë¥¼ í‘œì‹œí•  ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	        if (!drawingOverlay) {
 	            drawingOverlay = new kakao.maps.CustomOverlay({
 	                xAnchor: 0,
@@ -1110,53 +1371,53 @@ p.count {
 	    }
 	    });
 
-	// Áöµµ¿¡ ¸¶¿ì½º¹«ºê ÀÌº¥Æ®¸¦ µî·ÏÇÕ´Ï´Ù
-	// ¿øÀ» ±×¸®°íÀÖ´Â »óÅÂ¿¡¼­ ¸¶¿ì½º¹«ºê ÀÌº¥Æ®°¡ ¹ß»ıÇÏ¸é ±×·ÁÁú ¿øÀÇ À§Ä¡¿Í ¹İ°æÁ¤º¸¸¦ µ¿ÀûÀ¸·Î º¸¿©ÁÖµµ·Ï ÇÕ´Ï´Ù
+	// ì§€ë„ì— ë§ˆìš°ìŠ¤ë¬´ë¸Œ ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤
+	// ì›ì„ ê·¸ë¦¬ê³ ìˆëŠ” ìƒíƒœì—ì„œ ë§ˆìš°ìŠ¤ë¬´ë¸Œ ì´ë²¤íŠ¸ê°€ ë°œìƒí•˜ë©´ ê·¸ë ¤ì§ˆ ì›ì˜ ìœ„ì¹˜ì™€ ë°˜ê²½ì •ë³´ë¥¼ ë™ì ìœ¼ë¡œ ë³´ì—¬ì£¼ë„ë¡ í•©ë‹ˆë‹¤
 	kakao.maps.event.addListener(map, 'mousemove', function (mouseEvent) {
 	        
-	    // ¸¶¿ì½º¹«ºê ÀÌº¥Æ®°¡ ¹ß»ıÇßÀ» ¶§ ¿øÀ» ±×¸®°íÀÖ´Â »óÅÂÀÌ¸é
+	    // ë§ˆìš°ìŠ¤ë¬´ë¸Œ ì´ë²¤íŠ¸ê°€ ë°œìƒí–ˆì„ ë•Œ ì›ì„ ê·¸ë¦¬ê³ ìˆëŠ” ìƒíƒœì´ë©´
 	    if (drawingFlag) {
 
-	        // ¸¶¿ì½º Ä¿¼­ÀÇ ÇöÀç À§Ä¡¸¦ ¾ò¾î¿É´Ï´Ù 
+	        // ë§ˆìš°ìŠ¤ ì»¤ì„œì˜ í˜„ì¬ ìœ„ì¹˜ë¥¼ ì–»ì–´ì˜µë‹ˆë‹¤ 
 	        var mousePosition = mouseEvent.latLng; 
 	        
-	        // ±×·ÁÁö°í ÀÖ´Â ¼±À» Ç¥½ÃÇÒ ÁÂÇ¥ ¹è¿­ÀÔ´Ï´Ù. Å¬¸¯ÇÑ Áß½ÉÁÂÇ¥¿Í ¸¶¿ì½ºÄ¿¼­ÀÇ À§Ä¡·Î ¼³Á¤ÇÕ´Ï´Ù
+	        // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì„ ì„ í‘œì‹œí•  ì¢Œí‘œ ë°°ì—´ì…ë‹ˆë‹¤. í´ë¦­í•œ ì¤‘ì‹¬ì¢Œí‘œì™€ ë§ˆìš°ìŠ¤ì»¤ì„œì˜ ìœ„ì¹˜ë¡œ ì„¤ì •í•©ë‹ˆë‹¤
 	        var linePath = [centerPosition, mousePosition];     
 	        
-	        // ±×·ÁÁö°í ÀÖ´Â ¼±À» Ç¥½ÃÇÒ ¼± °´Ã¼¿¡ ÁÂÇ¥ ¹è¿­À» ¼³Á¤ÇÕ´Ï´Ù
+	        // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì„ ì„ í‘œì‹œí•  ì„  ê°ì²´ì— ì¢Œí‘œ ë°°ì—´ì„ ì„¤ì •í•©ë‹ˆë‹¤
 	        drawingLine.setPath(linePath);
 	        
-	        // ¿øÀÇ ¹İÁö¸§À» ¼± °´Ã¼¸¦ ÀÌ¿ëÇØ¼­ ¾ò¾î¿É´Ï´Ù 
+	        // ì›ì˜ ë°˜ì§€ë¦„ì„ ì„  ê°ì²´ë¥¼ ì´ìš©í•´ì„œ ì–»ì–´ì˜µë‹ˆë‹¤ 
 	        var length = drawingLine.getLength();
 	        
 	        if(length > 0) {
 	            
-	            // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ Áß½ÉÁÂÇ¥¿Í ¹İÁö¸§ÀÔ´Ï´Ù
+	            // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ì¤‘ì‹¬ì¢Œí‘œì™€ ë°˜ì§€ë¦„ì…ë‹ˆë‹¤
 	            var circleOptions = { 
 	                center : centerPosition, 
 	            radius: length,                 
 	            };
 	            
-	            // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ ¿É¼ÇÀ» ¼³Á¤ÇÕ´Ï´Ù
+	            // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ì˜µì…˜ì„ ì„¤ì •í•©ë‹ˆë‹¤
 	            drawingCircle.setOptions(circleOptions); 
 	                
-	            // ¹İ°æ Á¤º¸¸¦ Ç¥½ÃÇÒ Ä¿½ºÅÒ¿À¹ö·¹ÀÌÀÇ ³»¿ëÀÔ´Ï´Ù
+	            // ë°˜ê²½ ì •ë³´ë¥¼ í‘œì‹œí•  ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ì˜ ë‚´ìš©ì…ë‹ˆë‹¤
 	            var radius = Math.round(drawingCircle.getRadius()),   
-	            content = '<div class="info">¹İ°æ <span class="number">' + radius + '</span>m</div>';
+	            content = '<div class="info">ë°˜ê²½ <span class="number">' + radius + '</span>m</div>';
 	            
-	            // ¹İ°æ Á¤º¸¸¦ Ç¥½ÃÇÒ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌÀÇ ÁÂÇ¥¸¦ ¸¶¿ì½ºÄ¿¼­ À§Ä¡·Î ¼³Á¤ÇÕ´Ï´Ù
+	            // ë°˜ê²½ ì •ë³´ë¥¼ í‘œì‹œí•  ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ì˜ ì¢Œí‘œë¥¼ ë§ˆìš°ìŠ¤ì»¤ì„œ ìœ„ì¹˜ë¡œ ì„¤ì •í•©ë‹ˆë‹¤
 	            drawingOverlay.setPosition(mousePosition);
 	            
-	            // ¹İ°æ Á¤º¸¸¦ Ç¥½ÃÇÒ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌÀÇ Ç¥½ÃÇÒ ³»¿ëÀ» ¼³Á¤ÇÕ´Ï´Ù
+	            // ë°˜ê²½ ì •ë³´ë¥¼ í‘œì‹œí•  ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ì˜ í‘œì‹œí•  ë‚´ìš©ì„ ì„¤ì •í•©ë‹ˆë‹¤
 	            drawingOverlay.setContent(content);
 	            
-	            // ±×·ÁÁö°í ÀÖ´Â ¿øÀ» Áöµµ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	            // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì„ ì§€ë„ì— í‘œì‹œí•©ë‹ˆë‹¤
 	            drawingCircle.setMap(map); 
 	            
-	            // ±×·ÁÁö°í ÀÖ´Â ¼±À» Áöµµ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	            // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì„ ì„ ì§€ë„ì— í‘œì‹œí•©ë‹ˆë‹¤
 	            drawingLine.setMap(map);  
 	            
-	            // ±×·ÁÁö°í ÀÖ´Â ¿øÀÇ ¹İ°æÁ¤º¸ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Áöµµ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	            // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›ì˜ ë°˜ê²½ì •ë³´ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ ì§€ë„ì— í‘œì‹œí•©ë‹ˆë‹¤
 	            drawingOverlay.setMap(map);
 	            
 	        } else { 
@@ -1169,84 +1430,84 @@ p.count {
 	    }     
 	});     
 
-	// Áöµµ¿¡ ¸¶¿ì½º ¿À¸¥ÂÊ Å¬¸¯ÀÌº¥Æ®¸¦ µî·ÏÇÕ´Ï´Ù
-	// ¿øÀ» ±×¸®°íÀÖ´Â »óÅÂ¿¡¼­ ¸¶¿ì½º ¿À¸¥ÂÊ Å¬¸¯ ÀÌº¥Æ®°¡ ¹ß»ıÇÏ¸é
-	// ¸¶¿ì½º ¿À¸¥ÂÊ Å¬¸¯ÇÑ À§Ä¡¸¦ ±âÁØÀ¸·Î ¿ø°ú ¿øÀÇ ¹İ°æÁ¤º¸¸¦ Ç¥½ÃÇÏ´Â ¼±°ú Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Ç¥½ÃÇÏ°í ±×¸®±â¸¦ Á¾·áÇÕ´Ï´Ù
+	// ì§€ë„ì— ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ í´ë¦­ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•©ë‹ˆë‹¤
+	// ì›ì„ ê·¸ë¦¬ê³ ìˆëŠ” ìƒíƒœì—ì„œ ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ í´ë¦­ ì´ë²¤íŠ¸ê°€ ë°œìƒí•˜ë©´
+	// ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ í´ë¦­í•œ ìœ„ì¹˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì›ê³¼ ì›ì˜ ë°˜ê²½ì •ë³´ë¥¼ í‘œì‹œí•˜ëŠ” ì„ ê³¼ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ í‘œì‹œí•˜ê³  ê·¸ë¦¬ê¸°ë¥¼ ì¢…ë£Œí•©ë‹ˆë‹¤
 	kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
 
 	    if (drawingFlag) {
 
-	        // ¸¶¿ì½º·Î ¿À¸¥ÂÊ Å¬¸¯ÇÑ À§Ä¡ÀÔ´Ï´Ù 
+	        // ë§ˆìš°ìŠ¤ë¡œ ì˜¤ë¥¸ìª½ í´ë¦­í•œ ìœ„ì¹˜ì…ë‹ˆë‹¤ 
 	        var rClickPosition = mouseEvent.latLng; 
 
-	        // ¿øÀÇ ¹İ°æÀ» Ç¥½ÃÇÒ ¼± °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù
+	        // ì›ì˜ ë°˜ê²½ì„ í‘œì‹œí•  ì„  ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	        var polyline = new kakao.maps.Polyline({
-	            path: [centerPosition, rClickPosition], // ¼±À» ±¸¼ºÇÏ´Â ÁÂÇ¥ ¹è¿­ÀÔ´Ï´Ù. ¿øÀÇ Áß½ÉÁÂÇ¥¿Í Å¬¸¯ÇÑ À§Ä¡·Î ¼³Á¤ÇÕ´Ï´Ù
-	            strokeWeight: 3, // ¼±ÀÇ µÎ²² ÀÔ´Ï´Ù
-	            strokeColor: '#00a0e9', // ¼±ÀÇ »ö±òÀÔ´Ï´Ù
-	            strokeOpacity: 1, // ¼±ÀÇ ºÒÅõ¸íµµÀÔ´Ï´Ù 0¿¡¼­ 1 »çÀÌ°ªÀÌ¸ç 0¿¡ °¡±î¿ï¼ö·Ï Åõ¸íÇÕ´Ï´Ù
-	            strokeStyle: 'solid' // ¼±ÀÇ ½ºÅ¸ÀÏÀÔ´Ï´Ù
+	            path: [centerPosition, rClickPosition], // ì„ ì„ êµ¬ì„±í•˜ëŠ” ì¢Œí‘œ ë°°ì—´ì…ë‹ˆë‹¤. ì›ì˜ ì¤‘ì‹¬ì¢Œí‘œì™€ í´ë¦­í•œ ìœ„ì¹˜ë¡œ ì„¤ì •í•©ë‹ˆë‹¤
+	            strokeWeight: 3, // ì„ ì˜ ë‘ê»˜ ì…ë‹ˆë‹¤
+	            strokeColor: '#00a0e9', // ì„ ì˜ ìƒ‰ê¹”ì…ë‹ˆë‹¤
+	            strokeOpacity: 1, // ì„ ì˜ ë¶ˆíˆ¬ëª…ë„ì…ë‹ˆë‹¤ 0ì—ì„œ 1 ì‚¬ì´ê°’ì´ë©° 0ì— ê°€ê¹Œìš¸ìˆ˜ë¡ íˆ¬ëª…í•©ë‹ˆë‹¤
+	            strokeStyle: 'solid' // ì„ ì˜ ìŠ¤íƒ€ì¼ì…ë‹ˆë‹¤
 	        });
 	        
-	        // ¿ø °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù
+	        // ì› ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	        var circle = new kakao.maps.Circle({ 
-	            center : centerPosition, // ¿øÀÇ Áß½ÉÁÂÇ¥ÀÔ´Ï´Ù
-	            radius: polyline.getLength(), // ¿øÀÇ ¹İÁö¸§ÀÔ´Ï´Ù m ´ÜÀ§ ÀÌ¸ç ¼± °´Ã¼¸¦ ÀÌ¿ëÇØ¼­ ¾ò¾î¿É´Ï´Ù
-	            strokeWeight: 1, // ¼±ÀÇ µÎ²²ÀÔ´Ï´Ù
-	            strokeColor: '#00a0e9', // ¼±ÀÇ »ö±òÀÔ´Ï´Ù
-	            strokeOpacity: 0.1, // ¼±ÀÇ ºÒÅõ¸íµµÀÔ´Ï´Ù 0¿¡¼­ 1 »çÀÌ°ªÀÌ¸ç 0¿¡ °¡±î¿ï¼ö·Ï Åõ¸íÇÕ´Ï´Ù
-	            strokeStyle: 'solid', // ¼±ÀÇ ½ºÅ¸ÀÏÀÔ´Ï´Ù
-	            fillColor: '#00a0e9', // Ã¤¿ì±â »ö±òÀÔ´Ï´Ù
-	            fillOpacity: 0.2  // Ã¤¿ì±â ºÒÅõ¸íµµÀÔ´Ï´Ù 
+	            center : centerPosition, // ì›ì˜ ì¤‘ì‹¬ì¢Œí‘œì…ë‹ˆë‹¤
+	            radius: polyline.getLength(), // ì›ì˜ ë°˜ì§€ë¦„ì…ë‹ˆë‹¤ m ë‹¨ìœ„ ì´ë©° ì„  ê°ì²´ë¥¼ ì´ìš©í•´ì„œ ì–»ì–´ì˜µë‹ˆë‹¤
+	            strokeWeight: 1, // ì„ ì˜ ë‘ê»˜ì…ë‹ˆë‹¤
+	            strokeColor: '#00a0e9', // ì„ ì˜ ìƒ‰ê¹”ì…ë‹ˆë‹¤
+	            strokeOpacity: 0.1, // ì„ ì˜ ë¶ˆíˆ¬ëª…ë„ì…ë‹ˆë‹¤ 0ì—ì„œ 1 ì‚¬ì´ê°’ì´ë©° 0ì— ê°€ê¹Œìš¸ìˆ˜ë¡ íˆ¬ëª…í•©ë‹ˆë‹¤
+	            strokeStyle: 'solid', // ì„ ì˜ ìŠ¤íƒ€ì¼ì…ë‹ˆë‹¤
+	            fillColor: '#00a0e9', // ì±„ìš°ê¸° ìƒ‰ê¹”ì…ë‹ˆë‹¤
+	            fillOpacity: 0.2  // ì±„ìš°ê¸° ë¶ˆíˆ¬ëª…ë„ì…ë‹ˆë‹¤ 
 	        });
 	        
-	        var radius = Math.round(circle.getRadius()), // ¿øÀÇ ¹İ°æ Á¤º¸¸¦ ¾ò¾î¿É´Ï´Ù
-	            content = getTimeHTML(radius); // Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¿¡ Ç¥½ÃÇÒ ¹İ°æ Á¤º¸ÀÔ´Ï´Ù
+	        var radius = Math.round(circle.getRadius()), // ì›ì˜ ë°˜ê²½ ì •ë³´ë¥¼ ì–»ì–´ì˜µë‹ˆë‹¤
+	            content = getTimeHTML(radius); // ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ì— í‘œì‹œí•  ë°˜ê²½ ì •ë³´ì…ë‹ˆë‹¤
 
 	        
-	        // ¹İ°æÁ¤º¸¸¦ Ç¥½ÃÇÒ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ »ı¼ºÇÕ´Ï´Ù
+	        // ë°˜ê²½ì •ë³´ë¥¼ í‘œì‹œí•  ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	        var radiusOverlay = new kakao.maps.CustomOverlay({
-	            content: content, // Ç¥½ÃÇÒ ³»¿ëÀÔ´Ï´Ù
-	            position: rClickPosition, // Ç¥½ÃÇÒ À§Ä¡ÀÔ´Ï´Ù. Å¬¸¯ÇÑ À§Ä¡·Î ¼³Á¤ÇÕ´Ï´Ù
+	            content: content, // í‘œì‹œí•  ë‚´ìš©ì…ë‹ˆë‹¤
+	            position: rClickPosition, // í‘œì‹œí•  ìœ„ì¹˜ì…ë‹ˆë‹¤. í´ë¦­í•œ ìœ„ì¹˜ë¡œ ì„¤ì •í•©ë‹ˆë‹¤
 	            xAnchor: 0,
 	            yAnchor: 0,
 	            zIndex: 1 
 	        });  
 
-	        // ¿øÀ» Áöµµ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	        // ì›ì„ ì§€ë„ì— í‘œì‹œí•©ë‹ˆë‹¤
 	        circle.setMap(map); 
 	        
-	        // ¼±À» Áöµµ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	        // ì„ ì„ ì§€ë„ì— í‘œì‹œí•©ë‹ˆë‹¤
 	        polyline.setMap(map);
 	        
-	        // ¹İ°æ Á¤º¸ Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Áöµµ¿¡ Ç¥½ÃÇÕ´Ï´Ù
+	        // ë°˜ê²½ ì •ë³´ ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ ì§€ë„ì— í‘œì‹œí•©ë‹ˆë‹¤
 	        radiusOverlay.setMap(map);
 	        
-	        // ¹è¿­¿¡ ´ãÀ» °´Ã¼ÀÔ´Ï´Ù. ¿ø, ¼±, Ä¿½ºÅÒ¿À¹ö·¹ÀÌ °´Ã¼¸¦ °¡Áö°í ÀÖ½À´Ï´Ù
+	        // ë°°ì—´ì— ë‹´ì„ ê°ì²´ì…ë‹ˆë‹¤. ì›, ì„ , ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ ê°ì²´ë¥¼ ê°€ì§€ê³  ìˆìŠµë‹ˆë‹¤
 	        var radiusObj = {
 	            'polyline' : polyline,
 	            'circle' : circle,
 	            'overlay' : radiusOverlay
 	        };
 	        
-	        // ¹è¿­¿¡ Ãß°¡ÇÕ´Ï´Ù
-	        // ÀÌ ¹è¿­À» ÀÌ¿ëÇØ¼­ "¸ğµÎ Áö¿ì±â" ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§ Áöµµ¿¡ ±×·ÁÁø ¿ø, ¼±, Ä¿½ºÅÒ¿À¹ö·¹ÀÌµéÀ» Áö¿ó´Ï´Ù
+	        // ë°°ì—´ì— ì¶”ê°€í•©ë‹ˆë‹¤
+	        // ì´ ë°°ì—´ì„ ì´ìš©í•´ì„œ "ëª¨ë‘ ì§€ìš°ê¸°" ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ ì§€ë„ì— ê·¸ë ¤ì§„ ì›, ì„ , ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ë“¤ì„ ì§€ì›ë‹ˆë‹¤
 	        circles.push(radiusObj);   
 	    
-	        // ±×¸®±â »óÅÂ¸¦ ±×¸®°í ÀÖÁö ¾Ê´Â »óÅÂ·Î ¹Ù²ß´Ï´Ù
+	        // ê·¸ë¦¬ê¸° ìƒíƒœë¥¼ ê·¸ë¦¬ê³  ìˆì§€ ì•ŠëŠ” ìƒíƒœë¡œ ë°”ê¿‰ë‹ˆë‹¤
 	        drawingFlag = false;
 	        
-	        // Áß½É ÁÂÇ¥¸¦ ÃÊ±âÈ­ ÇÕ´Ï´Ù  
+	        // ì¤‘ì‹¬ ì¢Œí‘œë¥¼ ì´ˆê¸°í™” í•©ë‹ˆë‹¤  
 	        centerPosition = null;
 	        
-	        // ±×·ÁÁö°í ÀÖ´Â ¿ø, ¼±, Ä¿½ºÅÒ¿À¹ö·¹ÀÌ¸¦ Áöµµ¿¡¼­ Á¦°ÅÇÕ´Ï´Ù
+	        // ê·¸ë ¤ì§€ê³  ìˆëŠ” ì›, ì„ , ì»¤ìŠ¤í…€ì˜¤ë²„ë ˆì´ë¥¼ ì§€ë„ì—ì„œ ì œê±°í•©ë‹ˆë‹¤
 	        drawingCircle.setMap(null);
 	        drawingLine.setMap(null);   
 	        drawingOverlay.setMap(null);
 	    }
 	});    
 	    
-	// Áöµµ¿¡ Ç¥½ÃµÇ¾î ÀÖ´Â ¸ğµç ¿ø°ú ¹İ°æÁ¤º¸¸¦ Ç¥½ÃÇÏ´Â ¼±, Ä¿½ºÅÒ ¿À¹ö·¹ÀÌ¸¦ Áöµµ¿¡¼­ Á¦°ÅÇÕ´Ï´Ù
+	// ì§€ë„ì— í‘œì‹œë˜ì–´ ìˆëŠ” ëª¨ë“  ì›ê³¼ ë°˜ê²½ì •ë³´ë¥¼ í‘œì‹œí•˜ëŠ” ì„ , ì»¤ìŠ¤í…€ ì˜¤ë²„ë ˆì´ë¥¼ ì§€ë„ì—ì„œ ì œê±°í•©ë‹ˆë‹¤
 	function removeCircles() {         
 	    for (var i = 0; i < circles.length; i++) {
 	        circles[i].circle.setMap(null);    
@@ -1256,52 +1517,52 @@ p.count {
 	    circles = [];
 	}
 
-	// ¸¶¿ì½º ¿ìÅ¬¸¯ ÇÏ¿© ¿ø ±×¸®±â°¡ Á¾·áµÆÀ» ¶§ È£ÃâÇÏ¿© 
-	// ±×·ÁÁø ¿øÀÇ ¹İ°æ Á¤º¸¿Í ¹İ°æ¿¡ ´ëÇÑ µµº¸, ÀÚÀü°Å ½Ã°£À» °è»êÇÏ¿©
-	// HTML Content¸¦ ¸¸µé¾î ¸®ÅÏÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù
+	// ë§ˆìš°ìŠ¤ ìš°í´ë¦­ í•˜ì—¬ ì› ê·¸ë¦¬ê¸°ê°€ ì¢…ë£Œëì„ ë•Œ í˜¸ì¶œí•˜ì—¬ 
+	// ê·¸ë ¤ì§„ ì›ì˜ ë°˜ê²½ ì •ë³´ì™€ ë°˜ê²½ì— ëŒ€í•œ ë„ë³´, ìì „ê±° ì‹œê°„ì„ ê³„ì‚°í•˜ì—¬
+	// HTML Contentë¥¼ ë§Œë“¤ì–´ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜ì…ë‹ˆë‹¤
 	function getTimeHTML(distance) {
 
-	    // µµº¸ÀÇ ½Ã¼ÓÀº Æò±Õ 4km/h ÀÌ°í µµº¸ÀÇ ºĞ¼ÓÀº 67m/minÀÔ´Ï´Ù
+	    // ë„ë³´ì˜ ì‹œì†ì€ í‰ê·  4km/h ì´ê³  ë„ë³´ì˜ ë¶„ì†ì€ 67m/minì…ë‹ˆë‹¤
 	    var walkkTime = distance / 67 | 0;
 	    var walkHour = '', walkMin = '';
 
-	    // °è»êÇÑ µµº¸ ½Ã°£ÀÌ 60ºĞ º¸´Ù Å©¸é ½Ã°£À¸·Î Ç¥½ÃÇÕ´Ï´Ù
+	    // ê³„ì‚°í•œ ë„ë³´ ì‹œê°„ì´ 60ë¶„ ë³´ë‹¤ í¬ë©´ ì‹œê°„ìœ¼ë¡œ í‘œì‹œí•©ë‹ˆë‹¤
 	    if (walkkTime > 60) {
-	        walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + '</span>½Ã°£ '
+	        walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + 'ì‹œê°„</span>'
 	    }
-	    walkMin = '<span class="number">' + walkkTime % 60 + '</span>ºĞ'
+	    walkMin = '<span class="number">' + walkkTime % 60 + 'ë¶„</span>'
 
-	    // ÀÚÀü°ÅÀÇ Æò±Õ ½Ã¼ÓÀº 16km/h ÀÌ°í ÀÌ°ÍÀ» ±âÁØÀ¸·Î ÀÚÀü°ÅÀÇ ºĞ¼ÓÀº 267m/minÀÔ´Ï´Ù
+	    // ìì „ê±°ì˜ í‰ê·  ì‹œì†ì€ 16km/h ì´ê³  ì´ê²ƒì„ ê¸°ì¤€ìœ¼ë¡œ ìì „ê±°ì˜ ë¶„ì†ì€ 267m/minì…ë‹ˆë‹¤
 	    var bycicleTime = distance / 227 | 0;
 	    var bycicleHour = '', bycicleMin = '';
 
-	    // °è»êÇÑ ÀÚÀü°Å ½Ã°£ÀÌ 60ºĞ º¸´Ù Å©¸é ½Ã°£À¸·Î Ç¥ÃâÇÕ´Ï´Ù
+	    // ê³„ì‚°í•œ ìì „ê±° ì‹œê°„ì´ 60ë¶„ ë³´ë‹¤ í¬ë©´ ì‹œê°„ìœ¼ë¡œ í‘œì¶œí•©ë‹ˆë‹¤
 	    if (bycicleTime > 60) {
-	        bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>½Ã°£ '
+	        bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + 'ì‹œê°„</span>'
 	    }
-	    bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>ºĞ'
+	    bycicleMin = '<span class="number">' + bycicleTime % 60 + 'ë¶„</span>'
 
-	    // °Å¸®¿Í µµº¸ ½Ã°£, ÀÚÀü°Å ½Ã°£À» °¡Áö°í HTML Content¸¦ ¸¸µé¾î ¸®ÅÏÇÕ´Ï´Ù
+	    // ê±°ë¦¬ì™€ ë„ë³´ ì‹œê°„, ìì „ê±° ì‹œê°„ì„ ê°€ì§€ê³  HTML Contentë¥¼ ë§Œë“¤ì–´ ë¦¬í„´í•©ë‹ˆë‹¤
 	    var content = '<ul class="info">';
 	    content += '    <li>';
-	    content += '        <span class="label">ÃÑ°Å¸®</span><span class="number">' + distance + '</span>m';
+	    content += '        <span class="label">ì´ê±°ë¦¬</span><span class="number">' + distance + 'm</span>';
 	    content += '    </li>';
 	    content += '    <li>';
-	    content += '        <span class="label">µµº¸</span>' + walkHour + walkMin;
+	    content += '        <span class="label">ë„ë³´</span>' + walkHour + walkMin;
 	    content += '    </li>';
 	    content += '    <li>';
-	    content += '        <span class="label">ÀÚÀü°Å</span>' + bycicleHour + bycicleMin;
+	    content += '        <span class="label">ìì „ê±°</span>' + bycicleHour + bycicleMin;
 	    content += '    </li>';
 	    content += '</ul>'
 
 	    return content;
 	}
 </script>
-			<!-- ¸ŞÀÎ	 card-3	³»ÁÖº¯°Ë»ö Áöµµ : end -->
+			<!-- ë©”ì¸	 card-3	ë‚´ì£¼ë³€ê²€ìƒ‰ ì§€ë„ : end -->
 
 
 
-			<!-- ¸ŞÀÎ	 card-4	Áñ°ÜÃ£±â(¾à±¹, º´¿ø, ¾à) : start -->
+			<!-- ë©”ì¸	 card-4	ì¦ê²¨ì°¾ê¸°(ì•½êµ­, ë³‘ì›, ì•½) : start -->
 			<div id="block">
 			<div class="card grow-on-hover card4" style="margin-top: 10px;">
 				  <div class="card like">
@@ -1310,7 +1571,7 @@ p.count {
 					    <h4 class="card-title">pharmarcy</h4>
 					    <p class="card-text">count</p>
 					    <c:if test="${empty phlvo }">
-					    <p class="card-text text">Áñ°ÜÃ£±â ¸ñ·ÏÀÌ ¾ø½À´Ï´Ù. </p>
+					    <p class="card-text text">ì¦ê²¨ì°¾ê¸° ëª©ë¡ì´ ì—†ìŠµë‹ˆë‹¤. </p>
 					    </c:if>
 					  	<c:if test="${not empty phlvo}">
 					    <p class="card-text text">${phlvo.size()}  </p>
@@ -1331,14 +1592,14 @@ p.count {
 					    <h4 class="card-title">clinic</h4>
 					    <p class="card-text">count</p>
 					    <c:if test="${empty clvo }">
-					    <p class="card-text text">Áñ°ÜÃ£±â ¸ñ·ÏÀÌ ¾ø½À´Ï´Ù. </p>
+					    <p class="card-text text">ì¦ê²¨ì°¾ê¸° ëª©ë¡ì´ ì—†ìŠµë‹ˆë‹¤. </p>
 					    </c:if>
 					  	<c:if test="${not empty clvo}">
 					    <p class="card-text text">${clvo.size()}  </p>
 					    </c:if>
 					    <div class="list">
 					    <c:forEach var="vo" items="${clvo}">
-					    	<a href = "${pageContext.request.contextPath }/clinic/detail.do?code=${vo.code }">${vo.name} (${vo.code})</a>
+					    	<a href = "${pageContext.request.contextPath }/clinic/detail.do?code=${vo.code }">${vo.c_name} (${vo.code})</a>
 					    	<br>
 					    </c:forEach>	
 					    </div>
@@ -1352,7 +1613,7 @@ p.count {
 					    <h4 class="card-title">pill</h4>
 					    <p class="card-text">count</p>
 					    <c:if test="${empty plvo }">
-					    <p class="card-text text">Áñ°ÜÃ£±â ¸ñ·ÏÀÌ ¾ø½À´Ï´Ù. </p>
+					    <p class="card-text text">ì¦ê²¨ì°¾ê¸° ëª©ë¡ì´ ì—†ìŠµë‹ˆë‹¤. </p>
 					    </c:if>
 					  	<c:if test="${not empty plvo}">
 					    <p class="card-text text">${plvo.size() } </p>
@@ -1369,11 +1630,8 @@ p.count {
 			</div>
 			</div>
 		</main>
-		<!-- ¸ŞÀÎ	 card-4	Áñ°ÜÃ£±â(¾à±¹, º´¿ø, ¾à) : end -->
-		<footer> </footer>
-
-
-
+		<!-- ë©”ì¸	 card-4	ì¦ê²¨ì°¾ê¸°(ì•½êµ­, ë³‘ì›, ì•½) : end -->
 	</div>
+</section>
 </body>
 </html>
